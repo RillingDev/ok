@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>OkJS Demo</title>
+    <meta name="description" content="OkJS Demo">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://necolas.github.io/normalize.css/5.0.0/normalize.css" type="text/css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" type="text/css"
+        rel="stylesheet" />
+    <style>
+        .form {
+            max-width: 300px;
+        }
+        input.invalid{
+            border-color:#f28181;
+            color:#f28181;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Demo 1</h1>
+        <form class="form">
+            <div class="form-group">
+                <label for="exampleInputName">Name (in caps)</label>
+                <input type="text" class="form-control" id="exampleInputName" placeholder="Enter Name" data-ok="nameCaps">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail">Email address (.de only)</label>
+                <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter email" data-ok="emailDe">
+            </div>
+            <input type="submit" class="form-control">
+        </form>
+    </div>
+    <script src="../../dist/ok.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
