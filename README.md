@@ -2,11 +2,11 @@
 
 # OkJS
 
-> A super tiny JavaScript library for module declaration
+> A super tiny JavaScript library for form validation
 
 ## Introduction
 
-Ok is an utility library to validate forms that require more validation that HTML5 supports.
+Ok is an utility library to validate forms that require more validation than what HTML5 supports.
 
 ## Usage
 
@@ -22,7 +22,7 @@ yarn add okjs
 
 ## Syntax
 
-Calling Ok after the dom has loaded will bind the validator to all given input nodes
+Calling Ok after the DOM has loaded will bind the validator to all given input nodes with the `data-ok` sttribute
 
 ```js
 //Ok({el,methods,timeout,invalidClass})

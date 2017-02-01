@@ -4,7 +4,7 @@ Ok({
     el: ".form",
     methods: {
         nameCaps: val => {
-            return val.split("").every(letter => letter === letter.toUpperCase());
+            return /[A-Z ]+/.test(val);
         },
         emailDe: val => {
             return val.endsWith(".de");

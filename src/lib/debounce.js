@@ -1,24 +1,23 @@
 "use strict";
 
 /**
+ * Debounces a function to only be executable every x ms
+ *
  * @private
  * @param {Function} fn function to debounce
  * @param {Number} wait timeout in ms
- * @param {Boolean} immediate if the debounc should be ignored
  * @returns {Function} debounced function
  */
-const debounce = function(fn, wait, immediate) {
+const debounce = function (fn, wait) {
     let timeout;
 
-    return function() {
+    return function () {
         const context = this;
         const args = Array.from(arguments);
-        const callNow = immediate && !timeout;
-        const later = function() {
+        const callNow = !timeout;
+        const later = function () {
             timeout = null;
-            if (!immediate) {
-                fn.apply(context, args);
-            }
+            fn.apply(context, args);
         };
 
         clearTimeout(timeout);
