@@ -13,7 +13,7 @@
         .form {
             max-width: 300px;
         }
-        input.invalid{
+        input:invalid{
             border-color:#f28181;
             color:#f28181;
         }
@@ -27,11 +27,11 @@
         <form class="form">
             <div class="form-group">
                 <label for="exampleInputName">Name (in caps)</label>
-                <input type="text" class="form-control" id="exampleInputName" placeholder="Enter Name" data-ok="nameCaps">
+                <input type="text" class="form-control" id="exampleInputName" placeholder="Enter Name" required data-ok="nameCaps">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail">Email address (.de only)</label>
-                <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter email" data-ok="emailDe">
+                <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter email" required data-ok="emailDe">
             </div>
             <input type="submit" class="form-control">
         </form>

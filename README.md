@@ -6,7 +6,7 @@
 
 ## Introduction
 
-Ok is an utility library to validate forms that require more validation than what HTML5 supports.
+Ok is an very small (600Bytes) utility library to validate forms that require more validation than what HTML5 supports.
 
 ## Usage
 
@@ -25,24 +25,29 @@ yarn add okjs
 Calling Ok after the DOM has loaded will bind the validator to all given input nodes with the `data-ok` sttribute
 
 ```js
-//Ok({el,methods,timeout,invalidClass})
+//Ok({el,validators,timeout})
 Ok({
     el: ".form",
-    methods: {
-        nameCaps: val => {
-            return val.split("").every(letter => letter === letter.toUpperCase());
+    validators: {
+        nameCaps: {
+            msg: "Please input your name in caps",
+            fn: val => {
+                return /[A-Z ]+/.test(val);
+            }
         },
-        emailDe: val => {
-            return val.endsWith(".de");
+        emailDe: {
+            msg: "Please input your .de email",
+            fn: val => {
+                return val.endsWith(".de");
+            }
         }
     }
 });
 ```
 
 - `el`: contains the selector for all forms of which the inputs should be checked
-- `methods`: object with all custom validator functions
+- `validators`: object with all custom validator functions
 - `timeout` (optional): custom timeout to use between input events, default: `20`
-- `invalidClass` (optional): custom class to use on invalid inputs, default: `"invalid"`
 
 The validator which will be used on inputs is defined in the dom via data-attributes:
 
