@@ -60,3 +60,7 @@ The validator which will be used on inputs is defined in the dom via data-attrib
 
 the name defined in `data-ok` is the key of the methods object defined in the js.
 if `nameCaps(val)` evaluates to false, the text-input will be marked as invalid, otherwise it will be un-marked
+
+## Compability
+
+Safari: Safaris support for html5 validation is incompatible with OkJS. Polyfilling that might make it compatible
