@@ -4,12 +4,11 @@ const fs = require("fs");
 const rollup = require("rollup");
 const babel = require("babel-core");
 const uglify = require("uglify-js");
-
 const packageJson = require("./package.json");
 
 const DIR_SRC = "./src/";
 const DIR_DIST = "./dist/";
-const outputPath = DIR_DIST + packageJson.namespace.file;
+const DIR_DIST_FILE = DIR_DIST + packageJson.namespace.file;
 
 rollup
     .rollup({
@@ -31,11 +30,11 @@ rollup
         };
 
 
-        fs.writeFileSync(`${outputPath}.es.js`, result.es.code);
-        fs.writeFileSync(`${outputPath}.common.js`, result.cjs.code);
-        fs.writeFileSync(`${outputPath}.js`, result.iife.code);
+        fs.writeFileSync(`${DIR_DIST_FILE}.es.js`, result.es.code);
+        fs.writeFileSync(`${DIR_DIST_FILE}.common.js`, result.cjs.code);
+        fs.writeFileSync(`${DIR_DIST_FILE}.js`, result.iife.code);
 
-        result.iife_min = uglify.minify(`${outputPath}.js`);
+        result.iife_min = uglify.minify(`${DIR_DIST_FILE}.js`);
 
-        fs.writeFileSync(`${outputPath}.min.js`, result.iife_min.code);
+        fs.writeFileSync(`${DIR_DIST_FILE}.min.js`, result.iife_min.code);
     });

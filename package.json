@@ -8,6 +8,17 @@
         "validation",
         "form"
     ],
+    "main": "dist/ok.common.js",
+    "namespace": {
+        "module": "Ok",
+        "file": "ok"
+    },
+    "scripts": {
+        "start": "npm run lint && npm run build && npm run test",
+        "build": "node build.js",
+        "lint": "./node_modules/.bin/eslint ./src/",
+        "test": "./node_modules/.bin/jasmine"
+    },
     "bugs": {
         "url": "https://github.com/FelixRilling/okjs/issues"
     },
@@ -16,19 +27,12 @@
         "type": "git",
         "url": "git+https://github.com/FelixRilling/okjs.git"
     },
-    "main": "dist/ok.common.js",
-    "namespace": {
-        "module": "Ok",
-        "file": "ok"
-    },
-    "scripts": {
-        "start": "node build.js",
-        "test": "jasmine"
-    },
     "devDependencies": {
         "babel-core": "^6.21.0",
         "babel-plugin-external-helpers": "^6.18.0",
         "babel-preset-es2016": "^6.16.0",
+        "eslint": "^3.15.0",
+        "jasmine": "^2.5.3",
         "rollup": "^0.41.4",
         "uglify-js": "git://github.com/mishoo/UglifyJS2.git#harmony"
     },
