@@ -6,6 +6,7 @@ import {
     DOM_ATTR_DATA,
     DOM_ATTR
 } from "./lib/constants";
+import toArray from "./lib/toArray";
 import debounce from "./lib/debounce";
 
 /**
@@ -13,12 +14,12 @@ import debounce from "./lib/debounce";
  *
  * @param {Object} cfg Configuration object
  */
-const Ok = function (cfg) {
+const ok = function (cfg) {
     const $timeout = cfg.timeout || DOM_EVENT_TIMEOUT;
 
     //Collect all inputs
-    Array.from(document.querySelectorAll(cfg.el)).forEach(form => {
-        const fields = Array.from(form.querySelectorAll(DOM_ATTR_DATA));
+    toArray(document.querySelectorAll(cfg.el)).forEach(form => {
+        const fields = toArray(form.querySelectorAll(DOM_ATTR_DATA));
 
         //Bind each input
         fields.forEach(field => {
@@ -43,4 +44,4 @@ const Ok = function (cfg) {
     });
 };
 
-export default Ok;
+export default ok;

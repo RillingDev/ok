@@ -1,5 +1,7 @@
 "use strict";
 
+import toArray from "./toArray";
+
 /**
  * Debounces a function to only be executable every x ms
  *
@@ -13,7 +15,7 @@ const debounce = function (fn, wait) {
 
     return function () {
         const context = this;
-        const args = Array.from(arguments);
+        const args = toArray(arguments);
         const callNow = !timeout;
         const later = function () {
             timeout = null;

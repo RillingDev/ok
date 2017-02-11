@@ -5,6 +5,8 @@ const DOM_ATTR = "ok";
 const DOM_ATTR_DATA = `[data-${DOM_ATTR}]`;
 const DOM_EVENT_INPUT = "input";
 
+const toArray = val => Array.from(val);
+
 /**
  * Debounces a function to only be executable every x ms
  *
@@ -18,7 +20,7 @@ const debounce = function (fn, wait) {
 
     return function () {
         const context = this;
-        const args = Array.from(arguments);
+        const args = toArray(arguments);
         const callNow = !timeout;
         const later = function () {
             timeout = null;
@@ -38,12 +40,12 @@ const debounce = function (fn, wait) {
  *
  * @param {Object} cfg Configuration object
  */
-const Ok = function (cfg) {
+const ok = function (cfg) {
     const $timeout = cfg.timeout || DOM_EVENT_TIMEOUT;
 
     //Collect all inputs
-    Array.from(document.querySelectorAll(cfg.el)).forEach(form => {
-        const fields = Array.from(form.querySelectorAll(DOM_ATTR_DATA));
+    toArray(document.querySelectorAll(cfg.el)).forEach(form => {
+        const fields = toArray(form.querySelectorAll(DOM_ATTR_DATA));
 
         //Bind each input
         fields.forEach(field => {
@@ -68,4 +70,4 @@ const Ok = function (cfg) {
     });
 };
 
-module.exports = Ok;
+module.exports = ok;
