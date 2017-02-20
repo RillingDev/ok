@@ -14,6 +14,14 @@ Ok({
             fn: val => {
                 return val.endsWith(".de");
             }
+        },
+        customDate: {
+            msg: "Please select a date in or after 2019",
+            fn: val => {
+                const date = new Date(val);
+
+                return date.getFullYear() >= 2019;
+            }
         }
     }
 });

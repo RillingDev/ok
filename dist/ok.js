@@ -13,12 +13,11 @@ var Ok = function () {
      * @param {Object} cfg Configuration object
      */
     const ok = function (cfg) {
-
         //Collect all inputs
         toArray(document.querySelectorAll(cfg.el)).forEach(form => {
             const fields = toArray(form.querySelectorAll(DOM_ATTR_DATA));
 
-            //Bind each input
+            //Bind each input element with the "data-ok" attribute
             fields.forEach(field => {
                 const okEntryName = field.dataset[DOM_ATTR];
                 const okEntry = cfg.validators[okEntryName];
@@ -27,10 +26,12 @@ var Ok = function () {
                 if (okEntry) {
                     //Attach listener
                     field.addEventListener(DOM_EVENT_INPUT, ev => {
+                        //Execute validator and set input validity based on result
                         field.setCustomValidity(okEntry.fn(ev.target.value, ev) ? "" : okEntry.msg);
                     }, false);
                 } else {
-                    throw new Error(`validator '${okEntryName}' missing`); //Throw if now validator was found
+                    //Throw if now validator was found
+                    throw new Error(`validator '${okEntryName}' missing`);
                 }
             });
         });

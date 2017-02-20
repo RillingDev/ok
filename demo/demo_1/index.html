@@ -6,19 +6,26 @@
     <title>OkJS Demo</title>
     <meta name="description" content="OkJS Demo">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" type="text/css"
-        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
     <style>
-        .form {
-            max-width: 300px;
+        body{
+            display: flex;
+            justify-content: center;
+            height: 100vh;
         }
-        input.form-control{
-            border-color:#777;
-            color:#565656;
+
+        input {
+            border-color: #777;
+            border-style: solid;
+            border-width:1px;
+            color: #555;
+            margin-bottom:10px;
+            padding:2px;
         }
-        input.form-control:invalid{
-            border-color:#d77;
-            color:#c66;
+
+        input:invalid {
+            border-color: #d77;
+            color: #c66;
         }
     </style>
 </head>
@@ -26,18 +33,14 @@
 <body>
     <div class="container">
         <h1>Demo 1</h1>
-        <form class="form">
-            <div class="form-group">
+        <form>
+            <div>
                 <label for="exampleInputName">Name (in caps)</label>
-                <input type="text" class="form-control" id="exampleInputName" placeholder="Enter Name" required data-ok="nameCaps">
+                <input type="text" id="exampleInputName" placeholder="Enter Name" required data-ok="nameCaps">
             </div>
-            <div class="form-group">
+            <div>
                 <label for="exampleInputEmail">Email address (.de only)</label>
-                <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter email" required data-ok="emailDe">
-            </div>
-             <div class="form-group">
-                <label for="exampleInputYear">Year (must be in or after 2019)</label>
-                <input type="date" class="form-control" id="exampleInputYear" required data-ok="customDate">
+                <input type="email" id="exampleInputEmail" placeholder="Enter email" required data-ok="emailDe">
             </div>
             <input type="submit" class="form-control">
         </form>
