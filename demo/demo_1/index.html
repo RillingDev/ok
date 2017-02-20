@@ -6,18 +6,20 @@
     <title>OkJS Demo</title>
     <meta name="description" content="OkJS Demo">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://necolas.github.io/normalize.css/5.0.0/normalize.css" type="text/css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" type="text/css"
         rel="stylesheet" />
     <style>
         .form {
             max-width: 300px;
         }
-        input:invalid{
-            border-color:#f28181;
-            color:#f28181;
+        input.form-control{
+            border-color:#777;
+            color:#565656;
         }
-
+        input.form-control:invalid{
+            border-color:#d77;
+            color:#c66;
+        }
     </style>
 </head>
 
@@ -32,6 +34,10 @@
             <div class="form-group">
                 <label for="exampleInputEmail">Email address (.de only)</label>
                 <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter email" required data-ok="emailDe">
+            </div>
+             <div class="form-group">
+                <label for="exampleInputYear">Year (must be in or after 2019)</label>
+                <input type="date" class="form-control" id="exampleInputYear" required data-ok="customDate">
             </div>
             <input type="submit" class="form-control">
         </form>
