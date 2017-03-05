@@ -20,17 +20,18 @@ const arrFromSelectorQuery = (context, selector) => Array.from(context.querySele
 const ok = function (cfg) {
     arrFromSelectorQuery(document, cfg.el).forEach(form => { //Iterate over forms
         arrFromSelectorQuery(form, DOM_ATTR_DATA).forEach(field => { //Iterate over inputs
+            const fieldClassList = field.classList;
             const okEntryName = field.dataset[DOM_ATTR];
             const okEntry = cfg.validators[okEntryName];
 
             //Check if the given validator exists
             if (okEntry) {
                 field.addEventListener("input", ev => { //Attach listener
-                    if (okEntry.fn(ev.target.value, ev)) {//Runs validator and modifies input element based on result
-                        field.classList.remove(DOM_CLASS_INVALID);
+                    if (okEntry.fn(ev.target.value, ev)) { //Runs validator and modifies input element based on result
+                        fieldClassList.remove(DOM_CLASS_INVALID);
                         field.setCustomValidity("");
                     } else {
-                        field.classList.add(DOM_CLASS_INVALID);
+                        fieldClassList.add(DOM_CLASS_INVALID);
                         field.setCustomValidity(okEntry.msg);
                     }
                 }, false);

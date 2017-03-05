@@ -6,7 +6,7 @@
 
 ## Introduction
 
-Ok is an very small (380Bytes) utility library to validate forms that require more validation than what HTML5 supports.
+Ok is an very small (0.4kB) utility library to validate forms with more than what HTML5 supports.
 
 ## Usage
 
@@ -21,6 +21,8 @@ yarn add okjs
 ```
 
 ## Syntax
+
+### Setup
 
 Calling Ok after the DOM has loaded will bind the validator to all given input elements with the `data-ok` attribute
 
@@ -60,6 +62,11 @@ The validator which will be used on inputs is defined in the dom via data-attrib
 
 the name defined in `data-ok` is the key of the methods object defined in the js.
 if `nameCaps(val)` evaluates to false, the text-input will be marked as invalid, otherwise it will be un-marked
+
+### Validation
+
+Once the user inputs on a field bound by Ok.js, the validator function will be run. If it evaluates to true, the field is valid.
+If it evaluates falsy, the field will be marked as invalid with the class "invalid" and the JS validity will be updated (which will show a popup containing the validator message).
 
 ## Compability
 

@@ -17,3 +17,5 @@ demo/
 logo.png
 logo.psd
 yarn.lock
+.editorconfig
+.eslintrc.json

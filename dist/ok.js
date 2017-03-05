@@ -23,6 +23,7 @@ var Ok = function () {
             //Iterate over forms
             arrFromSelectorQuery(form, DOM_ATTR_DATA).forEach(field => {
                 //Iterate over inputs
+                const fieldClassList = field.classList;
                 const okEntryName = field.dataset[DOM_ATTR];
                 const okEntry = cfg.validators[okEntryName];
 
@@ -32,10 +33,10 @@ var Ok = function () {
                         //Attach listener
                         if (okEntry.fn(ev.target.value, ev)) {
                             //Runs validator and modifies input element based on result
-                            field.classList.remove(DOM_CLASS_INVALID);
+                            fieldClassList.remove(DOM_CLASS_INVALID);
                             field.setCustomValidity("");
                         } else {
-                            field.classList.add(DOM_CLASS_INVALID);
+                            fieldClassList.add(DOM_CLASS_INVALID);
                             field.setCustomValidity(okEntry.msg);
                         }
                     }, false);
