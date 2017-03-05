@@ -23,7 +23,7 @@
             padding:2px;
         }
 
-        input:invalid {
+        input.invalid {
             border-color: #d77;
             color: #c66;
         }
@@ -33,16 +33,20 @@
 <body>
     <div class="container">
         <h1>Demo 1</h1>
-        <form>
+        <form class="form">
             <div>
-                <label for="exampleInputName">Name (in caps)</label>
-                <input type="text" id="exampleInputName" placeholder="Enter Name" required data-ok="nameCaps">
+                <label for="inputNameFirst">First Name (only "Dave" allowed)</label>
+                <input type="text" id="inputNameFirst" placeholder="Enter First Name" required data-ok="nameFirst">
             </div>
             <div>
-                <label for="exampleInputEmail">Email address (.de only)</label>
-                <input type="email" id="exampleInputEmail" placeholder="Enter email" required data-ok="emailDe">
+                <label for="inputNameLast">Last Name</label>
+                <input type="text" id="inputNameLast" placeholder="Enter Last Name" required>
             </div>
-            <input type="submit" class="form-control">
+            <div>
+                <label for="inputMail">Email address (only ".de" allowed)</label>
+                <input type="email" id="inputMail" placeholder="Enter email" required data-ok="emailDe">
+            </div>
+            <input type="submit">
         </form>
     </div>
     <script src="../../dist/ok.js"></script>

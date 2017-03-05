@@ -3,10 +3,10 @@
 Ok({
     el: ".form",
     validators: {
-        nameCaps: {
-            msg: "Please input your name in caps",
+        nameFirst: {
+            msg: "only 'Dave' allowed",
             fn: val => {
-                return val.toUpperCase() === val;
+                return val.toLowerCase() === "dave";
             }
         },
         emailDe: {

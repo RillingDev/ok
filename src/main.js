@@ -1,11 +1,11 @@
 "use strict";
 
 import {
-    DOM_EVENT_INPUT,
     DOM_ATTR_DATA,
-    DOM_ATTR
+    DOM_ATTR,
+    DOM_CLASS_INVALID,
 } from "./lib/constants";
-import toArray from "./lib/toArray";
+import arrFromSelectorQuery from "./lib/arrFromSelectorQuery";
 
 /**
  * Applies Ok to all given forms
@@ -13,25 +13,25 @@ import toArray from "./lib/toArray";
  * @param {Object} cfg Configuration object
  */
 const ok = function (cfg) {
-    //Collect all inputs
-    toArray(document.querySelectorAll(cfg.el)).forEach(form => {
-        const fields = toArray(form.querySelectorAll(DOM_ATTR_DATA));
-
-        //Bind each input element with the "data-ok" attribute
-        fields.forEach(field => {
+    arrFromSelectorQuery(document, cfg.el).forEach(form => { //Iterate over forms
+        arrFromSelectorQuery(form, DOM_ATTR_DATA).forEach(field => { //Iterate over inputs
             const okEntryName = field.dataset[DOM_ATTR];
             const okEntry = cfg.validators[okEntryName];
 
             //Check if the given validator exists
             if (okEntry) {
-                //Attach listener
-                field.addEventListener(DOM_EVENT_INPUT, ev => {
-                    //Execute validator and set input validity based on result
-                    field.setCustomValidity(okEntry.fn(ev.target.value, ev) ? "" : okEntry.msg);
+                field.addEventListener("input", ev => { //Attach listener
+                    if (okEntry.fn(ev.target.value, ev)) {//Runs validator and modifies input element based on result
+                        field.classList.remove(DOM_CLASS_INVALID);
+                        field.setCustomValidity("");
+                    } else {
+                        field.classList.add(DOM_CLASS_INVALID);
+                        field.setCustomValidity(okEntry.msg);
+                    }
                 }, false);
             } else {
-                //Throw if now validator was found
-                throw new Error(`validator '${okEntryName}' missing`);
+                //Throw if no validator was found
+                throw new Error(`missing validator '${okEntryName}'`);
             }
         });
     });
