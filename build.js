@@ -15,26 +15,31 @@ rollup
         entry: DIR_SRC + "main.js",
     })
     .then(bundle => {
-        const result = {
-            es: bundle.generate({
-                format: "es"
-            }),
-            cjs: bundle.generate({
-                format: "cjs"
-            }),
-            iife: babel.transform(bundle.generate({
-                moduleName: packageJson.namespace.module,
-                format: "iife"
-            }).code),
-            iife_min: null
-        };
+        const result = {};
+
+        result.es = bundle.generate({
+            format: "es"
+        }).code;
+
+        result.cjs = bundle.generate({
+            format: "cjs"
+        }).code;
+
+        result.iife = babel.transform(bundle.generate({
+            moduleName: packageJson.namespace.module,
+            format: "iife"
+        }).code).code;
+
+        result.iife_min = uglify.minify(result.iife, {
+            fromString: true,
+            compress: {
+                unsafe: true
+            },
+        }).code;
 
 
-        fs.writeFileSync(`${DIR_DIST_FILE}.es.js`, result.es.code);
-        fs.writeFileSync(`${DIR_DIST_FILE}.common.js`, result.cjs.code);
-        fs.writeFileSync(`${DIR_DIST_FILE}.js`, result.iife.code);
-
-        result.iife_min = uglify.minify(`${DIR_DIST_FILE}.js`);
-
-        fs.writeFileSync(`${DIR_DIST_FILE}.min.js`, result.iife_min.code);
+        fs.writeFileSync(`${DIR_DIST_FILE}.es.js`, result.es);
+        fs.writeFileSync(`${DIR_DIST_FILE}.common.js`, result.cjs);
+        fs.writeFileSync(`${DIR_DIST_FILE}.js`, result.iife);
+        fs.writeFileSync(`${DIR_DIST_FILE}.min.js`, result.iife_min);
     });
