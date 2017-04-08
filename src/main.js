@@ -9,7 +9,6 @@ import arrFromSelectorQuery from "./lib/arrFromSelectorQuery";
 
 /**
  * Applies Ok to all given forms
- *
  * @param {Object} cfg Configuration object
  */
 const ok = function (cfg) {
