@@ -3,7 +3,7 @@
 const fs = require("fs");
 const rollup = require("rollup");
 const babel = require("babel-core");
-const uglify = require("uglify-js");
+const uglify = require("uglify-es");
 const packageJson = require("./package.json");
 
 const DIR_SRC = "./src/";
@@ -13,33 +13,31 @@ const DIR_DIST_FILE = DIR_DIST + packageJson.namespace.file;
 rollup
     .rollup({
         entry: DIR_SRC + "main.js",
+        plugins: []
     })
     .then(bundle => {
-        const result = {};
-
-        result.es = bundle.generate({
+        const result_es = bundle.generate({
             format: "es"
         }).code;
-
-        result.cjs = bundle.generate({
+        const result_cjs = bundle.generate({
             format: "cjs"
         }).code;
-
-        result.iife = babel.transform(bundle.generate({
+        const result_iife = babel.transform(bundle.generate({
             moduleName: packageJson.namespace.module,
             format: "iife"
         }).code).code;
-
-        result.iife_min = uglify.minify(result.iife, {
-            fromString: true,
+        const result_iife_min = uglify.minify(result_iife, {
             compress: {
-                unsafe: true
-            },
+                dead_code: true,
+                properties: true
+            }
         }).code;
 
-
-        fs.writeFileSync(`${DIR_DIST_FILE}.es.js`, result.es);
-        fs.writeFileSync(`${DIR_DIST_FILE}.common.js`, result.cjs);
-        fs.writeFileSync(`${DIR_DIST_FILE}.js`, result.iife);
-        fs.writeFileSync(`${DIR_DIST_FILE}.min.js`, result.iife_min);
+        fs.writeFile(`${DIR_DIST_FILE}.es.js`, result_es, (err) => console.log(err || "Saved ES file"));
+        fs.writeFile(`${DIR_DIST_FILE}.common.js`, result_cjs, (err) => console.log(err || "Saved CJS file"));
+        fs.writeFile(`${DIR_DIST_FILE}.js`, result_iife, (err) => console.log(err || "Saved IIFE file"));
+        fs.writeFile(`${DIR_DIST_FILE}.min.js`, result_iife_min, (err) => console.log(err || "saved IIFE-min file"));
+    })
+    .catch(err => {
+        throw err;
     });

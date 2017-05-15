@@ -1,10 +1,8 @@
 {
     "presets": [
-        [
-            "es2016"
-        ]
+        ["latest", {
+            "es2016": {}
+        }]
     ],
-    "plugins": [
-        "external-helpers"
-    ]
+    "plugins": []
 }
