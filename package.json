@@ -15,8 +15,8 @@
     },
     "scripts": {
         "start": "npm-run-all lint build test",
-        "build": "node build.js",
-        "lint": "eslint ./src/",
+        "build": "node tasks/build.js",
+        "lint": "eslint src/",
         "test": "jasmine"
     },
     "bugs": {
@@ -28,13 +28,13 @@
         "url": "git+https://github.com/FelixRilling/okjs.git"
     },
     "devDependencies": {
-        "babel-core": "v7.0.0-alpha.7",
-        "babel-preset-latest": "v7.0.0-alpha.7",
-        "eslint": "^3.19.0",
+        "babel-core": "^7.0.0-alpha.12",
+        "babel-preset-es2016": "^7.0.0-alpha.12",
+        "eslint": "^4.0.0",
         "jasmine": "^2.6.0",
         "npm-run-all": "^4.0.2",
-        "rollup": "^0.41.6",
-        "uglify-es": "^3.0.4"
+        "rollup": "^0.43.0",
+        "uglify-es": "^3.0.17"
     },
     "dependencies": {}
 }
