@@ -9,13 +9,15 @@
         "form"
     ],
     "main": "dist/ok.common.js",
+    "module": "dist/ok.esm.js",
     "namespace": {
-        "module": "Ok",
+        "module": "ok",
         "file": "ok"
     },
     "scripts": {
         "start": "npm-run-all lint build test",
         "build": "node tasks/build.js",
+        "dist": "node tasks/dist.js",
         "lint": "eslint src/",
         "test": "jasmine"
     },
@@ -30,11 +32,11 @@
     "devDependencies": {
         "babel-core": "^7.0.0-alpha.12",
         "babel-preset-es2016": "^7.0.0-alpha.12",
-        "eslint": "^4.0.0",
+        "eslint": "^4.1.1",
         "jasmine": "^2.6.0",
         "npm-run-all": "^4.0.2",
         "rollup": "^0.43.0",
-        "uglify-es": "^3.0.17"
+        "uglify-es": "^3.0.22"
     },
     "dependencies": {}
 }

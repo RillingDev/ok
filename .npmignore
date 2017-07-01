@@ -41,6 +41,7 @@ tasks/
 spec/
 test/
 test*.js
+demo/
 .gitattributes
 .gitignore
 .editorconfig

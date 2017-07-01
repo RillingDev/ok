@@ -27,8 +27,8 @@ yarn add okjs
 Calling Ok after the DOM has loaded will bind the validator to all given input elements with the `data-ok` attribute
 
 ```js
-//Ok({el,validators})
-Ok({
+//ok({el,validators})
+ok({
     el: ".form",
     validators: {
         nameCaps: {
@@ -60,14 +60,14 @@ The validator which will be used on inputs is defined in the dom via data-attrib
 </form>
 ```
 
-the name defined in `data-ok` is the key of the methods object defined in the js.
+the name defined in `data-ok` is the key of the methods object defined in the JS.
 if `nameCaps(val)` evaluates to false, the text-input will be marked as invalid, otherwise it will be un-marked
 
 ### Validation
 
 Once the user inputs on a field bound by Ok.js, the validator function will be run. If it evaluates to true, the field is valid.
-If it evaluates falsy, the field will be marked as invalid with the class "invalid" and the JS validity will be updated (which will show a popup containing the validator message).
+If it evaluates falsy, the field will be marked as invalid with the class "invalid" and the JS validity will be updated (which will show a popup containing the validator message, based on the browser).
 
 ## Compability
 
-Safari: Older versions of Safari expirience issues for html5 validation. Polyfilling that might make it compatible
+Safari: Older versions of Safari experience issues for HTML5 form validation.

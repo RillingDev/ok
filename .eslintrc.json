@@ -5,14 +5,13 @@
         "ecmaVersion": 8
     },
     "env": {
-        "es6": true,
+		"browser":true,
         "node": true,
-        "browser": true,
         "jasmine": true
     },
     "rules": {
         "no-console": [
-            "off"
+            "warn"
         ],
         "indent": [
             "warn",
