@@ -4,17 +4,17 @@ const bundle = require("./lib/bundle");
 
 bundle([{
     id: "es",
-    file: ".esm",
+    ext: ".esm",
     name: "ES",
     fn: code => code
 }, {
     id: "cjs",
-    file: ".common",
+    ext: ".common",
     name: "CommonJS",
     fn: code => code
 }, {
     id: "iife",
-    file: "",
+    ext: "",
     name: "IIFE",
     fn: code => code
-}]);
+}], []);

@@ -6,28 +6,28 @@ const bundle = require("./lib/bundle");
 
 bundle([{
     id: "es",
-    file: ".esm",
+    ext: ".esm",
     name: "ES",
     fn: code => code
 }, {
     id: "cjs",
-    file: ".common",
+    ext: ".common",
     name: "CommonJS",
     fn: code => code
 }, {
     id: "iife",
-    file: "",
+    ext: "",
     name: "IIFE",
     fn: code => babel.transform(code, {
         compact: false
     }).code
 }, {
     id: "iife",
-    file: ".min",
+    ext: ".min",
     name: "IIFE:min",
     fn: code => uglify.minify(
         babel.transform(code, {
             compact: false
         }).code
     ).code
-}]);
+}], []);
