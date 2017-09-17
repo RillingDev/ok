@@ -1,6 +1,6 @@
 "use strict";
 
-Ok({
+ok({
     el: ".form",
     validators: {
         nameFirst: {

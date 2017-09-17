@@ -1,13 +1,15 @@
 /**
  * Loops over each element from querySelector
+ *
  * @param {Node} context
- * @param {String} selector
+ * @param {string} selector
  * @param {Function} fn
  */
 const eachElement = (context, selector, fn) => Array.from(context.querySelectorAll(selector)).forEach(fn);
 
 /**
- * Applies Ok to all given forms
+ * Applies Ok on all given forms
+ *
  * @param {Object} cfg Configuration object
  */
 const ok = function (cfg) {

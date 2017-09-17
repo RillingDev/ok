@@ -1,9 +1,8 @@
-"use strict";
-
 import eachElement from "./lib/eachElement";
 
 /**
- * Applies Ok to all given forms
+ * Applies Ok on all given forms
+ *
  * @param {Object} cfg Configuration object
  */
 const ok = function (cfg) {
