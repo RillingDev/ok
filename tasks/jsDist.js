@@ -1,33 +1,51 @@
 "use strict";
 
-const babel = require("babel-core");
-const uglify = require("uglify-es");
 const bundle = require("./lib/bundle");
+const resolve = require("rollup-plugin-node-resolve");
+const babel = require("rollup-plugin-babel");
+const uglify = require("rollup-plugin-uglify-es");
+const targets = require("../package.json").constants.js.targets;
+
+const options_babel = {
+    presets: [
+        ["env", {
+            modules: false,
+            targets,
+        }]
+    ],
+    plugins: [
+        "external-helpers"
+    ]
+};
+
 
 bundle([{
     id: "es",
     ext: ".esm",
     name: "ES",
-    fn: code => code
 }, {
     id: "cjs",
     ext: ".common",
     name: "CommonJS",
-    fn: code => code
-}, {
+}], [
+    resolve()
+]);
+
+bundle([{
     id: "iife",
     ext: "",
     name: "IIFE",
-    fn: code => babel.transform(code, {
-        compact: false
-    }).code
-}, {
+}], [
+    resolve(),
+    babel(options_babel),
+]);
+
+bundle([{
     id: "iife",
     ext: ".min",
     name: "IIFE:min",
-    fn: code => uglify.minify(
-        babel.transform(code, {
-            compact: false
-        }).code
-    ).code
-}], []);
+}], [
+    resolve(),
+    babel(options_babel),
+    uglify()
+]);
