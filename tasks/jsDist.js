@@ -18,32 +18,27 @@ const options_babel = {
     ]
 };
 
-
 bundle([{
-    id: "es",
+    type: "es",
     ext: ".esm",
-    name: "ES",
 }, {
-    id: "cjs",
+    type: "cjs",
     ext: ".common",
-    name: "CommonJS",
 }], [
     resolve()
 ]);
 
 bundle([{
-    id: "iife",
+    type: "iife",
     ext: "",
-    name: "IIFE",
 }], [
     resolve(),
     babel(options_babel),
 ]);
 
 bundle([{
-    id: "iife",
+    type: "iife",
     ext: ".min",
-    name: "IIFE:min",
 }], [
     resolve(),
     babel(options_babel),

@@ -20,7 +20,9 @@
                 "file": "ok"
             },
             "targets": {
-                "browsers": "chrome >= 58"
+                "browsers": [
+                    "Chrome >= 60"
+                ]
             }
         }
     },
@@ -39,19 +41,20 @@
         "type": "git",
         "url": "git+https://github.com/FelixRilling/okjs.git"
     },
+    "dependencies": {
+        "lightdash": "^3.3.0"
+    },
     "devDependencies": {
-        "babel-core": "^7.0.0-beta.2",
-        "babel-plugin-external-helpers": "^7.0.0-beta.2",
-        "babel-preset-env": "^1.6.0",
-        "eslint": "^4.7.0",
-        "eslint-plugin-unicorn": "^2.1.2",
+        "babel-core": "^6.26.0",
+        "babel-plugin-external-helpers": "^6.22.0",
+        "babel-preset-env": "^1.6.1",
+        "eslint": "^4.13.0",
         "jasmine": "^2.8.0",
-        "npm-run-all": "^4.1.1",
-        "rollup": "^0.50.0",
+        "npm-run-all": "^4.1.2",
+        "rollup": "^0.52.1",
         "rollup-plugin-babel": "^3.0.2",
         "rollup-plugin-node-resolve": "^3.0.0",
         "rollup-plugin-uglify-es": "0.0.1",
-        "uglify-es": "^3.1.3"
-    },
-    "dependencies": {}
+        "uglify-es": "^3.2.1"
+    }
 }

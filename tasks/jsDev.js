@@ -4,17 +4,14 @@ const bundle = require("./lib/bundle");
 const resolve = require("rollup-plugin-node-resolve");
 
 bundle([{
-    id: "es",
+    type: "es",
     ext: ".esm",
-    name: "ES",
 }, {
-    id: "cjs",
+    type: "cjs",
     ext: ".common",
-    name: "CommonJS",
 }, {
-    id: "iife",
+    type: "iife",
     ext: "",
-    name: "IIFE",
 }], [
     resolve()
 ]);
