@@ -4,7 +4,7 @@
         "dictionaries": ["jsdoc"]
     },
     "source": {
-        "include": ["./README.md", "./dist/myLib.esm.js"],
+        "include": ["./README.md", "./dist/ok.esm.js"],
         "excludePattern": "(node_modules/|docs/)"
     },
     "plugins": [],

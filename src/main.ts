@@ -1,45 +1,68 @@
-import { arrFrom, forEach } from "lightdash";
+import { hasKey, mapFromObject } from "lightdash";
+import { IOk, IOkValidator, IOkValidators } from "./interfaces";
 
 /**
- * Loops over each element from querySelector
+ * Checks if an input is a radio or a checkbox
  *
- * @param {Node} context
- * @param {string} selector
- * @param {Function} fn
+ * @private
+ * @param {HTMLInputElement} element
+ * @returns {boolean}
  */
-const forEachElement = (context, selector, fn) =>
-    forEach(arrFrom(context.querySelectorAll(selector)), fn);
+const isCheckboxLike = (element: HTMLInputElement): boolean =>
+    element.type === "checkbox" || element.type === "radio";
 
 /**
- * Applies Ok on all given forms
+ * Returns input element specific value
  *
- * @param {Object} cfg Configuration object
+ * @private
+ * @param {HTMLInputElement} element
+ * @returns {string|boolean}
  */
-const ok = function(cfg) {
-    forEachElement(document, cfg.el, form => {
-        forEachElement(form, "[data-ok]", field => {
-            const okEntryName = field.dataset["ok"];
-            const okEntry = cfg.validators[okEntryName];
+const getInputElementValue = (element: HTMLInputElement): string | boolean =>
+    isCheckboxLike(element) ? element.checked : element.value;
 
-            if (okEntry) {
-                field.addEventListener(
-                    "input",
-                    e => {
-                        if (okEntry.fn(e.target.value, e)) {
-                            field.classList.remove("invalid");
-                            field.setCustomValidity("");
-                        } else {
-                            field.classList.add("invalid");
-                            field.setCustomValidity(okEntry.msg);
-                        }
-                    },
-                    false
-                );
+/**
+ * Ok main class
+ *
+ * @class
+ */
+const Ok = class implements IOk {
+    public map;
+    /**
+     * Creates a new ok instance
+     *
+     * @constructor
+     * @param {IOkValidators} validators
+     */
+    constructor(validators: IOkValidators) {
+        this.map = mapFromObject(validators);
+    }
+    /**
+     * Binds the fitting validator to an input element
+     *
+     * @param {HTMLInputElement} element
+     */
+    public bind(element: HTMLInputElement) {
+        const validatorKey = element.dataset.ok;
+
+        if (!this.map.has(validatorKey)) {
+            throw new Error(`missing validator '${validatorKey}'`);
+        }
+
+        const okEntry = this.map.get(validatorKey);
+
+        element.addEventListener("input", e => {
+            if (
+                okEntry.fn(getInputElementValue(<HTMLInputElement>e.target), e)
+            ) {
+                element.classList.remove("invalid");
+                element.setCustomValidity("");
             } else {
-                throw new Error(`missing validator '${okEntryName}'`);
+                element.classList.add("invalid");
+                element.setCustomValidity(okEntry.msg);
             }
         });
-    });
+    }
 };
 
-export default ok;
+export default Ok;

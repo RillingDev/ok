@@ -1,98 +1,58 @@
+import { mapFromObject } from 'lightdash';
+
 /**
- * Checks if the value has a certain type-string
+ * Checks if an input is a radio or a checkbox
  *
- * @function isTypeOf
- * @memberof Is
- * @since 1.0.0
- * @param {any} val
- * @param {string} type
+ * @private
+ * @param {HTMLInputElement} element
  * @returns {boolean}
- * @example
- * // returns true
- * isTypeOf({}, "object")
- * isTypeOf([], "object")
- * isTypeOf("foo", "string")
- *
- * @example
- * // returns false
- * isTypeOf("foo", "number")
  */
+const isCheckboxLike = (element) => element.type === "checkbox" || element.type === "radio";
 /**
- * Iterates over each element in an array
+ * Returns input element specific value
  *
- * Wrapper around arr.forEach to have a cleaner API and better minified code
- *
- * @function forEach
- * @memberof For
- * @param {any[]} arr
- * @param {function} fn fn(val: any, index: number, arr: any[])
- * @example
- * // returns a = [0, 2, 6]
- * const a = [1, 2, 3];
- *
- * forEach(a, (val, index)=>a[index] = val * index)
+ * @private
+ * @param {HTMLInputElement} element
+ * @returns {string|boolean}
  */
-const forEach = (arr, fn) => arr.forEach(fn);
-
+const getInputElementValue = (element) => isCheckboxLike(element) ? element.checked : element.value;
 /**
- * Creates a new array with the values of the input iterable
+ * Ok main class
  *
- * `Array.from` shorthand
- *
- * @function arrFrom
- * @memberof Array
- * @since 1.0.0
- * @param {any} arr
- * @returns {any[]}
- * @example
- * // returns a = [1, 2, 3], b = [1, 10, 3]
- * const a = [1, 2, 3];
- * const b = arrFrom(a);
- *
- * b[1] = 10;
+ * @class
  */
-const arrFrom = Array.from;
-
-/**
- * Loops over each element from querySelector
- *
- * @param {Node} context
- * @param {string} selector
- * @param {Function} fn
- */
-const forEachElement = (context, selector, fn) =>
-    forEach(arrFrom(context.querySelectorAll(selector)), fn);
-
-/**
- * Applies Ok on all given forms
- *
- * @param {Object} cfg Configuration object
- */
-const ok = function(cfg) {
-    forEachElement(document, cfg.el, form => {
-        forEachElement(form, "[data-ok]", field => {
-            const okEntryName = field.dataset["ok"];
-            const okEntry = cfg.validators[okEntryName];
-
-            if (okEntry) {
-                field.addEventListener(
-                    "input",
-                    e => {
-                        if (okEntry.fn(e.target.value, e)) {
-                            field.classList.remove("invalid");
-                            field.setCustomValidity("");
-                        } else {
-                            field.classList.add("invalid");
-                            field.setCustomValidity(okEntry.msg);
-                        }
-                    },
-                    false
-                );
-            } else {
-                throw new Error(`missing validator '${okEntryName}'`);
+const Ok = class {
+    /**
+     * Creates a new ok instance
+     *
+     * @constructor
+     * @param {IOkValidators} validators
+     */
+    constructor(validators) {
+        this.map = mapFromObject(validators);
+    }
+    /**
+     * Binds the fitting validator to an input element
+     *
+     * @param {HTMLInputElement} element
+     */
+    bind(element) {
+        const validatorKey = element.dataset.ok;
+        if (!this.map.has(validatorKey)) {
+            throw new Error(`missing validator '${validatorKey}'`);
+        }
+        const okEntry = this.map.get(validatorKey);
+        element.addEventListener("input", e => {
+            if (okEntry.fn(getInputElementValue(e.target), e)) {
+                element.classList.remove("invalid");
+                element.setCustomValidity("");
+            }
+            else {
+                element.classList.add("invalid");
+                element.setCustomValidity(okEntry.msg);
             }
         });
-    });
+    }
 };
 
-export default ok;
+export default Ok;

@@ -1,19 +1,13 @@
-"use strict";
-
-ok({
-    el: ".form",
-    validators: {
-        nameFirst: {
-            msg: "only 'Dave' allowed",
-            fn: val => {
-                return val.toLowerCase() === "dave";
-            }
-        },
-        emailDe: {
-            msg: "Please input your .de email",
-            fn: val => {
-                return val.endsWith(".de");
-            }
-        }
+const ok = new Ok({
+    "name-first": {
+        msg: "only 'Dave' allowed",
+        fn: val => val === "Dave"
+    },
+    "email-de": {
+        msg: "Please input your .de email",
+        fn: val => val.endsWith(".de")
     }
 });
+
+ok.bind(document.querySelector("#inputNameFirst"));
+ok.bind(document.querySelector("#inputMail"));

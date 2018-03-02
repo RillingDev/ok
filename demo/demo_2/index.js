@@ -1,27 +1,26 @@
-"use strict";
+const ok = new Ok({
+    "name-caps": {
+        msg: "Please input your name in caps",
+        fn: val => val.toUpperCase() === val
+    },
+    "email-de": {
+        msg: "Please input your .de email",
+        fn: val => /.+\.de/.test(val)
+    },
+    "custom-date": {
+        msg: "Please select a date in or after 2019",
+        fn: val => {
+            const date = new Date(val);
 
-ok({
-    el: ".form",
-    validators: {
-        nameCaps: {
-            msg: "Please input your name in caps",
-            fn: val => {
-                return val.toUpperCase() === val;
-            }
-        },
-        emailDe: {
-            msg: "Please input your .de email",
-            fn: val => {
-                return val.endsWith(".de");
-            }
-        },
-        customDate: {
-            msg: "Please select a date in or after 2019",
-            fn: val => {
-                const date = new Date(val);
-
-                return date.getFullYear() >= 2019;
-            }
+            return date.getFullYear() >= 2019;
         }
+    },
+    "custom-check": {
+        msg: "Can only be checked if the change event has an even timestamp",
+        fn: (val, e) => Math.floor(e.timeStamp) % 2 === 0
     }
+});
+
+Array.from(document.querySelectorAll("[data-ok]")).forEach(inputElement => {
+    ok.bind(inputElement);
 });

@@ -1,8 +1,8 @@
-var ok = (function () {
+var Ok = (function () {
 'use strict';
 
 /**
- * Checks if the value has a certain type-string
+ * Checks if the value has a certain type-string.
  *
  * @function isTypeOf
  * @memberof Is
@@ -20,79 +20,105 @@ var ok = (function () {
  * // returns false
  * isTypeOf("foo", "number")
  */
+const _Object = Object;
+const _Map = Map;
 /**
- * Iterates over each element in an array
+ * Returns an array of the objects entries.
  *
- * Wrapper around arr.forEach to have a cleaner API and better minified code
+ * `Object.entries` shorthand.
  *
- * @function forEach
- * @memberof For
- * @param {any[]} arr
- * @param {function} fn fn(val: any, index: number, arr: any[])
- * @example
- * // returns a = [0, 2, 6]
- * const a = [1, 2, 3];
- *
- * forEach(a, (val, index)=>a[index] = val * index)
- */
-const forEach = (arr, fn) => arr.forEach(fn);
-
-/**
- * Creates a new array with the values of the input iterable
- *
- * `Array.from` shorthand
- *
- * @function arrFrom
- * @memberof Array
+ * @function objEntries
+ * @memberof Object
  * @since 1.0.0
- * @param {any} arr
- * @returns {any[]}
+ * @param {Object} obj
+ * @returns {any[]} Array<[key: any, val: any]>]
  * @example
- * // returns a = [1, 2, 3], b = [1, 10, 3]
- * const a = [1, 2, 3];
- * const b = arrFrom(a);
- *
- * b[1] = 10;
+ * // returns [["a", 1], ["b", 2], ["c", 3]]
+ * objEntries({a: 1, b: 2, c: 3})
  */
-const arrFrom = Array.from;
+
+
+const objEntries = _Object.entries;
+/**
+ * Creates a map from an object.
+ *
+ * @function mapFromObject
+ * @memberof Map
+ * @since 1.0.0
+ * @param {Object} obj
+ * @returns {Map}
+ * @example
+ * // returns Map{a: 1, b: 4, c: 5}
+ * mapFromObject({a: 1, b: 4, c: 5})
+ */
+
+const mapFromObject = obj => new _Map(objEntries(obj));
 
 /**
- * Loops over each element from querySelector
+ * Checks if an input is a radio or a checkbox
  *
- * @param {Node} context
- * @param {string} selector
- * @param {Function} fn
+ * @private
+ * @param {HTMLInputElement} element
+ * @returns {boolean}
  */
-const forEachElement = (context, selector, fn) => forEach(arrFrom(context.querySelectorAll(selector)), fn);
 
+const isCheckboxLike = element => element.type === "checkbox" || element.type === "radio";
 /**
- * Applies Ok on all given forms
+ * Returns input element specific value
  *
- * @param {Object} cfg Configuration object
+ * @private
+ * @param {HTMLInputElement} element
+ * @returns {string|boolean}
  */
-const ok = function (cfg) {
-    forEachElement(document, cfg.el, form => {
-        forEachElement(form, "[data-ok]", field => {
-            const okEntryName = field.dataset["ok"];
-            const okEntry = cfg.validators[okEntryName];
 
-            if (okEntry) {
-                field.addEventListener("input", e => {
-                    if (okEntry.fn(e.target.value, e)) {
-                        field.classList.remove("invalid");
-                        field.setCustomValidity("");
-                    } else {
-                        field.classList.add("invalid");
-                        field.setCustomValidity(okEntry.msg);
-                    }
-                }, false);
-            } else {
-                throw new Error(`missing validator '${okEntryName}'`);
-            }
-        });
+
+const getInputElementValue = element => isCheckboxLike(element) ? element.checked : element.value;
+/**
+ * Ok main class
+ *
+ * @class
+ */
+
+
+const Ok = class {
+  /**
+   * Creates a new ok instance
+   *
+   * @constructor
+   * @param {IOkValidators} validators
+   */
+  constructor(validators) {
+    this.map = mapFromObject(validators);
+  }
+  /**
+   * Binds the fitting validator to an input element
+   *
+   * @param {HTMLInputElement} element
+   */
+
+
+  bind(element) {
+    const validatorKey = element.dataset.ok;
+
+    if (!this.map.has(validatorKey)) {
+      throw new Error(`missing validator '${validatorKey}'`);
+    }
+
+    const okEntry = this.map.get(validatorKey);
+    element.addEventListener("input", e => {
+      if (okEntry.fn(getInputElementValue(e.target), e)) {
+        element.classList.remove("invalid");
+        element.setCustomValidity("");
+      } else {
+        element.classList.add("invalid");
+        element.setCustomValidity(okEntry.msg);
+      }
     });
+  }
+
 };
 
-return ok;
+return Ok;
 
 }());
+//# sourceMappingURL=ok.js.map
