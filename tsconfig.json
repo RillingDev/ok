@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "module": "esnext",
+        "target": "esnext",
+        "newLine": "LF",
+        "removeComments": false,
+        "strict": true,
+        "noImplicitAny": false
+    },
+    "include": ["src/**/*"]
+}

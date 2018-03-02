@@ -1,0 +1,18 @@
+{
+    "tags": {
+        "allowUnknownTags": false,
+        "dictionaries": ["jsdoc"]
+    },
+    "source": {
+        "include": ["./README.md", "./dist/myLib.esm.js"],
+        "excludePattern": "(node_modules/|docs/)"
+    },
+    "plugins": [],
+    "opts": {
+        "template": "./node_modules/docdash",
+        "encoding": "utf8",
+        "destination": "./docs/",
+        "recurse": true,
+        "verbose": true
+    }
+}

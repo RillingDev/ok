@@ -1,0 +1,12 @@
+{
+    "defaultSeverity": "error",
+    "extends": ["tslint:recommended"],
+    "rules": {
+        "object-literal-sort-keys": false,
+        "arrow-parens": false,
+        "trailing-comma": false,
+        "no-empty": false,
+        "no-angle-bracket-type-assertion": false,
+        "whitespace": false
+    }
+}

@@ -1,8 +1,6 @@
 {
+    "extends": "eslint:recommended",
     "plugins": [],
-    "extends": [
-        "eslint:recommended"
-    ],
     "env": {
         "es6": true,
         "node": true,
@@ -14,10 +12,21 @@
         "ecmaVersion": 8
     },
     "rules": {
-        "indent": ["warn", 4],
-        "linebreak-style": ["error", "unix"],
-        "quotes": ["error", "double"],
-        "semi": ["error", "always"],
-        "no-console": "warn"
+        "getter-return": 2,
+        "no-template-curly-in-string": 2,
+        "no-console": 1,
+
+        "block-scoped-var": 2,
+        "no-alert": 1,
+        "no-else-return": 2,
+        "no-eval": 1,
+        "no-extend-native": 2,
+        "no-extra-bind": 2,
+        "no-extra-label": 2,
+        "no-param-reassign": 2,
+        "no-proto": 2,
+        "no-unused-expressions": 2,
+        "no-with": 2,
+        "prefer-promise-reject-errors": 2
     }
 }

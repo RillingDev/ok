@@ -2,36 +2,35 @@
     "name": "okjs",
     "version": "2.2.0",
     "description": "Ok is an extremely small form validation library",
-    "author": "Felix Rilling",
-    "license": "MIT",
-    "keywords": [
-        "validation",
-        "form"
-    ],
-    "constants": {
-        "dirBase": {
-            "input": "./src",
-            "output": "./dist"
+    "main": "./dist/ok.common.js",
+    "module": "./dist/ok.esm.js",
+    "types": "./types/main.d.ts",
+    "settings": {
+        "input": "main.ts",
+        "namespace": {
+            "module": "ok",
+            "file": "ok"
         },
-        "js": {
-            "input": "main",
-            "namespace": {
-                "module": "ok",
-                "file": "ok"
-            },
-            "targets": {
-                "browsers": [
-                    "Chrome >= 60"
-                ]
-            }
-        }
+        "external": [
+            "lightdash"
+        ]
     },
     "scripts": {
-        "start": "npm-run-all lint build test",
-        "build": "node tasks/jsDev.js",
-        "dist": "node tasks/jsDist.js",
-        "lint": "eslint src/",
-        "test": "jasmine"
+        "start": "npm-run-all lint build test docs",
+        "build": "rollup -c ./tasks/rollup.config.js",
+        "build:iife": "rollup -c ./tasks/rollup.config.iife.js",
+        "build:iife-min": "rollup -c ./tasks/rollup.config.iife-min.js",
+        "watch": "rollup -c ./tasks/rollup.config.js --watch",
+        "dist": "npm-run-all --parallel build build:iife build:iife-min",
+        "lint": "npm-run-all --parallel lint:ts lint:es",
+        "lint:ts": "tslint ./src/**/*.ts",
+        "lint:es": "eslint ./spec/**/*.js",
+        "fix": "npm-run-all fix:ts fix:es fix:prettier",
+        "fix:ts": "tslint ./src/**/*.ts --fix",
+        "fix:es": "eslint ./spec/**/*.js --fix",
+        "fix:prettier": "prettier ./src/**/* ./spec/**/* --write",
+        "test": "jasmine",
+        "docs": "jsdoc -c jsdoc.json"
     },
     "bugs": {
         "url": "https://github.com/FelixRilling/okjs/issues"
@@ -41,20 +40,33 @@
         "type": "git",
         "url": "git+https://github.com/FelixRilling/okjs.git"
     },
+    "author": "Felix Rilling",
+    "license": "MIT",
+    "keywords": [
+        "validation",
+        "form"
+    ],
     "dependencies": {
-        "lightdash": "^3.3.0"
+        "lightdash": "^4.1.6"
     },
     "devDependencies": {
-        "babel-core": "^6.26.0",
-        "babel-plugin-external-helpers": "^6.22.0",
-        "babel-preset-env": "^1.6.1",
-        "eslint": "^4.13.0",
-        "jasmine": "^2.8.0",
+        "@babel/core": "^7.0.0-beta.40",
+        "@babel/plugin-external-helpers": "^7.0.0-beta.40",
+        "@babel/preset-env": "^7.0.0-beta.40",
+        "docdash": "git+https://github.com/clenemt/docdash.git",
+        "eslint": "^4.18.1",
+        "jasmine": "^3.0.0",
+        "jsdoc": "git+https://github.com/jsdoc3/jsdoc.git",
         "npm-run-all": "^4.1.2",
-        "rollup": "^0.52.1",
-        "rollup-plugin-babel": "^3.0.2",
-        "rollup-plugin-node-resolve": "^3.0.0",
+        "prettier": "^1.11.0",
+        "rollup": "^0.55.5",
+        "rollup-plugin-babel": "^4.0.0-beta.2",
+        "rollup-plugin-json": "^2.3.0",
+        "rollup-plugin-node-resolve": "^3.0.3",
+        "rollup-plugin-typescript2": "^0.11.1",
         "rollup-plugin-uglify-es": "0.0.1",
-        "uglify-es": "^3.2.1"
+        "tslint": "^5.9.1",
+        "typescript": "^2.7.2",
+        "uglify-es": "^3.3.10"
     }
 }
