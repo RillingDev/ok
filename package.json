@@ -27,7 +27,6 @@
         "fix:ts": "tslint ./src/**/*.ts --fix",
         "fix:es": "eslint ./spec/**/*.js --fix",
         "fix:prettier": "prettier ./src/**/* ./spec/**/* --write",
-        "test": "jasmine",
         "docs": "jsdoc -c jsdoc.json"
     },
     "bugs": {
