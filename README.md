@@ -23,11 +23,11 @@ npm install okjs --save
  * Create Ok instance with custom validators
  */
 const ok = new Ok({
-    "name-first": {
+    nameFirst: {
         msg: "only 'Dave' allowed",
         fn: val => val === "Dave"
     },
-    "email-de": {
+    emailDe: {
         msg: "Please input your .de email",
         fn: val => val.endsWith(".de")
     }
@@ -46,7 +46,7 @@ The validator which will be used is defined in the DOM via data-attributes:
 <form class="form">
     <div>
         <label for="inputNameFirst">First Name (only "Dave" allowed)</label>
-        <input type="text" id="inputNameFirst" placeholder="Enter First Name" required data-ok="name-first">
+        <input type="text" id="inputNameFirst" placeholder="Enter First Name" required data-ok="nameFirst">
     </div>
     <div>
         <label for="inputNameLast">Last Name (not validated, anything goes)</label>
@@ -54,14 +54,14 @@ The validator which will be used is defined in the DOM via data-attributes:
     </div>
     <div>
         <label for="inputMail">Email address (only ".de" allowed)</label>
-        <input type="email" id="inputMail" placeholder="Enter email" required data-ok="email-de">
+        <input type="email" id="inputMail" placeholder="Enter email" required data-ok="emailDe">
     </div>
     <input type="submit">
 </form>
 ```
 
 the name defined in `data-ok` is the key of the methods object defined in the JS.
-if `name-caps(val)` evaluates to false, the text-input will be marked as invalid, otherwise it will be un-marked
+if `nameFirst(val)` evaluates to false, the text-input will be marked as invalid.
 
 ### Validation
 

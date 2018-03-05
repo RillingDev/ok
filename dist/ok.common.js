@@ -29,31 +29,48 @@ const Ok = class {
      *
      * @constructor
      * @param {IOkValidators} validators
+     * @param {string|false} [invalidClass="invalid"]
      */
-    constructor(validators) {
+    constructor(validators, invalidClass = "invalid") {
         this.map = lightdash.mapFromObject(validators);
+        this.invalidClass = invalidClass;
     }
+    /**
+     * Validates an input element
+     *
+     * @param {HTMLInputElement} element
+     * @param {...any[]} args
+     * @returns {boolean}
+     */
     validate(element, ...args) {
+        if (!element.dataset.ok) {
+            throw new Error("no validator assigned");
+        }
         const validatorKey = element.dataset.ok;
         if (!this.map.has(validatorKey)) {
             throw new Error(`missing validator '${validatorKey}'`);
         }
         const okEntry = this.map.get(validatorKey);
-        if (okEntry.fn(getInputElementValue(element), element, ...args)) {
-            element.classList.remove("invalid");
+        const result = okEntry.fn(getInputElementValue(element), element, ...args);
+        if (result) {
+            if (this.invalidClass) {
+                element.classList.remove(this.invalidClass);
+            }
             element.setCustomValidity("");
-            return true;
         }
         else {
-            element.classList.add("invalid");
+            if (this.invalidClass) {
+                element.classList.add(this.invalidClass);
+            }
             element.setCustomValidity(okEntry.msg);
-            return false;
         }
+        return result;
     }
     /**
-     * Binds the fitting validator to an input element
+     * Binds an event handler to an input element
      *
      * @param {HTMLInputElement} element
+     * @param {string} [eventType="input"]
      */
     bind(element, eventType = "input") {
         element.addEventListener(eventType, e => this.validate(element, e));

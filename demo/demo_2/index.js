@@ -17,7 +17,7 @@ const ok = new Ok({
     },
     "custom-check": {
         msg: "Can only be checked if the change event has an even timestamp",
-        fn: (val, e) => Math.floor(e.timeStamp) % 2 === 0
+        fn: (val, element, e) => Math.floor(e.timeStamp) % 2 === 0
     }
 });
 

@@ -1,6 +1,8 @@
+import { okValidatorMap } from "./types";
+
 interface IOkValidator {
     msg: string;
-    fn: (val: string, element: Element, e?: Event) => boolean;
+    fn: (val: string | boolean, element: Element, e?: Event) => boolean;
 }
 
 interface IOkValidators {
@@ -8,7 +10,8 @@ interface IOkValidators {
 }
 
 interface IOk {
-    map: IOkValidators;
+    map: okValidatorMap;
+    invalidClass: string | false;
     validate: (element: HTMLInputElement, ...args: any[]) => boolean;
     bind: (element: HTMLInputElement, eventType?: string) => void;
 }
