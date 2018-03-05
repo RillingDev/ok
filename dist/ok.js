@@ -90,14 +90,8 @@ const Ok = class {
   constructor(validators) {
     this.map = mapFromObject(validators);
   }
-  /**
-   * Binds the fitting validator to an input element
-   *
-   * @param {HTMLInputElement} element
-   */
 
-
-  bind(element) {
+  validate(element, ...args) {
     const validatorKey = element.dataset.ok;
 
     if (!this.map.has(validatorKey)) {
@@ -105,15 +99,26 @@ const Ok = class {
     }
 
     const okEntry = this.map.get(validatorKey);
-    element.addEventListener("input", e => {
-      if (okEntry.fn(getInputElementValue(e.target), e)) {
-        element.classList.remove("invalid");
-        element.setCustomValidity("");
-      } else {
-        element.classList.add("invalid");
-        element.setCustomValidity(okEntry.msg);
-      }
-    });
+
+    if (okEntry.fn(getInputElementValue(element), element, ...args)) {
+      element.classList.remove("invalid");
+      element.setCustomValidity("");
+      return true;
+    } else {
+      element.classList.add("invalid");
+      element.setCustomValidity(okEntry.msg);
+      return false;
+    }
+  }
+  /**
+   * Binds the fitting validator to an input element
+   *
+   * @param {HTMLInputElement} element
+   */
+
+
+  bind(element, eventType = "input") {
+    element.addEventListener(eventType, e => this.validate(element, e));
   }
 
 };

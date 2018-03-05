@@ -1,4 +1,4 @@
-import { hasKey, mapFromObject } from "lightdash";
+import { mapFromObject } from "lightdash";
 import { IOk, IOkValidator, IOkValidators } from "./interfaces";
 
 /**
@@ -37,31 +37,32 @@ const Ok = class implements IOk {
     constructor(validators: IOkValidators) {
         this.map = mapFromObject(validators);
     }
+    public validate(element: HTMLInputElement, ...args: any[]): boolean {
+        const validatorKey = element.dataset.ok;
+        if (!this.map.has(validatorKey)) {
+            throw new Error(`missing validator '${validatorKey}'`);
+        }
+        const okEntry = this.map.get(validatorKey);
+
+        if (okEntry.fn(getInputElementValue(element), element, ...args)) {
+            element.classList.remove("invalid");
+            element.setCustomValidity("");
+
+            return true;
+        } else {
+            element.classList.add("invalid");
+            element.setCustomValidity(okEntry.msg);
+
+            return false;
+        }
+    }
     /**
      * Binds the fitting validator to an input element
      *
      * @param {HTMLInputElement} element
      */
-    public bind(element: HTMLInputElement) {
-        const validatorKey = element.dataset.ok;
-
-        if (!this.map.has(validatorKey)) {
-            throw new Error(`missing validator '${validatorKey}'`);
-        }
-
-        const okEntry = this.map.get(validatorKey);
-
-        element.addEventListener("input", e => {
-            if (
-                okEntry.fn(getInputElementValue(<HTMLInputElement>e.target), e)
-            ) {
-                element.classList.remove("invalid");
-                element.setCustomValidity("");
-            } else {
-                element.classList.add("invalid");
-                element.setCustomValidity(okEntry.msg);
-            }
-        });
+    public bind(element: HTMLInputElement, eventType: string = "input") {
+        element.addEventListener(eventType, e => this.validate(element, e));
     }
 };
 

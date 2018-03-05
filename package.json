@@ -53,7 +53,7 @@
         "@babel/plugin-external-helpers": "^7.0.0-beta.40",
         "@babel/preset-env": "^7.0.0-beta.40",
         "docdash": "git+https://github.com/clenemt/docdash.git",
-        "eslint": "^4.18.1",
+        "eslint": "^4.18.2",
         "jasmine": "^3.0.0",
         "jsdoc": "git+https://github.com/jsdoc3/jsdoc.git",
         "npm-run-all": "^4.1.2",

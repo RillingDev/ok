@@ -7,7 +7,8 @@ import { IOkValidators } from "./interfaces";
 declare const Ok: {
     new (validators: IOkValidators): {
         map: any;
-        bind(element: HTMLInputElement): void;
+        validate(element: HTMLInputElement, ...args: any[]): boolean;
+        bind(element: HTMLInputElement, eventType?: string): void;
     };
 };
 export default Ok;

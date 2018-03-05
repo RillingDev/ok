@@ -1,6 +1,6 @@
 interface IOkValidator {
     msg: string;
-    fn: (val: string) => boolean;
+    fn: (val: string, element: Element, e?: Event) => boolean;
 }
 
 interface IOkValidators {
@@ -9,7 +9,8 @@ interface IOkValidators {
 
 interface IOk {
     map: IOkValidators;
-    bind: (element: HTMLInputElement) => void;
+    validate: (element: HTMLInputElement, ...args: any[]) => boolean;
+    bind: (element: HTMLInputElement, eventType?: string) => void;
 }
 
 export { IOkValidator, IOkValidators, IOk };
