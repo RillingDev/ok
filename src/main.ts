@@ -23,20 +23,17 @@ const getInputElementValue = (element: HTMLInputElement): string | boolean =>
     isCheckboxLike(element) ? element.checked : element.value;
 
 /**
- * Ok main class
+ * Ok class
  *
+ * @public
  * @class
+ * @param {IOkValidators} validators
+ * @param {string|false} [invalidClass="invalid"]
  */
 const Ok = class implements IOk {
     public map: okValidatorMap;
     public invalidClass: string | false;
-    /**
-     * Creates a new ok instance
-     *
-     * @constructor
-     * @param {IOkValidators} validators
-     * @param {string|false} [invalidClass="invalid"]
-     */
+
     constructor(
         validators: IOkValidators,
         invalidClass: string | false = "invalid"
@@ -45,8 +42,9 @@ const Ok = class implements IOk {
         this.invalidClass = invalidClass;
     }
     /**
-     * Validates an input element
+     * Validates an input element and returns the validity
      *
+     * @public
      * @param {HTMLInputElement} element
      * @param {...any[]} args
      * @returns {boolean}
@@ -75,6 +73,7 @@ const Ok = class implements IOk {
             if (this.invalidClass) {
                 element.classList.add(this.invalidClass);
             }
+
             element.setCustomValidity(okEntry.msg);
         }
 
@@ -83,6 +82,7 @@ const Ok = class implements IOk {
     /**
      * Binds an event handler to an input element
      *
+     * @public
      * @param {HTMLInputElement} element
      * @param {string} [eventType="input"]
      */

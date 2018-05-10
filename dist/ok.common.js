@@ -19,25 +19,22 @@ const isCheckboxLike = (element) => element.type === "checkbox" || element.type 
  */
 const getInputElementValue = (element) => isCheckboxLike(element) ? element.checked : element.value;
 /**
- * Ok main class
+ * Ok class
  *
+ * @public
  * @class
+ * @param {IOkValidators} validators
+ * @param {string|false} [invalidClass="invalid"]
  */
 const Ok = class {
-    /**
-     * Creates a new ok instance
-     *
-     * @constructor
-     * @param {IOkValidators} validators
-     * @param {string|false} [invalidClass="invalid"]
-     */
     constructor(validators, invalidClass = "invalid") {
         this.map = lightdash.mapFromObject(validators);
         this.invalidClass = invalidClass;
     }
     /**
-     * Validates an input element
+     * Validates an input element and returns the validity
      *
+     * @public
      * @param {HTMLInputElement} element
      * @param {...any[]} args
      * @returns {boolean}
@@ -69,6 +66,7 @@ const Ok = class {
     /**
      * Binds an event handler to an input element
      *
+     * @public
      * @param {HTMLInputElement} element
      * @param {string} [eventType="input"]
      */
