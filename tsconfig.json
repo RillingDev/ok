@@ -5,7 +5,8 @@
         "newLine": "LF",
         "removeComments": false,
         "strict": true,
-        "noImplicitAny": false
+        "noImplicitAny": true,
+        "experimentalDecorators": true
     },
-    "include": ["src/**/*"]
+    "include": ["src/**/*.ts"]
 }
