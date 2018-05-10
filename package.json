@@ -1,6 +1,6 @@
 {
     "name": "okjs",
-    "version": "3.2.0",
+    "version": "3.2.1",
     "description": "Ok is an extremely small form validation library",
     "main": "./dist/ok.common.js",
     "module": "./dist/ok.esm.js",
@@ -11,7 +11,9 @@
             "module": "Ok",
             "file": "ok"
         },
-        "external": ["lightdash"]
+        "external": [
+            "lightdash"
+        ]
     },
     "scripts": {
         "start": "npm-run-all lint build test docs",
@@ -39,8 +41,14 @@
     },
     "author": "Felix Rilling",
     "license": "MIT",
-    "keywords": ["validation", "form"],
-    "browserslist": ["last 2 Chrome versions", "last 2 Firefox versions"],
+    "keywords": [
+        "validation",
+        "form"
+    ],
+    "browserslist": [
+        "last 2 Chrome versions",
+        "last 2 Firefox versions"
+    ],
     "dependencies": {
         "lightdash": "^5.0.5"
     },
