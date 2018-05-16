@@ -89,14 +89,23 @@ var Ok = (function () {
           throw new Error("no validator assigned");
         }
 
-        const validatorKey = element.dataset.ok;
+        const value = getInputElementValue(element);
+        const validatorList = element.dataset.ok.split(",").map(str => str.trim());
+        let result = true;
+        validatorList.forEach(validatorListEntry => {
+          if (result) {
+            if (!this.map.has(validatorListEntry)) {
+              throw new Error(`missing validator '${validatorListEntry}'`);
+            }
 
-        if (!this.map.has(validatorKey)) {
-          throw new Error(`missing validator '${validatorKey}'`);
-        }
+            const validator = this.map.get(validatorListEntry);
 
-        const okEntry = this.map.get(validatorKey);
-        const result = okEntry.fn(getInputElementValue(element), element, ...args);
+            if (!validator.fn(value, element, ...args)) {
+              result = false;
+              element.setCustomValidity(validator.msg);
+            }
+          }
+        });
 
         if (result) {
           if (this.invalidClass) {
@@ -104,12 +113,8 @@ var Ok = (function () {
           }
 
           element.setCustomValidity("");
-        } else {
-          if (this.invalidClass) {
-            element.classList.add(this.invalidClass);
-          }
-
-          element.setCustomValidity(okEntry.msg);
+        } else if (this.invalidClass) {
+          element.classList.add(this.invalidClass);
         }
 
         return result;

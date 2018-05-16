@@ -1,11 +1,11 @@
 const ok = new Ok({
     nameCaps: {
-        msg: "Please input your name in caps",
+        msg: "Must be in all caps",
         fn: val => val.toUpperCase() === val
     },
     emailDe: {
-        msg: "Please input your .de email",
-        fn: val => /.+\.de/.test(val)
+        msg: "Must end with '.de'",
+        fn: val => /.+\.de$/i.test(val)
     },
     customDate: {
         msg: "Please select a date in or after 2019",
@@ -14,10 +14,6 @@ const ok = new Ok({
 
             return date.getFullYear() >= 2019;
         }
-    },
-    customCheck: {
-        msg: "Can only be checked if the change event has an even timestamp",
-        fn: (val, element, e) => Math.floor(e.timeStamp) % 2 === 0
     }
 });
 

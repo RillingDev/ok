@@ -6,7 +6,7 @@
 
 ## Introduction
 
-Ok is an very small (500 byte) utility library to validate forms with more than what HTML5 offers you.
+Ok is an very small utility library to validate forms with more than what HTML5 offers you. Features include customized messages and validator chaining.
 
 ## Usage
 
@@ -67,3 +67,42 @@ if `nameFirst(val)` evaluates to false, the text-input will be marked as invalid
 
 Once the user inputs on a field bound by Ok.js, the validator function will be run. If it evaluates to true, the field is valid.
 If it evaluates falsy, the field will be marked as invalid with the class "invalid" and the JS validity will be updated (which will show a popup containing the validator message, based on the browser).
+
+### Chaining
+
+Multiple validators can be used for a single field in a given order by chaining them. to chain multiple validators, simply add a comma between their keys in the ok attribute. When using chaining, the field will only be considered valid if all validators succeed.
+
+```html
+<div class="form-group">
+    <label for="exampleInputEmail">Email ID (all caps and ending in .de)</label>
+    <input type="email" class="form-control" id="exampleId" placeholder="Enter email" required data-ok="nameCaps, emailDe">
+</div>
+```
+
+```js
+const ok = new Ok({
+    nameCaps: {
+        msg: "Must be in all caps",
+        fn: val => val.toUpperCase() === val
+    },
+    emailDe: {
+        msg: "Must end with '.de'",
+        fn: val => /.+\.de$/i.test(val)
+    }
+});
+```
+
+## Options
+
+Ok currently only has one option, the class to use for invalid elements.
+
+```js
+// The default invalid class('invalid') will be used
+new Ok({});
+
+// 'myClass' will be used for invalid fields
+new Ok({}, "myClass");
+
+// no class will be used for invalid fields
+new Ok({}, false);
+```

@@ -53,28 +53,38 @@ const Ok = class implements IOk {
         if (!element.dataset.ok) {
             throw new Error("no validator assigned");
         }
-        const validatorKey: string = element.dataset.ok;
-        if (!this.map.has(validatorKey)) {
-            throw new Error(`missing validator '${validatorKey}'`);
-        }
-        const okEntry = <IOkValidator>this.map.get(validatorKey);
-        const result = okEntry.fn(
-            getInputElementValue(element),
-            element,
-            ...args
-        );
+        const value = getInputElementValue(element);
+        const validatorList: string[] = element.dataset.ok
+            .split(",")
+            .map(str => str.trim());
+
+        let result = true;
+
+        validatorList.forEach(validatorListEntry => {
+            if (result) {
+                if (!this.map.has(validatorListEntry)) {
+                    throw new Error(
+                        `missing validator '${validatorListEntry}'`
+                    );
+                }
+                const validator = <IOkValidator>this.map.get(
+                    validatorListEntry
+                );
+
+                if (!validator.fn(value, element, ...args)) {
+                    result = false;
+                    element.setCustomValidity(validator.msg);
+                }
+            }
+        });
 
         if (result) {
             if (this.invalidClass) {
                 element.classList.remove(this.invalidClass);
             }
             element.setCustomValidity("");
-        } else {
-            if (this.invalidClass) {
-                element.classList.add(this.invalidClass);
-            }
-
-            element.setCustomValidity(okEntry.msg);
+        } else if (this.invalidClass) {
+            element.classList.add(this.invalidClass);
         }
 
         return result;
