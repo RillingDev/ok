@@ -23,17 +23,18 @@ const getInputElementValue = (element: HTMLInputElement): string | boolean =>
     isCheckboxLike(element) ? element.checked : element.value;
 
 /**
- * Ok class
- *
- * @public
  * @class
- * @param {IOkValidators} validators
- * @param {string|false} [invalidClass="invalid"]
  */
 const Ok = class implements IOk {
     public map: okValidatorMap;
     public invalidClass: string | false;
-
+    /**
+     * Ok class
+     *
+     * @public
+     * @param {object} validators
+     * @param {string|false} [invalidClass="invalid"]
+     */
     constructor(
         validators: IOkValidators,
         invalidClass: string | false = "invalid"

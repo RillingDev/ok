@@ -1,11 +1,6 @@
 import { IOkValidator, IOkValidators } from "./interfaces";
 /**
- * Ok class
- *
- * @public
  * @class
- * @param {IOkValidators} validators
- * @param {string|false} [invalidClass="invalid"]
  */
 declare const Ok: {
     new (validators: IOkValidators, invalidClass?: string | false): {

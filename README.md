@@ -45,23 +45,23 @@ The validator which will be used is defined in the DOM via data-attributes:
 ```html
 <form class="form">
     <div>
-        <label for="inputNameFirst">First Name (only "Dave" allowed)</label>
-        <input type="text" id="inputNameFirst" placeholder="Enter First Name" required data-ok="nameFirst">
+        <label>First Name (only "Dave" allowed)</label>
+        <input type="text" required data-ok="nameFirst">
     </div>
     <div>
-        <label for="inputNameLast">Last Name (not validated, anything goes)</label>
-        <input type="text" id="inputNameLast" placeholder="Enter Last Name" required>
+        <label>Last Name (not validated, anything goes)</label>
+        <input type="text" required>
     </div>
     <div>
-        <label for="inputMail">Email address (only ".de" allowed)</label>
-        <input type="email" id="inputMail" placeholder="Enter email" required data-ok="emailDe">
+        <label>Email address (only ".de" allowed)</label>
+        <input type="email" required data-ok="emailDe">
     </div>
     <input type="submit">
 </form>
 ```
 
 the name defined in `data-ok` is the key of the methods object defined in the JS.
-if `nameFirst(val)` evaluates to false, the text-input will be marked as invalid.
+if the given fn evaluates to false, the input will be marked as invalid.
 
 ### Validation
 
@@ -75,7 +75,7 @@ Multiple validators can be used for a single field in a given order by chaining 
 ```html
 <div class="form-group">
     <label for="exampleInputEmail">Email ID (all caps and ending in .de)</label>
-    <input type="email" class="form-control" id="exampleId" placeholder="Enter email" required data-ok="nameCaps, emailDe">
+    <input type="email" required data-ok="nameCaps, emailDe">
 </div>
 ```
 

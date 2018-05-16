@@ -17,14 +17,16 @@ const isCheckboxLike = (element) => element.type === "checkbox" || element.type 
  */
 const getInputElementValue = (element) => isCheckboxLike(element) ? element.checked : element.value;
 /**
- * Ok class
- *
- * @public
  * @class
- * @param {IOkValidators} validators
- * @param {string|false} [invalidClass="invalid"]
  */
 const Ok = class {
+    /**
+     * Ok class
+     *
+     * @public
+     * @param {object} validators
+     * @param {string|false} [invalidClass="invalid"]
+     */
     constructor(validators, invalidClass = "invalid") {
         this.map = mapFromObject(validators);
         this.invalidClass = invalidClass;
