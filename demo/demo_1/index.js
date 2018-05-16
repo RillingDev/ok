@@ -1,9 +1,9 @@
 const ok = new Ok({
-    "name-first": {
+    nameFirst: {
         msg: "only 'Dave' allowed",
         fn: val => val === "Dave"
     },
-    "email-de": {
+    emailDe: {
         msg: "Please input your .de email",
         fn: val => val.endsWith(".de")
     }

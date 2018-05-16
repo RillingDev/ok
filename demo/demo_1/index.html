@@ -6,7 +6,8 @@
     <title>OkJS Demo</title>
     <meta name="description" content="OkJS Demo">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/9.0.0/normalize.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/0.4.0/modern-normalize.min.css" integrity="sha256-0I6A3eZky7F0ECKH6WXC9ZlbmzwN4YTpNPagF1LKSPk="
+        crossorigin="anonymous" />
     <style>
         body {
             display: flex;
@@ -27,7 +28,7 @@
         <form class="form">
             <div>
                 <label for="inputNameFirst">First Name (only "Dave" allowed)</label>
-                <input type="text" id="inputNameFirst" placeholder="Enter First Name" required data-ok="name-first">
+                <input type="text" id="inputNameFirst" placeholder="Enter First Name" required data-ok="nameFirst">
             </div>
             <div>
                 <label for="inputNameLast">Last Name (not validated, anything goes)</label>
@@ -35,7 +36,7 @@
             </div>
             <div>
                 <label for="inputMail">Email address (only ".de" allowed)</label>
-                <input type="email" id="inputMail" placeholder="Enter email" required data-ok="email-de">
+                <input type="email" id="inputMail" placeholder="Enter email" required data-ok="emailDe">
             </div>
             <input type="submit">
         </form>

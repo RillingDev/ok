@@ -11,14 +11,12 @@
     <style>
         .form {
             max-width: 300px;
-            0
         }
 
         input.invalid {
             border-color: #d77;
             color: #c66;
         }
-
 
         input[type="checkbox"].invalid:after {
             content: "Invalid";
@@ -35,19 +33,19 @@
         <form class="form">
             <div class="form-group">
                 <label for="exampleInputName">Name (in caps)</label>
-                <input type="text" class="form-control" id="exampleInputName" placeholder="Enter Name" required data-ok="name-caps">
+                <input type="text" class="form-control" id="exampleInputName" placeholder="Enter Name" required data-ok="nameCaps">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail">Email address (.de only)</label>
-                <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter email" required data-ok="email-de">
+                <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter email" required data-ok="emailDe">
             </div>
             <div class="form-group">
                 <label for="exampleInputYear">Year (must be in or after 2019)</label>
-                <input type="date" class="form-control" id="exampleInputYear" required data-ok="custom-date">
+                <input type="date" class="form-control" id="exampleInputYear" required data-ok="customDate">
             </div>
             <div class="form-group">
                 <label for="exampleAccept">Accept Terms (Can only be checked if the change event has an even timestamp)</label>
-                <input type="checkbox" id="exampleAccept" required data-ok="custom-check">
+                <input type="checkbox" id="exampleAccept" required data-ok="customCheck">
             </div>
             <input type="submit" class="form-control">
         </form>
