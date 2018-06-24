@@ -29,7 +29,7 @@ const ok = new Ok({
     },
     emailDe: {
         msg: "Please input your .de email",
-        fn: val => val.endsWith(".de")
+        (fn, element): val => val.endsWith(".de")
     }
 });
 

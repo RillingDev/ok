@@ -37,19 +37,19 @@
 const mapFromObject = (obj) => new Map(Object.entries(obj));
 
 /**
- * Checks if an input is a radio or a checkbox
+ * Checks if an input is a radio or a checkbox.
  *
  * @private
- * @param {HTMLInputElement} element
- * @returns {boolean}
+ * @param {HTMLInputElement} element HTMLInputElement to check.
+ * @returns {boolean} if the element is checkbox-like.
  */
 const isInputElementCheckboxLike = (element) => element.type === "checkbox" || element.type === "radio";
 /**
- * Returns input element specific value
+ * Returns input element specific value.
  *
  * @private
- * @param {HTMLInputElement} element
- * @returns {string|boolean}
+ * @param {HTMLInputElement} element HTMLInputElement to get the value of.
+ * @returns {string|boolean} value of the element, either a string or a boolean.
  */
 const getInputElementValue = (element) => isInputElementCheckboxLike(element) ? element.checked : element.value;
 
@@ -58,23 +58,23 @@ const getInputElementValue = (element) => isInputElementCheckboxLike(element) ? 
  */
 const Ok = class {
     /**
-     * Ok class
+     * Ok class.
      *
      * @public
-     * @param {object} validators
-     * @param {string|false} [invalidClass="invalid"]
+     * @param {object} validators object containing the validators to use.
+     * @param {string|false} [invalidClass="invalid"] CSS class for invalid elements, or false if none should be set.
      */
     constructor(validators, invalidClass = "invalid") {
         this.map = mapFromObject(validators);
         this.invalidClass = invalidClass;
     }
     /**
-     * Validates an input element and returns the validity
+     * Validates an input element and returns the validity.
      *
      * @public
-     * @param {HTMLInputElement} element
-     * @param {...any[]} args
-     * @returns {boolean}
+     * @param {HTMLInputElement} element HTMLInputElement to validate.
+     * @param {...any[]} args optional arguments to pass.
+     * @returns {boolean} current validity of the element.
      */
     validate(element, ...args) {
         if (!element.dataset.ok) {
@@ -109,11 +109,11 @@ const Ok = class {
         return result;
     }
     /**
-     * Binds an event handler to an input element
+     * Binds an event handler to an input element.
      *
      * @public
-     * @param {HTMLInputElement} element
-     * @param {string} [eventType="input"]
+     * @param {HTMLInputElement} element HTMLInputElement to bind.
+     * @param {string} [eventType="input"] event type to bind.
      */
     bind(element, eventType = "input") {
         element.addEventListener(eventType, e => this.validate(element, e));
