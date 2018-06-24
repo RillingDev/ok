@@ -43,7 +43,7 @@ const mapFromObject = (obj) => new Map(Object.entries(obj));
  * @param {HTMLInputElement} element
  * @returns {boolean}
  */
-const isCheckboxLike = (element) => element.type === "checkbox" || element.type === "radio";
+const isInputElementCheckboxLike = (element) => element.type === "checkbox" || element.type === "radio";
 /**
  * Returns input element specific value
  *
@@ -51,7 +51,8 @@ const isCheckboxLike = (element) => element.type === "checkbox" || element.type 
  * @param {HTMLInputElement} element
  * @returns {string|boolean}
  */
-const getInputElementValue = (element) => isCheckboxLike(element) ? element.checked : element.value;
+const getInputElementValue = (element) => isInputElementCheckboxLike(element) ? element.checked : element.value;
+
 /**
  * @class
  */

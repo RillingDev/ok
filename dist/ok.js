@@ -47,8 +47,7 @@ var Ok = (function () {
      * @param {HTMLInputElement} element
      * @returns {boolean}
      */
-
-    const isCheckboxLike = element => element.type === "checkbox" || element.type === "radio";
+    const isInputElementCheckboxLike = element => element.type === "checkbox" || element.type === "radio";
     /**
      * Returns input element specific value
      *
@@ -58,11 +57,11 @@ var Ok = (function () {
      */
 
 
-    const getInputElementValue = element => isCheckboxLike(element) ? element.checked : element.value;
+    const getInputElementValue = element => isInputElementCheckboxLike(element) ? element.checked : element.value;
+
     /**
      * @class
      */
-
 
     const Ok = class {
       /**
