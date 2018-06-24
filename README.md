@@ -1,4 +1,4 @@
-![OkJS](./logo.png)
+![OkJS](./icon/logo.png)
 
 # OkJS
 
