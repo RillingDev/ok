@@ -1,12 +1,14 @@
 {
     "compilerOptions": {
+        "baseUrl": "./",
+        "moduleResolution": "node",
         "module": "esnext",
         "target": "esnext",
         "newLine": "LF",
         "removeComments": false,
         "strict": true,
         "noImplicitAny": true,
+        "emitDecoratorMetadata": true,
         "experimentalDecorators": true
-    },
-    "include": ["src/**/*.ts"]
+    }
 }

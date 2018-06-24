@@ -9,6 +9,7 @@
 *.vi
 *.zip
 *~
+_key.*
 
 # OS or Editor folders
 ._*

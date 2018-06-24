@@ -1,4 +1,40 @@
-import { mapFromObject } from 'lightdash';
+/**
+ * Checks if the value has a certain type-string.
+ *
+ * @function isTypeOf
+ * @memberof Is
+ * @since 1.0.0
+ * @param {any} val
+ * @param {string} type
+ * @returns {boolean}
+ * @example
+ * isTypeOf({}, "object")
+ * // => true
+ *
+ * isTypeOf([], "object")
+ * // => true
+ *
+ * isTypeOf("foo", "string")
+ * // => true
+ *
+ * @example
+ * isTypeOf("foo", "number")
+ * // => false
+ */
+
+/**
+ * Creates a map from an object.
+ *
+ * @function mapFromObject
+ * @memberof Map
+ * @since 1.0.0
+ * @param {Object} obj
+ * @returns {Map}
+ * @example
+ * mapFromObject({a: 1, b: 4, c: 5})
+ * // => Map<string,number>{a: 1, b: 4, c: 5}
+ */
+const mapFromObject = (obj) => new Map(Object.entries(obj));
 
 /**
  * Checks if an input is a radio or a checkbox
