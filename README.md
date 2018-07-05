@@ -106,3 +106,7 @@ new Ok({}, "myClass");
 // no class will be used for invalid fields
 new Ok({}, false);
 ```
+
+## Legacy Browsers
+
+For browsers not supporting the HTML5 Validation API (<https://caniuse.com/#feat=form-validation>), ok.js will still work, but the validation message will not be shown.
