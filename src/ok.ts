@@ -1,4 +1,4 @@
-import { mapFromObject } from "lightdash";
+import { isUndefined, mapFromObject } from "lightdash";
 import { getInputElementValue } from "./inputElement";
 
 type okValidatorMap = Map<string, IOkValidator>;
@@ -11,6 +11,10 @@ interface IOkValidator {
 interface IOkValidators {
     [key: string]: IOkValidator;
 }
+
+const hasBrowserValidationSupport = !isUndefined(
+    HTMLInputElement.prototype.setCustomValidity
+);
 
 /**
  * @class
@@ -41,39 +45,36 @@ const Ok = class {
      * @returns {boolean} current validity of the element.
      */
     public validate(element: HTMLInputElement, ...args: any[]): boolean {
-        if (!element.dataset.ok) {
-            throw new Error("no validator assigned");
-        }
+        if (!element.dataset.ok) throw new Error("no validator assigned");
+
         const value = getInputElementValue(element);
         const validatorList: string[] = element.dataset.ok
             .split(",")
             .map(str => str.trim());
-
         let result = true;
 
         validatorList.forEach(validatorListEntry => {
             if (result) {
-                if (!this.map.has(validatorListEntry)) {
+                if (!this.map.has(validatorListEntry))
                     throw new Error(
                         `missing validator '${validatorListEntry}'`
                     );
-                }
-                const validator = <IOkValidator>this.map.get(
-                    validatorListEntry
+
+                const validator = <IOkValidator>(
+                    this.map.get(validatorListEntry)
                 );
 
                 if (!validator.fn(value, element, ...args)) {
                     result = false;
-                    element.setCustomValidity(validator.msg);
+                    if (hasBrowserValidationSupport)
+                        element.setCustomValidity(validator.msg);
                 }
             }
         });
 
         if (result) {
-            if (this.invalidClass) {
-                element.classList.remove(this.invalidClass);
-            }
-            element.setCustomValidity("");
+            if (hasBrowserValidationSupport) element.setCustomValidity("");
+            if (this.invalidClass) element.classList.remove(this.invalidClass);
         } else if (this.invalidClass) {
             element.classList.add(this.invalidClass);
         }

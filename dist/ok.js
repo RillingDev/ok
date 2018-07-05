@@ -24,6 +24,36 @@ var Ok = (function () {
      * isTypeOf("foo", "number")
      * // => false
      */
+    const isTypeOf = (val, type) => typeof val === type;
+    /**
+     * Checks if a value is undefined.
+     *
+     * @function isUndefined
+     * @memberof Is
+     * @since 1.0.0
+     * @param {any} val
+     * @returns {boolean}
+     * @example
+     * const a = {};
+     *
+     * isUndefined(a.b)
+     * // => true
+     *
+     * isUndefined(undefined)
+     * // => true
+     *
+     * @example
+     * const a = {};
+     *
+     * isUndefined(1)
+     * // => false
+     *
+     * isUndefined(a)
+     * // => false
+     */
+
+
+    const isUndefined = val => isTypeOf(val, "undefined");
     /**
      * Creates a map from an object.
      *
@@ -59,6 +89,7 @@ var Ok = (function () {
 
     const getInputElementValue = element => isInputElementCheckboxLike(element) ? element.checked : element.value;
 
+    const hasBrowserValidationSupport = !isUndefined(HTMLInputElement.prototype.setCustomValidity);
     /**
      * @class
      */
@@ -86,34 +117,25 @@ var Ok = (function () {
 
 
       validate(element, ...args) {
-        if (!element.dataset.ok) {
-          throw new Error("no validator assigned");
-        }
-
+        if (!element.dataset.ok) throw new Error("no validator assigned");
         const value = getInputElementValue(element);
         const validatorList = element.dataset.ok.split(",").map(str => str.trim());
         let result = true;
         validatorList.forEach(validatorListEntry => {
           if (result) {
-            if (!this.map.has(validatorListEntry)) {
-              throw new Error(`missing validator '${validatorListEntry}'`);
-            }
-
+            if (!this.map.has(validatorListEntry)) throw new Error(`missing validator '${validatorListEntry}'`);
             const validator = this.map.get(validatorListEntry);
 
             if (!validator.fn(value, element, ...args)) {
               result = false;
-              element.setCustomValidity(validator.msg);
+              if (hasBrowserValidationSupport) element.setCustomValidity(validator.msg);
             }
           }
         });
 
         if (result) {
-          if (this.invalidClass) {
-            element.classList.remove(this.invalidClass);
-          }
-
-          element.setCustomValidity("");
+          if (hasBrowserValidationSupport) element.setCustomValidity("");
+          if (this.invalidClass) element.classList.remove(this.invalidClass);
         } else if (this.invalidClass) {
           element.classList.add(this.invalidClass);
         }
