@@ -14,10 +14,8 @@
     "rules": {
         "no-console": 1,
         "no-else-return": 2,
-        "no-extra-parens": 2,
-        "block-scoped-var": 2,
         "consistent-return": 2,
-        "guard-for-in": 2,
-        "no-eq-null": 2
+        "no-extra-parens": 1,
+        "block-scoped-var": 1
     }
 }

@@ -5,7 +5,7 @@
         "arrow-parens": false,
         "trailing-comma": false,
         "no-angle-bracket-type-assertion": false,
-        "curly": false,
+        "curly": true,
         "object-literal-sort-keys": false,
         "max-classes-per-file": false,
         "arrow-return-shorthand": true,
