@@ -3,7 +3,7 @@ import resolve from "rollup-plugin-node-resolve";
 import { settings } from "../package.json";
 
 export default {
-    input: `./src/${settings.input}`,
+    input: `./src/main.ts`,
     output: [
         {
             format: "es",
@@ -18,14 +18,7 @@ export default {
     plugins: [
         resolve(),
         typescript({
-            cacheRoot: "./.cache/ts/main",
-            tsconfigOverride: {
-                compilerOptions: {
-                    declaration: true,
-                    declarationDir: "./types"
-                }
-            },
-            useTsconfigDeclarationDir: true
+            cacheRoot: "./.cache/ts/main"
         })
     ]
 };

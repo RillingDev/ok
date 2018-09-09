@@ -29,16 +29,16 @@ node_modules/
 bower_components/
 
 # Debug Files
+npm-debug.*
+
+# Temp Files
 .cache/
 .tmp/
-npm-debug.*
+spec/out/
 
 # Dev Files
 .git/
-docs/
 tasks/
-spec/
-test/
-test*.js
 demo/
 icon/
+spec/

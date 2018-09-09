@@ -1,17 +1,23 @@
 {
     "defaultSeverity": "warning",
-    "extends": ["tslint:recommended"],
+    "extends": [
+        "tslint:recommended"
+    ],
     "rules": {
         "arrow-parens": false,
         "trailing-comma": false,
         "no-angle-bracket-type-assertion": false,
         "curly": true,
         "object-literal-sort-keys": false,
+        "ordered-imports": false,
         "max-classes-per-file": false,
         "arrow-return-shorthand": true,
         "callable-types": true,
         "class-name": true,
-        "comment-format": [true, "check-space"],
+        "comment-format": [
+            true,
+            "check-space"
+        ],
         "eofline": true,
         "forin": true,
         "import-spacing": true,
@@ -30,7 +36,14 @@
             }
         ],
         "no-arg": true,
-        "no-console": [true, "debug", "info", "time", "timeEnd", "trace"],
+        "no-console": [
+            true,
+            "debug",
+            "info",
+            "time",
+            "timeEnd",
+            "trace"
+        ],
         "no-construct": true,
         "no-debugger": true,
         "no-duplicate-super": true,
@@ -54,9 +67,15 @@
             "check-whitespace"
         ],
         "prefer-const": true,
-        "quotemark": [true, "double"],
+        "quotemark": [
+            true,
+            "double"
+        ],
         "radix": true,
-        "triple-equals": [true, "allow-null-check"],
+        "triple-equals": [
+            true,
+            "allow-null-check"
+        ],
         "typedef-whitespace": [
             true,
             {

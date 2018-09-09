@@ -1,4 +1,22 @@
 /**
+ * Checks if a value is an array.
+ *
+ * Alias of the native `Array.isArray`.
+ *
+ * @function isArray
+ * @memberof Is
+ * @since 1.0.0
+ * @param {any} val
+ * @returns {boolean}
+ * @example
+ * isArray([1, 2, 3]);
+ * // => true
+ *
+ * isArray({});
+ * // => false
+ */
+
+/**
  * Checks if the value has a certain type-string.
  *
  * @function isTypeOf
@@ -8,16 +26,9 @@
  * @param {string} type
  * @returns {boolean}
  * @example
- * isTypeOf({}, "object")
- * // => true
- *
- * isTypeOf([], "object")
- * // => true
- *
  * isTypeOf("foo", "string")
  * // => true
  *
- * @example
  * isTypeOf("foo", "number")
  * // => false
  */
@@ -40,13 +51,10 @@ const isTypeOf = (val, type) => typeof val === type;
  * isUndefined(undefined)
  * // => true
  *
- * @example
- * const a = {};
- *
- * isUndefined(1)
+ * isUndefined(null)
  * // => false
  *
- * isUndefined(a)
+ * isUndefined(1)
  * // => false
  */
 const isUndefined = (val) => isTypeOf(val, "undefined");

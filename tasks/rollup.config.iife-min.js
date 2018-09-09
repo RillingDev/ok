@@ -4,7 +4,7 @@ import uglify from "rollup-plugin-uglify-es";
 import { settings } from "../package.json";
 
 export default {
-    input: `./src/${settings.input}`,
+    input: `./src/main.ts`,
     output: [
         {
             format: "iife",

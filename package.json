@@ -6,7 +6,6 @@
     "module": "./dist/ok.esm.js",
     "types": "./types/main.d.ts",
     "settings": {
-        "input": "main.ts",
         "namespace": {
             "module": "Ok",
             "file": "ok"
@@ -18,15 +17,17 @@
         "build": "rollup -c ./tasks/rollup.config.js",
         "build:iife": "rollup -c ./tasks/rollup.config.iife.js",
         "build:iife-min": "rollup -c ./tasks/rollup.config.iife-min.js",
+        "build:test": "rollup -c ./tasks/rollup.config.test.js",
+        "build:declarations": "tsc --build ./tasks/tsconfig.declarations.json",
         "watch": "rollup -c ./tasks/rollup.config.js --watch",
-        "dist": "npm-run-all --parallel build build:iife build:iife-min",
-        "lint": "npm-run-all --parallel lint:ts lint:es",
-        "lint:ts": "tslint ./src/**/*.ts",
-        "lint:es": "eslint ./spec/**/*.js",
-        "fix": "npm-run-all fix:ts fix:es fix:prettier",
-        "fix:ts": "tslint ./src/**/*.ts --fix",
-        "fix:es": "eslint ./spec/**/*.js --fix",
-        "fix:prettier": "prettier ./src/**/* ./spec/**/* --write",
+        "dist": "npm-run-all --parallel build build:iife build:iife-min build:declarations",
+        "lint": "npm-run-all --parallel lint:ts",
+        "lint:ts": "tslint ./src/**/*.ts ./spec/**/*.ts",
+        "fix": "npm-run-all fix:ts fix:prettier",
+        "fix:ts": "tslint ./src/**/*.ts ./spec/**/*.ts --fix",
+        "fix:prettier": "prettier ./src/**/*.ts ./spec/**/*.ts --write",
+        "test": "npm-run-all build:test test:jasmine",
+        "test:jasmine": "jasmine",
         "docs": "jsdoc -c jsdoc.json"
     },
     "bugs": {
@@ -44,21 +45,21 @@
         "form"
     ],
     "dependencies": {
-        "lightdash": "^8.2.0"
+        "lightdash": "^9.0.2"
     },
     "devDependencies": {
+        "@types/jasmine": "^2.8.8",
         "countly-docdash": "^0.5.0",
-        "eslint": "^5.3.0",
-        "jasmine": "^3.1.0",
+        "jasmine": "^3.2.0",
         "jsdoc": "^3.5.5",
         "npm-run-all": "^4.1.3",
-        "prettier": "^1.14.0",
-        "rollup": "^0.63.5",
-        "rollup-plugin-node-resolve": "^3.3.0",
-        "rollup-plugin-typescript2": "^0.16.1",
+        "prettier": "^1.14.2",
+        "rollup": "^0.65.2",
+        "rollup-plugin-node-resolve": "^3.4.0",
+        "rollup-plugin-typescript2": "^0.17.0",
         "rollup-plugin-uglify-es": "0.0.1",
         "tslint": "^5.11.0",
-        "typescript": "^3.0.1",
+        "typescript": "^3.0.3",
         "uglify-es": "^3.3.10"
     }
 }
