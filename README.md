@@ -1,5 +1,3 @@
-![OkJS](./icon/logo.png)
-
 # OkJS
 
 > A super tiny JavaScript library for form validation
