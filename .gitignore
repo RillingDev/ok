@@ -36,3 +36,6 @@ npm-debug.*
 .cache/
 .tmp/
 spec/out/
+
+# Safe files
+_key*

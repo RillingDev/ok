@@ -45,7 +45,7 @@
         "form"
     ],
     "dependencies": {
-        "lightdash": "^9.0.2"
+        "lightdash": "^9.0.4"
     },
     "devDependencies": {
         "@types/jasmine": "^2.8.8",
@@ -53,13 +53,13 @@
         "jasmine": "^3.2.0",
         "jsdoc": "^3.5.5",
         "npm-run-all": "^4.1.3",
-        "prettier": "^1.14.2",
-        "rollup": "^0.65.2",
+        "prettier": "^1.14.3",
+        "rollup": "^0.66.2",
         "rollup-plugin-node-resolve": "^3.4.0",
         "rollup-plugin-typescript2": "^0.17.0",
         "rollup-plugin-uglify-es": "0.0.1",
         "tslint": "^5.11.0",
-        "typescript": "^3.0.3",
+        "typescript": "^3.1.1",
         "uglify-es": "^3.3.10"
     }
 }

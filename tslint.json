@@ -7,10 +7,9 @@
         "arrow-parens": false,
         "trailing-comma": false,
         "no-angle-bracket-type-assertion": false,
-        "curly": true,
+        "no-non-null-assertion": false,
+        "prefer-const": false,
         "object-literal-sort-keys": false,
-        "ordered-imports": false,
-        "max-classes-per-file": false,
         "arrow-return-shorthand": true,
         "callable-types": true,
         "class-name": true,
@@ -23,7 +22,7 @@
         "import-spacing": true,
         "interface-over-type-literal": true,
         "label-position": true,
-        "member-access": false,
+        "member-access": true,
         "member-ordering": [
             true,
             {
@@ -35,7 +34,6 @@
                 ]
             }
         ],
-        "no-arg": true,
         "no-console": [
             true,
             "debug",
@@ -47,11 +45,10 @@
         "no-construct": true,
         "no-debugger": true,
         "no-duplicate-super": true,
-        "no-empty": false,
+        "no-empty": true,
         "no-empty-interface": true,
         "no-eval": true,
         "no-misused-new": true,
-        "no-non-null-assertion": true,
         "no-shadowed-variable": true,
         "no-string-literal": false,
         "no-string-throw": true,
@@ -66,7 +63,6 @@
             "check-else",
             "check-whitespace"
         ],
-        "prefer-const": true,
         "quotemark": [
             true,
             "double"

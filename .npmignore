@@ -42,3 +42,6 @@ tasks/
 demo/
 icon/
 spec/
+
+# Safe files
+_key*
