@@ -1,2 +1,2 @@
-import { Ok } from "./ok";
+import { Ok } from "./Ok";
 export default Ok;

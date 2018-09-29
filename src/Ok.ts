@@ -1,26 +1,15 @@
-import { isUndefined, mapFromObject } from "lightdash";
-import { getInputElementValue } from "./inputElement";
-
-type okValidatorMap = Map<string, IOkValidator>;
-
-interface IOkValidator {
-    msg: string;
-    fn: (val: string | boolean, element: Element, e?: Event) => boolean;
-}
-
-interface IOkValidators {
-    [key: string]: IOkValidator;
-}
-
-const hasBrowserValidationSupport = !isUndefined(
-    HTMLInputElement.prototype.setCustomValidity
-);
+import { mapFromObject } from "lightdash";
+import { getInputElementValue } from "./dom/getInputElementValue";
+import { IValidator } from "./validator/IValidator";
+import { IValidators } from "./validator/IValidators";
+import { validatorMap } from "./validator/validatorMap";
+import { browserSupportsValidation } from "./dom/browserSupportsValidation";
 
 /**
  * @class
  */
 const Ok = class {
-    public map: okValidatorMap;
+    public map: validatorMap;
     public invalidClass: string | false;
     /**
      * Ok class.
@@ -30,10 +19,10 @@ const Ok = class {
      * @param {string|false} [invalidClass="invalid"] CSS class for invalid elements, or false if none should be set.
      */
     constructor(
-        validators: IOkValidators,
+        validators: IValidators,
         invalidClass: string | false = "invalid"
     ) {
-        this.map = <Map<string, IOkValidator>>mapFromObject(validators);
+        this.map = <Map<string, IValidator>>mapFromObject(validators);
         this.invalidClass = invalidClass;
     }
     /**
@@ -45,7 +34,9 @@ const Ok = class {
      * @returns {boolean} current validity of the element.
      */
     public validate(element: HTMLInputElement, ...args: any[]): boolean {
-        if (!element.dataset.ok) throw new Error("no validator assigned");
+        if (!element.dataset.ok) {
+            throw new Error("no validator assigned");
+        }
 
         const value = getInputElementValue(element);
         const validatorList: string[] = element.dataset.ok
@@ -55,26 +46,30 @@ const Ok = class {
 
         validatorList.forEach(validatorListEntry => {
             if (result) {
-                if (!this.map.has(validatorListEntry))
+                if (!this.map.has(validatorListEntry)) {
                     throw new Error(
                         `missing validator '${validatorListEntry}'`
                     );
+                }
 
-                const validator = <IOkValidator>(
-                    this.map.get(validatorListEntry)
-                );
+                const validator = <IValidator>this.map.get(validatorListEntry);
 
                 if (!validator.fn(value, element, ...args)) {
                     result = false;
-                    if (hasBrowserValidationSupport)
+                    if (browserSupportsValidation()) {
                         element.setCustomValidity(validator.msg);
+                    }
                 }
             }
         });
 
         if (result) {
-            if (hasBrowserValidationSupport) element.setCustomValidity("");
-            if (this.invalidClass) element.classList.remove(this.invalidClass);
+            if (browserSupportsValidation()) {
+                element.setCustomValidity("");
+            }
+            if (this.invalidClass) {
+                element.classList.remove(this.invalidClass);
+            }
         } else if (this.invalidClass) {
             element.classList.add(this.invalidClass);
         }

@@ -1,16 +1,11 @@
-interface IOkValidator {
-    msg: string;
-    fn: (val: string | boolean, element: Element, e?: Event) => boolean;
-}
-interface IOkValidators {
-    [key: string]: IOkValidator;
-}
+import { IValidator } from "./validator/IValidator";
+import { IValidators } from "./validator/IValidators";
 /**
  * @class
  */
 declare const Ok: {
-    new (validators: IOkValidators, invalidClass?: string | false): {
-        map: Map<string, IOkValidator>;
+    new (validators: IValidators, invalidClass?: string | false): {
+        map: Map<string, IValidator>;
         invalidClass: string | false;
         /**
          * Validates an input element and returns the validity.

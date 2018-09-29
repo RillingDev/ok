@@ -84,6 +84,7 @@ var Ok = (function () {
      * @returns {boolean} if the element is checkbox-like.
      */
     const isInputElementCheckboxLike = (element) => element.type === "checkbox" || element.type === "radio";
+
     /**
      * Returns input element specific value.
      *
@@ -93,7 +94,8 @@ var Ok = (function () {
      */
     const getInputElementValue = (element) => isInputElementCheckboxLike(element) ? element.checked : element.value;
 
-    const hasBrowserValidationSupport = !isUndefined(HTMLInputElement.prototype.setCustomValidity);
+    const browserSupportsValidation = () => !isUndefined(HTMLInputElement.prototype.setCustomValidity);
+
     /**
      * @class
      */
@@ -118,8 +120,9 @@ var Ok = (function () {
          * @returns {boolean} current validity of the element.
          */
         validate(element, ...args) {
-            if (!element.dataset.ok)
+            if (!element.dataset.ok) {
                 throw new Error("no validator assigned");
+            }
             const value = getInputElementValue(element);
             const validatorList = element.dataset.ok
                 .split(",")
@@ -127,21 +130,25 @@ var Ok = (function () {
             let result = true;
             validatorList.forEach(validatorListEntry => {
                 if (result) {
-                    if (!this.map.has(validatorListEntry))
+                    if (!this.map.has(validatorListEntry)) {
                         throw new Error(`missing validator '${validatorListEntry}'`);
-                    const validator = (this.map.get(validatorListEntry));
+                    }
+                    const validator = this.map.get(validatorListEntry);
                     if (!validator.fn(value, element, ...args)) {
                         result = false;
-                        if (hasBrowserValidationSupport)
+                        if (browserSupportsValidation()) {
                             element.setCustomValidity(validator.msg);
+                        }
                     }
                 }
             });
             if (result) {
-                if (hasBrowserValidationSupport)
+                if (browserSupportsValidation()) {
                     element.setCustomValidity("");
-                if (this.invalidClass)
+                }
+                if (this.invalidClass) {
                     element.classList.remove(this.invalidClass);
+                }
             }
             else if (this.invalidClass) {
                 element.classList.add(this.invalidClass);
