@@ -7,9 +7,9 @@
 Ok is an very small utility library to validate forms with more than what HTML5 offers you.
 Features include customized messages and validator chaining.
 
-## Usage
+**[Docs](https://felixrilling.github.io/ok/)**
 
-Ok can be installed from the npm registry:
+## Usage
 
 ```shell
 npm install okjs --save
