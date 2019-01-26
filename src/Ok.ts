@@ -1,9 +1,9 @@
 import { mapFromObject } from "lightdash";
+import { browserSupportsValidation } from "./dom/browserSupportsValidation";
 import { getInputElementValue } from "./dom/getInputElementValue";
 import { IValidator } from "./validator/IValidator";
 import { IValidators } from "./validator/IValidators";
 import { validatorMap } from "./validator/validatorMap";
-import { browserSupportsValidation } from "./dom/browserSupportsValidation";
 
 /**
  * @class
@@ -11,6 +11,7 @@ import { browserSupportsValidation } from "./dom/browserSupportsValidation";
 const Ok = class {
     public map: validatorMap;
     public invalidClass: string | false;
+
     /**
      * Ok class.
      *
@@ -25,6 +26,7 @@ const Ok = class {
         this.map = <Map<string, IValidator>>mapFromObject(validators);
         this.invalidClass = invalidClass;
     }
+
     /**
      * Validates an input element and returns the validity.
      *
@@ -76,6 +78,7 @@ const Ok = class {
 
         return result;
     }
+
     /**
      * Binds an event handler to an input element.
      *

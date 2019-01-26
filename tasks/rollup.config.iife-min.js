@@ -1,6 +1,6 @@
 import typescript from "rollup-plugin-typescript2";
 import resolve from "rollup-plugin-node-resolve";
-import uglify from "rollup-plugin-uglify-es";
+import { terser } from "rollup-plugin-terser";
 import { settings } from "../package.json";
 
 export default {
@@ -18,6 +18,6 @@ export default {
         typescript({
             cacheRoot: "./.cache/ts/iife-min"
         }),
-        uglify()
+        terser()
     ]
 };

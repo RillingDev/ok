@@ -1,49 +1,35 @@
 'use strict';
 
-/**
- * Checks if a value is an array.
- *
- * Alias of the native `Array.isArray`.
- *
- * @function isArray
- * @memberof Is
- * @since 1.0.0
- * @param {any} val
- * @returns {boolean}
- * @example
- * isArray([1, 2, 3]);
- * // => true
- *
- * isArray({});
- * // => false
- */
+// File is named "_index.ts" to avoid it being treated as a module index file.
 
 /**
- * Checks if the value has a certain type-string.
+ * Checks if the value has any of the given types.
+ * If at least one type gives back true, true is returned.
  *
- * @function isTypeOf
  * @memberof Is
  * @since 1.0.0
- * @param {any} val
- * @param {string} type
- * @returns {boolean}
+ * @param {any} val Value to check.
+ * @param {...string} types Type strings to compare the value to.
+ * @returns {boolean} If the value has the type provided.
  * @example
  * isTypeOf("foo", "string")
+ * // => true
+ *
+ * isTypeOf("foo", "number", "string")
  * // => true
  *
  * isTypeOf("foo", "number")
  * // => false
  */
-const isTypeOf = (val, type) => typeof val === type;
+const isTypeOf = (val, ...types) => types.some(type => typeof val === type);
 
 /**
  * Checks if a value is undefined.
  *
- * @function isUndefined
  * @memberof Is
  * @since 1.0.0
- * @param {any} val
- * @returns {boolean}
+ * @param {any} val Value to check.
+ * @returns {boolean} If the value is undefined.
  * @example
  * const a = {};
  *
@@ -64,16 +50,17 @@ const isUndefined = (val) => isTypeOf(val, "undefined");
 /**
  * Creates a map from an object.
  *
- * @function mapFromObject
  * @memberof Map
  * @since 1.0.0
- * @param {Object} obj
- * @returns {Map}
+ * @param {Object} obj Object to use.
+ * @returns {Map} Map created from the object.
  * @example
  * mapFromObject({a: 1, b: 4, c: 5})
  * // => Map<string,number>{a: 1, b: 4, c: 5}
  */
 const mapFromObject = (obj) => new Map(Object.entries(obj));
+
+const browserSupportsValidation = () => !isUndefined(HTMLInputElement.prototype.setCustomValidity);
 
 /**
  * Checks if an input is a radio or a checkbox.
@@ -92,8 +79,6 @@ const isInputElementCheckboxLike = (element) => element.type === "checkbox" || e
  * @returns {string|boolean} value of the element, either a string or a boolean.
  */
 const getInputElementValue = (element) => isInputElementCheckboxLike(element) ? element.checked : element.value;
-
-const browserSupportsValidation = () => !isUndefined(HTMLInputElement.prototype.setCustomValidity);
 
 /**
  * @class
