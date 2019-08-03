@@ -90,7 +90,7 @@ var Ok = (function () {
          *
          * @public
          * @param {object} validators object containing the validators to use.
-         * @param {string|false} [invalidClass="invalid"] CSS class for invalid elements, or false if none should be set.
+         * @param {string|boolean} [invalidClass="invalid"] CSS class for invalid elements, or false if none should be set.
          */
         constructor(validators, invalidClass = "invalid") {
             this.map = mapFromObject(validators);
