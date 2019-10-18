@@ -1,0 +1,1 @@
+{"version":3,"file":"IValidator.d.ts","sourceRoot":"","sources":["../../../../src/validator/IValidator.ts"],"names":[],"mappings":"AAAA,UAAU,UAAU;IAChB,GAAG,EAAE,MAAM,CAAC;IACZ,EAAE,EAAE,CAAC,GAAG,EAAE,MAAM,GAAG,OAAO,EAAE,OAAO,EAAE,OAAO,EAAE,CAAC,CAAC,EAAE,KAAK,KAAK,OAAO,CAAC;CACvE;AAED,OAAO,EAAE,UAAU,EAAE,CAAC"}

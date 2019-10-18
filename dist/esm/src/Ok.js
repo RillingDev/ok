@@ -1,89 +1,6 @@
-'use strict';
-
-/**
- * Checks if the value has any of the given types.
- * If at least one type gives back true, true is returned.
- *
- * @memberof Is
- * @since 1.0.0
- * @param {any} val Value to check.
- * @param {...string} types Type strings to compare the value to.
- * @returns {boolean} If the value has the type provided.
- * @example
- * isTypeOf("foo", "string")
- * // => true
- *
- * isTypeOf("foo", "number", "string")
- * // => true
- *
- * isTypeOf("foo", "number")
- * // => false
- */
-const isTypeOf = (val, ...types) => types.some(type => typeof val === type);
-
-/**
- * Checks if a value is undefined.
- *
- * @memberof Is
- * @since 1.0.0
- * @param {any} val Value to check.
- * @returns {boolean} If the value is undefined.
- * @example
- * const a = {};
- *
- * isUndefined(a.b)
- * // => true
- *
- * isUndefined(undefined)
- * // => true
- *
- * isUndefined(null)
- * // => false
- *
- * isUndefined(1)
- * // => false
- */
-const isUndefined = (val) => isTypeOf(val, "undefined");
-
-var Delimiters;
-(function (Delimiters) {
-    Delimiters["KEBAB"] = "-";
-    Delimiters["SNAKE"] = "_";
-})(Delimiters || (Delimiters = {}));
-
-/**
- * Creates a map from an object.
- *
- * @memberof Map
- * @since 1.0.0
- * @param {Object} obj Object to use.
- * @returns {Map} Map created from the object.
- * @example
- * mapFromObject({a: 1, b: 4, c: 5})
- * // => Map<string,number>{a: 1, b: 4, c: 5}
- */
-const mapFromObject = (obj) => new Map(Object.entries(obj));
-
-const browserSupportsValidation = () => !isUndefined(HTMLInputElement.prototype.setCustomValidity);
-
-/**
- * Checks if an input is a radio or a checkbox.
- *
- * @private
- * @param {HTMLInputElement} element HTMLInputElement to check.
- * @returns {boolean} if the element is checkbox-like.
- */
-const isInputElementCheckboxLike = (element) => element.type === "checkbox" || element.type === "radio";
-
-/**
- * Returns input element specific value.
- *
- * @private
- * @param {HTMLInputElement} element HTMLInputElement to get the value of.
- * @returns {string|boolean} value of the element, either a string or a boolean.
- */
-const getInputElementValue = (element) => isInputElementCheckboxLike(element) ? element.checked : element.value;
-
+import { mapFromObject } from "lightdash";
+import { browserSupportsValidation } from "./dom/browserSupportsValidation";
+import { getInputElementValue } from "./dom/getInputElementValue";
 /**
  * @class
  */
@@ -154,6 +71,5 @@ const Ok = class {
         element.addEventListener(eventType, e => this.validate(element, e));
     }
 };
-
-module.exports = Ok;
-//# sourceMappingURL=ok.common.js.map
+export { Ok };
+//# sourceMappingURL=Ok.js.map

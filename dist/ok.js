@@ -1,8 +1,6 @@
 var Ok = (function () {
     'use strict';
 
-    // File is named "_index.ts" to avoid it being treated as a module index file.
-
     /**
      * Checks if the value has any of the given types.
      * If at least one type gives back true, true is returned.
@@ -47,6 +45,12 @@ var Ok = (function () {
      * // => false
      */
     const isUndefined = (val) => isTypeOf(val, "undefined");
+
+    var Delimiters;
+    (function (Delimiters) {
+        Delimiters["KEBAB"] = "-";
+        Delimiters["SNAKE"] = "_";
+    })(Delimiters || (Delimiters = {}));
 
     /**
      * Creates a map from an object.

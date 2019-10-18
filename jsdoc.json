@@ -4,7 +4,7 @@
         "dictionaries": ["jsdoc"]
     },
     "source": {
-        "include": ["./README.md", "./dist/ok.esm.js"],
+        "include": ["./README.md", "./dist/ok.common.js"],
         "excludePattern": "(node_modules/|docs/)"
     },
     "plugins": ["plugins/markdown"],
