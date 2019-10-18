@@ -46,6 +46,25 @@ var Ok = (function () {
      */
     const isUndefined = (val) => isTypeOf(val, "undefined");
 
+    /**
+     * Checks if a value is a function.
+     *
+     * @memberof Is
+     * @since 1.0.0
+     * @param {any} val Value to check.
+     * @returns {boolean} If the value is a function.
+     * @example
+     * isFunction(function a(){})
+     * // => true
+     *
+     * isFunction(Array.from)
+     * // => true
+     *
+     * isFunction(null)
+     * // => false
+     */
+    const isFunction = (val) => isTypeOf(val, "function");
+
     var Delimiters;
     (function (Delimiters) {
         Delimiters["KEBAB"] = "-";
@@ -111,17 +130,17 @@ var Ok = (function () {
          *
          * @public
          * @param {HTMLInputElement} element HTMLInputElement to validate.
-         * @param {...any[]} args optional arguments to pass.
+         * @param {Event?} e optional event that triggered validation.
          * @returns {boolean} current validity of the element.
          */
-        validate(element, ...args) {
+        validate(element, e) {
             if (!element.dataset.ok) {
                 throw new Error("No validators are assigned to the element.");
             }
-            const value = getInputElementValue(element);
             const validatorList = element.dataset.ok
                 .split(",")
                 .map(str => str.trim());
+            const value = getInputElementValue(element);
             let result = true;
             for (const validatorListEntry of validatorList) {
                 if (result) {
@@ -129,9 +148,12 @@ var Ok = (function () {
                         throw new Error(`Validator '${validatorListEntry}' is not registered.`);
                     }
                     const validator = this.map.get(validatorListEntry);
-                    if (!validator.fn(value, element, ...args)) {
+                    if (!validator.fn(value, element, e)) {
                         result = false;
-                        setCustomValidity(element, validator.msg);
+                        const msg = isFunction(validator.msg)
+                            ? validator.msg(value, element, e)
+                            : validator.msg;
+                        setCustomValidity(element, msg);
                     }
                 }
             }

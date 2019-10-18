@@ -7,7 +7,7 @@ type ValidationFunction<T> = (
 ) => T;
 
 interface Validator {
-    msg: string;
+    msg: string | ValidationFunction<string>;
     fn: ValidationFunction<boolean>;
 }
 

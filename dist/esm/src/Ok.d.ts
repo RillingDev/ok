@@ -12,10 +12,10 @@ declare const Ok: {
          *
          * @public
          * @param {HTMLInputElement} element HTMLInputElement to validate.
-         * @param {...any[]} args optional arguments to pass.
+         * @param {Event?} e optional event that triggered validation.
          * @returns {boolean} current validity of the element.
          */
-        validate(element: HTMLInputElement, ...args: any[]): boolean;
+        validate(element: HTMLInputElement, e?: Event | undefined): boolean;
         /**
          * Binds an event handler to an input element.
          *

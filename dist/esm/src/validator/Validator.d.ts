@@ -1,7 +1,7 @@
 declare type HtmlInputValue = string | boolean;
 declare type ValidationFunction<T> = (val: HtmlInputValue, element: HTMLInputElement, e?: Event) => T;
 interface Validator {
-    msg: string;
+    msg: string | ValidationFunction<string>;
     fn: ValidationFunction<boolean>;
 }
 export { Validator };

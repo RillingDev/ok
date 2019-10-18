@@ -1,4 +1,4 @@
-import { mapFromObject } from "lightdash";
+import { isFunction, mapFromObject } from "lightdash";
 import { getInputElementValue } from "./dom/getInputElementValue";
 import { Validator } from "./validator/Validator";
 import { ValidatorDictionary } from "./validator/ValidatorDictionary";
@@ -32,18 +32,18 @@ const Ok = class {
      *
      * @public
      * @param {HTMLInputElement} element HTMLInputElement to validate.
-     * @param {...any[]} args optional arguments to pass.
+     * @param {Event?} e optional event that triggered validation.
      * @returns {boolean} current validity of the element.
      */
-    public validate(element: HTMLInputElement, ...args: any[]): boolean {
+    public validate(element: HTMLInputElement, e?: Event): boolean {
         if (!element.dataset.ok) {
             throw new Error("No validators are assigned to the element.");
         }
-
-        const value = getInputElementValue(element);
         const validatorList: string[] = element.dataset.ok
             .split(",")
             .map(str => str.trim());
+
+        const value = getInputElementValue(element);
 
         let result = true;
         for (const validatorListEntry of validatorList) {
@@ -54,9 +54,12 @@ const Ok = class {
                     );
                 }
                 const validator: Validator = this.map.get(validatorListEntry)!;
-                if (!validator.fn(value, element, ...args)) {
+                if (!validator.fn(value, element, e)) {
                     result = false;
-                    setCustomValidity(element, validator.msg);
+                    const msg = isFunction(validator.msg)
+                        ? validator.msg(value, element, e)
+                        : validator.msg;
+                    setCustomValidity(element, msg);
                 }
             }
         }
