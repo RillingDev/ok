@@ -1,11 +1,11 @@
-import { IValidator } from "./validator/IValidator";
-import { IValidators } from "./validator/IValidators";
+import { Validator } from "./validator/Validator";
+import { ValidatorDictionary } from "./validator/ValidatorDictionary";
 /**
  * @class
  */
 declare const Ok: {
-    new (validators: IValidators, invalidClass?: string | false): {
-        map: Map<string, IValidator>;
+    new (validators: ValidatorDictionary, invalidClass?: string | false): {
+        map: Map<string, Validator>;
         invalidClass: string | false;
         /**
          * Validates an input element and returns the validity.

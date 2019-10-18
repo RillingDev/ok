@@ -6,7 +6,5 @@
         "declaration": true,
         "newLine": "LF"
     },
-    "include": [
-        "./"
-    ]
+    "include": ["./"]
 }

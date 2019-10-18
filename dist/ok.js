@@ -65,7 +65,9 @@ var Ok = (function () {
      */
     const mapFromObject = (obj) => new Map(Object.entries(obj));
 
-    const browserSupportsValidation = () => !isUndefined(HTMLInputElement.prototype.setCustomValidity);
+    const browserSupportsValidation = () => 
+    // eslint-disable-next-line @typescript-eslint/unbound-method
+    !isUndefined(HTMLInputElement.prototype.setCustomValidity);
 
     /**
      * Checks if an input is a radio or a checkbox.

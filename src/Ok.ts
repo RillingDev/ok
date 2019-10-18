@@ -1,15 +1,15 @@
 import { mapFromObject } from "lightdash";
 import { browserSupportsValidation } from "./dom/browserSupportsValidation";
 import { getInputElementValue } from "./dom/getInputElementValue";
-import { IValidator } from "./validator/IValidator";
-import { IValidators } from "./validator/IValidators";
-import { validatorMap } from "./validator/validatorMap";
+import { Validator } from "./validator/Validator";
+import { ValidatorDictionary } from "./validator/ValidatorDictionary";
+import { ValidatorMap } from "./validator/ValidatorMap";
 
 /**
  * @class
  */
 const Ok = class {
-    public map: validatorMap;
+    public map: ValidatorMap;
     public invalidClass: string | false;
 
     /**
@@ -19,11 +19,11 @@ const Ok = class {
      * @param {object} validators object containing the validators to use.
      * @param {string|boolean} [invalidClass="invalid"] CSS class for invalid elements, or false if none should be set.
      */
-    constructor(
-        validators: IValidators,
+    public constructor(
+        validators: ValidatorDictionary,
         invalidClass: string | false = "invalid"
     ) {
-        this.map = <Map<string, IValidator>>mapFromObject(validators);
+        this.map = <Map<string, Validator>>mapFromObject(validators);
         this.invalidClass = invalidClass;
     }
 
@@ -54,7 +54,7 @@ const Ok = class {
                     );
                 }
 
-                const validator = <IValidator>this.map.get(validatorListEntry);
+                const validator = <Validator>this.map.get(validatorListEntry);
 
                 if (!validator.fn(value, element, ...args)) {
                     result = false;
@@ -86,7 +86,7 @@ const Ok = class {
      * @param {HTMLInputElement} element HTMLInputElement to bind.
      * @param {string} [eventType="input"] event type to bind.
      */
-    public bind(element: HTMLInputElement, eventType: string = "input"): void {
+    public bind(element: HTMLInputElement, eventType = "input"): void {
         element.addEventListener(eventType, e => this.validate(element, e));
     }
 };
