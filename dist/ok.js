@@ -46,6 +46,25 @@ var Ok = (function () {
      */
     const isUndefined = (val) => isTypeOf(val, "undefined");
 
+    /**
+     * Checks if a value is a function.
+     *
+     * @memberof Is
+     * @since 1.0.0
+     * @param {any} val Value to check.
+     * @returns {boolean} If the value is a function.
+     * @example
+     * isFunction(function a(){})
+     * // => true
+     *
+     * isFunction(Array.from)
+     * // => true
+     *
+     * isFunction(null)
+     * // => false
+     */
+    const isFunction = (val) => isTypeOf(val, "function");
+
     var Delimiters;
     (function (Delimiters) {
         Delimiters["KEBAB"] = "-";
@@ -65,10 +84,6 @@ var Ok = (function () {
      */
     const mapFromObject = (obj) => new Map(Object.entries(obj));
 
-    const browserSupportsValidation = () => 
-    // eslint-disable-next-line @typescript-eslint/unbound-method
-    !isUndefined(HTMLInputElement.prototype.setCustomValidity);
-
     /**
      * Checks if an input is a radio or a checkbox.
      *
@@ -77,7 +92,6 @@ var Ok = (function () {
      * @returns {boolean} if the element is checkbox-like.
      */
     const isInputElementCheckboxLike = (element) => element.type === "checkbox" || element.type === "radio";
-
     /**
      * Returns input element specific value.
      *
@@ -86,6 +100,15 @@ var Ok = (function () {
      * @returns {string|boolean} value of the element, either a string or a boolean.
      */
     const getInputElementValue = (element) => isInputElementCheckboxLike(element) ? element.checked : element.value;
+
+    const browserSupportsValidation = () => 
+    // eslint-disable-next-line @typescript-eslint/unbound-method
+    !isUndefined(HTMLInputElement.prototype.setCustomValidity);
+    const setCustomValidity = (element, msg) => {
+        if (browserSupportsValidation()) {
+            element.setCustomValidity(msg);
+        }
+    };
 
     /**
      * @class
@@ -107,36 +130,35 @@ var Ok = (function () {
          *
          * @public
          * @param {HTMLInputElement} element HTMLInputElement to validate.
-         * @param {...any[]} args optional arguments to pass.
+         * @param {Event?} e optional event that triggered validation.
          * @returns {boolean} current validity of the element.
          */
-        validate(element, ...args) {
+        validate(element, e) {
             if (!element.dataset.ok) {
-                throw new Error("no validator assigned");
+                throw new Error("No validators are assigned to the element.");
             }
-            const value = getInputElementValue(element);
             const validatorList = element.dataset.ok
                 .split(",")
                 .map(str => str.trim());
+            const value = getInputElementValue(element);
             let result = true;
-            validatorList.forEach(validatorListEntry => {
+            for (const validatorListEntry of validatorList) {
                 if (result) {
                     if (!this.map.has(validatorListEntry)) {
-                        throw new Error(`missing validator '${validatorListEntry}'`);
+                        throw new Error(`Validator '${validatorListEntry}' is not registered.`);
                     }
                     const validator = this.map.get(validatorListEntry);
-                    if (!validator.fn(value, element, ...args)) {
+                    if (!validator.fn(value, element, e)) {
                         result = false;
-                        if (browserSupportsValidation()) {
-                            element.setCustomValidity(validator.msg);
-                        }
+                        const msg = isFunction(validator.msg)
+                            ? validator.msg(value, element, e)
+                            : validator.msg;
+                        setCustomValidity(element, msg);
                     }
                 }
-            });
+            }
             if (result) {
-                if (browserSupportsValidation()) {
-                    element.setCustomValidity("");
-                }
+                setCustomValidity(element, "");
                 if (this.invalidClass) {
                     element.classList.remove(this.invalidClass);
                 }

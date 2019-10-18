@@ -1,16 +1,16 @@
-import { mapFromObject } from "lightdash";
-import { browserSupportsValidation } from "./dom/browserSupportsValidation";
+import { isFunction, mapFromObject } from "lightdash";
 import { getInputElementValue } from "./dom/getInputElementValue";
 import { Validator } from "./validator/Validator";
 import { ValidatorDictionary } from "./validator/ValidatorDictionary";
 import { ValidatorMap } from "./validator/ValidatorMap";
+import { setCustomValidity } from "./dom/setCustomValidity";
 
 /**
  * @class
  */
 const Ok = class {
-    public map: ValidatorMap;
-    public invalidClass: string | false;
+    public readonly map: ValidatorMap;
+    public readonly invalidClass: string | false;
 
     /**
      * Ok class.
@@ -23,7 +23,7 @@ const Ok = class {
         validators: ValidatorDictionary,
         invalidClass: string | false = "invalid"
     ) {
-        this.map = <Map<string, Validator>>mapFromObject(validators);
+        this.map = <ValidatorMap>mapFromObject(validators);
         this.invalidClass = invalidClass;
     }
 
@@ -32,43 +32,39 @@ const Ok = class {
      *
      * @public
      * @param {HTMLInputElement} element HTMLInputElement to validate.
-     * @param {...any[]} args optional arguments to pass.
+     * @param {Event?} e optional event that triggered validation.
      * @returns {boolean} current validity of the element.
      */
-    public validate(element: HTMLInputElement, ...args: any[]): boolean {
+    public validate(element: HTMLInputElement, e?: Event): boolean {
         if (!element.dataset.ok) {
-            throw new Error("no validator assigned");
+            throw new Error("No validators are assigned to the element.");
         }
-
-        const value = getInputElementValue(element);
         const validatorList: string[] = element.dataset.ok
             .split(",")
             .map(str => str.trim());
-        let result = true;
 
-        validatorList.forEach(validatorListEntry => {
+        const value = getInputElementValue(element);
+
+        let result = true;
+        for (const validatorListEntry of validatorList) {
             if (result) {
                 if (!this.map.has(validatorListEntry)) {
                     throw new Error(
-                        `missing validator '${validatorListEntry}'`
+                        `Validator '${validatorListEntry}' is not registered.`
                     );
                 }
-
-                const validator = <Validator>this.map.get(validatorListEntry);
-
-                if (!validator.fn(value, element, ...args)) {
+                const validator: Validator = this.map.get(validatorListEntry)!;
+                if (!validator.fn(value, element, e)) {
                     result = false;
-                    if (browserSupportsValidation()) {
-                        element.setCustomValidity(validator.msg);
-                    }
+                    const msg = isFunction(validator.msg)
+                        ? validator.msg(value, element, e)
+                        : validator.msg;
+                    setCustomValidity(element, msg);
                 }
             }
-        });
-
+        }
         if (result) {
-            if (browserSupportsValidation()) {
-                element.setCustomValidity("");
-            }
+            setCustomValidity(element, "");
             if (this.invalidClass) {
                 element.classList.remove(this.invalidClass);
             }

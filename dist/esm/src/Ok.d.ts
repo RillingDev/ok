@@ -5,17 +5,17 @@ import { ValidatorDictionary } from "./validator/ValidatorDictionary";
  */
 declare const Ok: {
     new (validators: ValidatorDictionary, invalidClass?: string | false): {
-        map: Map<string, Validator>;
-        invalidClass: string | false;
+        readonly map: Map<string, Validator>;
+        readonly invalidClass: string | false;
         /**
          * Validates an input element and returns the validity.
          *
          * @public
          * @param {HTMLInputElement} element HTMLInputElement to validate.
-         * @param {...any[]} args optional arguments to pass.
+         * @param {Event?} e optional event that triggered validation.
          * @returns {boolean} current validity of the element.
          */
-        validate(element: HTMLInputElement, ...args: any[]): boolean;
+        validate(element: HTMLInputElement, e?: Event | undefined): boolean;
         /**
          * Binds an event handler to an input element.
          *

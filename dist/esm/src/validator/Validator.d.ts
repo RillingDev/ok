@@ -1,6 +1,8 @@
+declare type HtmlInputValue = string | boolean;
+declare type ValidationFunction<T> = (val: HtmlInputValue, element: HTMLInputElement, e?: Event) => T;
 interface Validator {
-    msg: string;
-    fn: (val: string | boolean, element: Element, e?: Event) => boolean;
+    msg: string | ValidationFunction<string>;
+    fn: ValidationFunction<boolean>;
 }
 export { Validator };
 //# sourceMappingURL=Validator.d.ts.map

@@ -1,11 +1,11 @@
 const ok = new Ok({
     nameFirst: {
-        msg: "only 'Dave' allowed",
+        msg: "Only 'Dave' allowed",
         fn: val => val === "Dave"
     },
     emailDe: {
-        msg: "Please input your .de email",
-        fn: val => val.endsWith(".de")
+        msg: (val) => `Please input your .de email (You entered '${val}')`,
+        fn: (val, element, e) => val.endsWith(".de")
     }
 });
 

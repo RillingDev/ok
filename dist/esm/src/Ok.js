@@ -1,6 +1,6 @@
-import { mapFromObject } from "lightdash";
-import { browserSupportsValidation } from "./dom/browserSupportsValidation";
+import { isFunction, mapFromObject } from "lightdash";
 import { getInputElementValue } from "./dom/getInputElementValue";
+import { setCustomValidity } from "./dom/setCustomValidity";
 /**
  * @class
  */
@@ -21,36 +21,35 @@ const Ok = class {
      *
      * @public
      * @param {HTMLInputElement} element HTMLInputElement to validate.
-     * @param {...any[]} args optional arguments to pass.
+     * @param {Event?} e optional event that triggered validation.
      * @returns {boolean} current validity of the element.
      */
-    validate(element, ...args) {
+    validate(element, e) {
         if (!element.dataset.ok) {
-            throw new Error("no validator assigned");
+            throw new Error("No validators are assigned to the element.");
         }
-        const value = getInputElementValue(element);
         const validatorList = element.dataset.ok
             .split(",")
             .map(str => str.trim());
+        const value = getInputElementValue(element);
         let result = true;
-        validatorList.forEach(validatorListEntry => {
+        for (const validatorListEntry of validatorList) {
             if (result) {
                 if (!this.map.has(validatorListEntry)) {
-                    throw new Error(`missing validator '${validatorListEntry}'`);
+                    throw new Error(`Validator '${validatorListEntry}' is not registered.`);
                 }
                 const validator = this.map.get(validatorListEntry);
-                if (!validator.fn(value, element, ...args)) {
+                if (!validator.fn(value, element, e)) {
                     result = false;
-                    if (browserSupportsValidation()) {
-                        element.setCustomValidity(validator.msg);
-                    }
+                    const msg = isFunction(validator.msg)
+                        ? validator.msg(value, element, e)
+                        : validator.msg;
+                    setCustomValidity(element, msg);
                 }
             }
-        });
+        }
         if (result) {
-            if (browserSupportsValidation()) {
-                element.setCustomValidity("");
-            }
+            setCustomValidity(element, "");
             if (this.invalidClass) {
                 element.classList.remove(this.invalidClass);
             }
