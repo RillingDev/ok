@@ -1,6 +1,6 @@
 {
     "name": "okjs",
-    "version": "3.4.1",
+    "version": "3.5.0",
     "description": "A super tiny TypeScript library for form validation",
     "main": "./dist/ok.common.js",
     "module": "./dist/esm/src/main.js",
