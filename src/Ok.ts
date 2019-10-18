@@ -23,7 +23,7 @@ const Ok = class {
         validators: ValidatorDictionary,
         invalidClass: string | false = "invalid"
     ) {
-        this.map = <Map<string, Validator>>mapFromObject(validators);
+        this.map = <ValidatorMap>mapFromObject(validators);
         this.invalidClass = invalidClass;
     }
 
@@ -37,25 +37,23 @@ const Ok = class {
      */
     public validate(element: HTMLInputElement, ...args: any[]): boolean {
         if (!element.dataset.ok) {
-            throw new Error("no validator assigned");
+            throw new Error("No validators are assigned to the element.");
         }
 
         const value = getInputElementValue(element);
         const validatorList: string[] = element.dataset.ok
             .split(",")
             .map(str => str.trim());
-        let result = true;
 
-        validatorList.forEach(validatorListEntry => {
+        let result = true;
+        for (const validatorListEntry of validatorList) {
             if (result) {
                 if (!this.map.has(validatorListEntry)) {
                     throw new Error(
-                        `missing validator '${validatorListEntry}'`
+                        `Validator '${validatorListEntry}' is not registered.`
                     );
                 }
-
-                const validator = <Validator>this.map.get(validatorListEntry);
-
+                const validator: Validator = this.map.get(validatorListEntry)!;
                 if (!validator.fn(value, element, ...args)) {
                     result = false;
                     if (browserSupportsValidation()) {
@@ -63,8 +61,7 @@ const Ok = class {
                     }
                 }
             }
-        });
-
+        }
         if (result) {
             if (browserSupportsValidation()) {
                 element.setCustomValidity("");

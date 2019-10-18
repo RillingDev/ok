@@ -112,17 +112,17 @@ var Ok = (function () {
          */
         validate(element, ...args) {
             if (!element.dataset.ok) {
-                throw new Error("no validator assigned");
+                throw new Error("No validators are assigned to the element.");
             }
             const value = getInputElementValue(element);
             const validatorList = element.dataset.ok
                 .split(",")
                 .map(str => str.trim());
             let result = true;
-            validatorList.forEach(validatorListEntry => {
+            for (const validatorListEntry of validatorList) {
                 if (result) {
                     if (!this.map.has(validatorListEntry)) {
-                        throw new Error(`missing validator '${validatorListEntry}'`);
+                        throw new Error(`Validator '${validatorListEntry}' is not registered.`);
                     }
                     const validator = this.map.get(validatorListEntry);
                     if (!validator.fn(value, element, ...args)) {
@@ -132,7 +132,7 @@ var Ok = (function () {
                         }
                     }
                 }
-            });
+            }
             if (result) {
                 if (browserSupportsValidation()) {
                     element.setCustomValidity("");
