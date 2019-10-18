@@ -65,10 +65,6 @@ var Ok = (function () {
      */
     const mapFromObject = (obj) => new Map(Object.entries(obj));
 
-    const browserSupportsValidation = () => 
-    // eslint-disable-next-line @typescript-eslint/unbound-method
-    !isUndefined(HTMLInputElement.prototype.setCustomValidity);
-
     /**
      * Checks if an input is a radio or a checkbox.
      *
@@ -77,7 +73,6 @@ var Ok = (function () {
      * @returns {boolean} if the element is checkbox-like.
      */
     const isInputElementCheckboxLike = (element) => element.type === "checkbox" || element.type === "radio";
-
     /**
      * Returns input element specific value.
      *
@@ -86,6 +81,15 @@ var Ok = (function () {
      * @returns {string|boolean} value of the element, either a string or a boolean.
      */
     const getInputElementValue = (element) => isInputElementCheckboxLike(element) ? element.checked : element.value;
+
+    const browserSupportsValidation = () => 
+    // eslint-disable-next-line @typescript-eslint/unbound-method
+    !isUndefined(HTMLInputElement.prototype.setCustomValidity);
+    const setCustomValidity = (element, msg) => {
+        if (browserSupportsValidation()) {
+            element.setCustomValidity(msg);
+        }
+    };
 
     /**
      * @class
@@ -127,16 +131,12 @@ var Ok = (function () {
                     const validator = this.map.get(validatorListEntry);
                     if (!validator.fn(value, element, ...args)) {
                         result = false;
-                        if (browserSupportsValidation()) {
-                            element.setCustomValidity(validator.msg);
-                        }
+                        setCustomValidity(element, validator.msg);
                     }
                 }
             }
             if (result) {
-                if (browserSupportsValidation()) {
-                    element.setCustomValidity("");
-                }
+                setCustomValidity(element, "");
                 if (this.invalidClass) {
                     element.classList.remove(this.invalidClass);
                 }

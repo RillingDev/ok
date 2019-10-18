@@ -1,16 +1,16 @@
 import { mapFromObject } from "lightdash";
-import { browserSupportsValidation } from "./dom/browserSupportsValidation";
 import { getInputElementValue } from "./dom/getInputElementValue";
 import { Validator } from "./validator/Validator";
 import { ValidatorDictionary } from "./validator/ValidatorDictionary";
 import { ValidatorMap } from "./validator/ValidatorMap";
+import { setCustomValidity } from "./dom/setCustomValidity";
 
 /**
  * @class
  */
 const Ok = class {
-    public map: ValidatorMap;
-    public invalidClass: string | false;
+    public readonly map: ValidatorMap;
+    public readonly invalidClass: string | false;
 
     /**
      * Ok class.
@@ -56,16 +56,12 @@ const Ok = class {
                 const validator: Validator = this.map.get(validatorListEntry)!;
                 if (!validator.fn(value, element, ...args)) {
                     result = false;
-                    if (browserSupportsValidation()) {
-                        element.setCustomValidity(validator.msg);
-                    }
+                    setCustomValidity(element, validator.msg);
                 }
             }
         }
         if (result) {
-            if (browserSupportsValidation()) {
-                element.setCustomValidity("");
-            }
+            setCustomValidity(element, "");
             if (this.invalidClass) {
                 element.classList.remove(this.invalidClass);
             }

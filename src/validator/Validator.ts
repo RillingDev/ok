@@ -1,6 +1,14 @@
+type HtmlInputValue = string | boolean;
+
+type ValidationFunction<T> = (
+    val: HtmlInputValue,
+    element: HTMLInputElement,
+    e?: Event
+) => T;
+
 interface Validator {
     msg: string;
-    fn: (val: string | boolean, element: Element, e?: Event) => boolean;
+    fn: ValidationFunction<boolean>;
 }
 
 export { Validator };

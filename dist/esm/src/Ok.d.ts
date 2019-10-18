@@ -5,8 +5,8 @@ import { ValidatorDictionary } from "./validator/ValidatorDictionary";
  */
 declare const Ok: {
     new (validators: ValidatorDictionary, invalidClass?: string | false): {
-        map: Map<string, Validator>;
-        invalidClass: string | false;
+        readonly map: Map<string, Validator>;
+        readonly invalidClass: string | false;
         /**
          * Validates an input element and returns the validity.
          *
