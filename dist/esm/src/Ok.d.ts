@@ -2,6 +2,8 @@ import { Validator } from "./validator/Validator";
 import { ValidatorDictionary } from "./validator/ValidatorDictionary";
 declare type ValidatorMap = Map<string, Validator>;
 /**
+ * Ok class.
+ *
  * @class
  */
 declare const Ok: {

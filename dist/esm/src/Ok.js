@@ -2,11 +2,13 @@ import { isFunction, mapFromObject } from "lightdash";
 import { getInputElementValue } from "./dom/getInputElementValue";
 import { setCustomValidity } from "./dom/setCustomValidity";
 /**
+ * Ok class.
+ *
  * @class
  */
 const Ok = class {
     /**
-     * Ok class.
+     * Ok constructor.
      *
      * @public
      * @param {object} validators object containing the validators to use.

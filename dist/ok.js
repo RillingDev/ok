@@ -88,22 +88,35 @@ var Ok = (function () {
      * Checks if an input is a radio or a checkbox.
      *
      * @private
-     * @param {HTMLInputElement} element HTMLInputElement to check.
-     * @returns {boolean} if the element is checkbox-like.
+     * @param element HTMLInputElement to check.
+     * @returns if the element is checkbox-like.
      */
     const isInputElementCheckboxLike = (element) => element.type === "checkbox" || element.type === "radio";
     /**
      * Returns input element specific value.
      *
      * @private
-     * @param {HTMLInputElement} element HTMLInputElement to get the value of.
-     * @returns {string|boolean} value of the element, either a string or a boolean.
+     * @param element HTMLInputElement to get the value of.
+     * @returns value of the element, either a string or a boolean.
      */
     const getInputElementValue = (element) => isInputElementCheckboxLike(element) ? element.checked : element.value;
 
+    /**
+     * Helper function to set validity status of elements.
+     *
+     * @private
+     * @return If the current browser supports custom validity.
+     */
     const browserSupportsValidation = () => 
     // eslint-disable-next-line @typescript-eslint/unbound-method
     !isUndefined(HTMLInputElement.prototype.setCustomValidity);
+    /**
+     * Helper function to set validity status of elements.
+     *
+     * @private
+     * @param element HTMLInputElement to set the validity status for.
+     * @param msg Validity message to add.
+     */
     const setCustomValidity = (element, msg) => {
         if (browserSupportsValidation()) {
             element.setCustomValidity(msg);
@@ -111,11 +124,13 @@ var Ok = (function () {
     };
 
     /**
+     * Ok class.
+     *
      * @class
      */
     const Ok = class {
         /**
-         * Ok class.
+         * Ok constructor.
          *
          * @public
          * @param {object} validators object containing the validators to use.

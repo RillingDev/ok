@@ -7,6 +7,8 @@ import { setCustomValidity } from "./dom/setCustomValidity";
 type ValidatorMap = Map<string, Validator>;
 
 /**
+ * Ok class.
+ *
  * @class
  */
 const Ok = class {
@@ -14,7 +16,7 @@ const Ok = class {
     public readonly invalidClass: string | false;
 
     /**
-     * Ok class.
+     * Ok constructor.
      *
      * @public
      * @param {object} validators object containing the validators to use.
