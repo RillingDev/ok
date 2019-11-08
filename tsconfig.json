@@ -4,14 +4,12 @@
         "rootDir": "./",
         "baseUrl": "./",
         "target": "esnext",
+        "composite": true,
         "newLine": "LF",
+        "removeComments": false,
         "strict": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "removeComments": false,
-        "sourceMap": true,
-        "declarationMap": true,
-        "composite": true
     },
     "include": [],
     "exclude": [

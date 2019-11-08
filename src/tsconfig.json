@@ -4,7 +4,10 @@
         "module": "esnext",
         "outDir": "../dist/esm/",
         "declaration": true,
-        "newLine": "LF"
+        "sourceMap": true,
+        "declarationMap": true
     },
-    "include": ["./"]
+    "include": [
+        "./"
+    ]
 }
