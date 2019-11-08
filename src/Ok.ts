@@ -2,8 +2,9 @@ import { isFunction, mapFromObject } from "lightdash";
 import { getInputElementValue } from "./dom/getInputElementValue";
 import { Validator } from "./validator/Validator";
 import { ValidatorDictionary } from "./validator/ValidatorDictionary";
-import { ValidatorMap } from "./validator/ValidatorMap";
 import { setCustomValidity } from "./dom/setCustomValidity";
+
+type ValidatorMap = Map<string, Validator>;
 
 /**
  * @class
