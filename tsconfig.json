@@ -3,13 +3,13 @@
         "moduleResolution": "node",
         "rootDir": "./",
         "baseUrl": "./",
-        "target": "esnext",
+        "target": "es2018",
         "composite": true,
         "newLine": "LF",
         "removeComments": false,
         "strict": true,
         "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
+        "emitDecoratorMetadata": true
     },
     "include": [],
     "exclude": [

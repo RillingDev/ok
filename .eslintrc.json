@@ -45,12 +45,6 @@
             }
         ],
         "@typescript-eslint/no-floating-promises": "error",
-        "@typescript-eslint/explicit-function-return-type": [
-            "warn",
-            {
-                "allowExpressions": true
-            }
-        ],
         "@typescript-eslint/consistent-type-assertions": [
             "warn",
             {
