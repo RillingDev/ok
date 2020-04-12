@@ -18,7 +18,7 @@ const Ok = class {
      * Ok constructor.
      *
      * @public
-     * @param {object} validators object containing the validators to use.
+     * @param {object} validators Object containing the validators to use.
      * @param {string|boolean} [invalidClass="invalid"] CSS class for invalid elements, or false if none should be set.
      */
     public constructor(
@@ -30,7 +30,8 @@ const Ok = class {
     }
 
     /**
-     * Validates an input element and returns the validity.
+     * Validates an input element and returns if it was valid.
+     * Usually called through {@link Ok#bind}.
      *
      * @public
      * @param {HTMLInputElement} element HTMLInputElement to validate.
@@ -79,11 +80,11 @@ const Ok = class {
     }
 
     /**
-     * Binds an event handler to an input element.
+     * Binds a {@link Ok#validate} event handler to an input element.
      *
      * @public
      * @param {HTMLInputElement} element HTMLInputElement to bind.
-     * @param {string} [eventType="input"] event type to bind.
+     * @param {string} [eventType="input"] Event type to bind.
      */
     public bind(element: HTMLInputElement, eventType = "input"): void {
         element.addEventListener(eventType, (e) => this.validate(element, e));

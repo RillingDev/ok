@@ -11,7 +11,8 @@ declare const Ok: {
         readonly map: ValidatorMap;
         readonly invalidClass: string | false;
         /**
-         * Validates an input element and returns the validity.
+         * Validates an input element and returns if it was valid.
+         * Usually called through {@link Ok#bind}.
          *
          * @public
          * @param {HTMLInputElement} element HTMLInputElement to validate.
@@ -20,11 +21,11 @@ declare const Ok: {
          */
         validate(element: HTMLInputElement, e?: Event | undefined): boolean;
         /**
-         * Binds an event handler to an input element.
+         * Binds a {@link Ok#validate} event handler to an input element.
          *
          * @public
          * @param {HTMLInputElement} element HTMLInputElement to bind.
-         * @param {string} [eventType="input"] event type to bind.
+         * @param {string} [eventType="input"] Event type to bind.
          */
         bind(element: HTMLInputElement, eventType?: string): void;
     };
