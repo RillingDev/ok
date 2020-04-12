@@ -1,6 +1,5 @@
 import { Ok } from "./Ok";
-import { Validator } from "./validator/Validator";
-import { ValidatorDictionary } from "./validator/ValidatorDictionary";
-
-export { Validator, ValidatorDictionary };
+// eslint-disable-next-line import/no-default-export
 export default Ok;
+export { Validator } from "./validator/Validator";
+export { ValidatorDictionary } from "./validator/ValidatorDictionary";

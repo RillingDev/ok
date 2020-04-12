@@ -1,6 +1,5 @@
 import { Ok } from "./Ok";
-import { Validator } from "./validator/Validator";
-import { ValidatorDictionary } from "./validator/ValidatorDictionary";
-export { Validator, ValidatorDictionary };
 export default Ok;
+export { Validator } from "./validator/Validator";
+export { ValidatorDictionary } from "./validator/ValidatorDictionary";
 //# sourceMappingURL=main.d.ts.map
