@@ -7,7 +7,5 @@
         "sourceMap": true,
         "declarationMap": true
     },
-    "include": [
-        "./"
-    ]
+    "include": ["./"]
 }

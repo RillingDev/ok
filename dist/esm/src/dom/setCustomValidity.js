@@ -1,13 +1,10 @@
-import { isUndefined } from "lightdash";
 /**
  * Helper function to set validity status of elements.
  *
  * @private
  * @return If the current browser supports custom validity.
  */
-const browserSupportsValidation = () => 
-// eslint-disable-next-line @typescript-eslint/unbound-method
-!isUndefined(HTMLInputElement.prototype.setCustomValidity);
+const browserSupportsValidation = () => HTMLInputElement.prototype.setCustomValidity != null;
 /**
  * Helper function to set validity status of elements.
  *

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>okjs | okjs</title>
+	<title>Validator | okjs</title>
 	<meta name="description" content="Documentation for okjs">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -2692,7 +2692,7 @@ img {
 		<div class="container">
 			<div class="table-wrap">
 				<div class="table-cell">
-					<strong><a href="index.html">okjs</a></strong>
+					<strong><a href="../index.html">okjs</a></strong>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -2720,242 +2720,79 @@ img {
 </header>
 <nav class="tsd-navigation secondary">
 	<ul>
-		<li class=" tsd-kind-interface">
-			<a href="interfaces/validator.html" class="tsd-kind-icon">Validator</a>
+		<li class="current tsd-kind-interface">
+			<a href="validator.html" class="tsd-kind-icon">Validator</a>
+			<ul>
+				<li class=" tsd-kind-property tsd-parent-kind-interface">
+					<a href="validator.html#fn" class="tsd-kind-icon">fn</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface">
+					<a href="validator.html#msg" class="tsd-kind-icon">msg</a>
+				</li>
+			</ul>
 		</li>
 		<li class=" tsd-kind-interface">
-			<a href="interfaces/validatordictionary.html" class="tsd-kind-icon">Validator<wbr>Dictionary</a>
+			<a href="validatordictionary.html" class="tsd-kind-icon">Validator<wbr>Dictionary</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
-			<a href="globals.html#htmlinputvalue" class="tsd-kind-icon">Html<wbr>Input<wbr>Value</a>
+			<a href="../globals.html#htmlinputvalue" class="tsd-kind-icon">Html<wbr>Input<wbr>Value</a>
 		</li>
 		<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-			<a href="globals.html#validationfunction" class="tsd-kind-icon">Validation<wbr>Function</a>
+			<a href="../globals.html#validationfunction" class="tsd-kind-icon">Validation<wbr>Function</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
-			<a href="globals.html#validatormap" class="tsd-kind-icon">Validator<wbr>Map</a>
+			<a href="../globals.html#validatormap" class="tsd-kind-icon">Validator<wbr>Map</a>
 		</li>
 		<li class=" tsd-kind-variable">
-			<a href="globals.html#ok" class="tsd-kind-icon">Ok</a>
+			<a href="../globals.html#ok" class="tsd-kind-icon">Ok</a>
 		</li>
 	</ul>
 </nav>
 <div class="container container-main">
 	<div class="content-wrap">
-		<div class="tsd-panel tsd-typography">
-			<a href="#okjs" id="okjs" style="color: inherit; text-decoration: none;">
-				<h1>OkJS</h1>
-			</a>
-			<blockquote>
-				<p>A super tiny TypeScript library for form validation</p>
-			</blockquote>
-			<a href="#introduction" id="introduction" style="color: inherit; text-decoration: none;">
-				<h2>Introduction</h2>
-			</a>
-			<p>Ok is an very small utility library to validate forms with more than what HTML5 offers you.
-			Features include customized messages and validator chaining.</p>
-			<p><strong><a href="https://felixrilling.github.io/ok/">Docs</a></strong></p>
-			<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
-				<h2>Usage</h2>
-			</a>
-			<pre><code class="language-shell">npm install okjs --save</code></pre>
-			<a href="#syntax" id="syntax" style="color: inherit; text-decoration: none;">
-				<h3>Syntax</h3>
-			</a>
-			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> {Ok} <span class="hljs-keyword">from</span> <span class="hljs-string">"okjs"</span>;
-
-<span class="hljs-comment">/**
- * Create Ok instance with custom validators
- */</span>
-<span class="hljs-keyword">const</span> ok = <span class="hljs-keyword">new</span> Ok({
-    nameFirst: {
-        msg: <span class="hljs-string">"Only 'Dave' allowed"</span>,
-        fn: <span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> val === <span class="hljs-string">"Dave"</span>
-    },
-    emailDe: {
-        msg: <span class="hljs-function">(<span class="hljs-params">val</span>) =&gt;</span> <span class="hljs-string">`Please input your .de email (You entered '<span class="hljs-subst">${val}</span>')`</span>,
-        fn: <span class="hljs-function">(<span class="hljs-params">val, element, e</span>) =&gt;</span> val.endsWith(<span class="hljs-string">".de"</span>)
-    }
-});
-
-<span class="hljs-comment">/**
- * Bind validation event handlers to inputs
- */</span>
-ok.bind(<span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">"#inputNameFirst"</span>));
-ok.bind(<span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">"#inputMail"</span>));</code></pre>
-			<p>The validator which will be used is defined in the DOM via data-attributes:</p>
-			<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>First Name (only "Dave" allowed)<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">required</span> <span class="hljs-attr">data-ok</span>=<span class="hljs-string">"nameFirst"</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Last Name (not validated, anything goes)<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">required</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Email address (only ".de" allowed)<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">required</span> <span class="hljs-attr">data-ok</span>=<span class="hljs-string">"emailDe"</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></code></pre>
-			<p>the name defined in <code>data-ok</code> is the key of the methods object defined in the JS.
-			if the given fn evaluates to false, the input will be marked as invalid.</p>
-			<a href="#validation" id="validation" style="color: inherit; text-decoration: none;">
-				<h3>Validation</h3>
-			</a>
-			<p>Once the user inputs on a field bound by Ok.js, the validator function will be run. If it evaluates to true, the field is valid.
-			If it evaluates falsy, the field will be marked as invalid with the class &quot;invalid&quot; and the JS validity will be updated (which will show a popup containing the validator message, based on the browser).</p>
-			<a href="#chaining" id="chaining" style="color: inherit; text-decoration: none;">
-				<h3>Chaining</h3>
-			</a>
-			<p>Multiple validators can be used for a single field in a given order by chaining them. to chain multiple validators, simply add a comma between their keys in the ok attribute. When using chaining, the field will only be considered valid if all validators succeed.</p>
-			<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"exampleInputEmail"</span>&gt;</span>Email ID (all caps and ending in .de)<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">required</span> <span class="hljs-attr">data-ok</span>=<span class="hljs-string">"nameCaps, emailDe"</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> {Ok} <span class="hljs-keyword">from</span> <span class="hljs-string">"okjs"</span>;
-
-<span class="hljs-keyword">const</span> ok = <span class="hljs-keyword">new</span> Ok({
-    nameCaps: {
-        msg: <span class="hljs-string">"Must be in all caps"</span>,
-        fn: <span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> val.toUpperCase() === val
-    },
-    emailDe: {
-        msg: <span class="hljs-string">"Must end with '.de'"</span>,
-        fn: <span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> /.+\.de$/i.test(val)
-    }
-});</code></pre>
-			<a href="#options" id="options" style="color: inherit; text-decoration: none;">
-				<h2>Options</h2>
-			</a>
-			<p>Ok currently only has one option, the class to use for invalid elements.</p>
-			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> {Ok} <span class="hljs-keyword">from</span> <span class="hljs-string">"okjs"</span>;
-
-<span class="hljs-comment">// The default invalid class('invalid') will be used</span>
-<span class="hljs-keyword">new</span> Ok({});
-
-<span class="hljs-comment">// 'myClass' will be used for invalid fields</span>
-<span class="hljs-keyword">new</span> Ok({}, <span class="hljs-string">"myClass"</span>);
-
-<span class="hljs-comment">// no class will be used for invalid fields</span>
-<span class="hljs-keyword">new</span> Ok({}, <span class="hljs-literal">false</span>);</code></pre>
-			<a href="#legacy-browsers" id="legacy-browsers" style="color: inherit; text-decoration: none;">
-				<h2>Legacy Browsers</h2>
-			</a>
-			<p>For browsers not supporting the HTML5 Validation API (<a href="https://caniuse.com/#feat=form-validation">https://caniuse.com/#feat=form-validation</a>), ok.js will still work, but the validation message will not be shown.</p>
-		</div>
-		<div style="position:relative;"><a name="typedoc-main-index" class="tsd-anchor"></a></div>
+		<section class="tsd-panel tsd-hierarchy">
+			<h3>Hierarchy</h3>
+			<ul class="tsd-hierarchy">
+				<li>
+					<span class="target">Validator</span>
+				</li>
+			</ul>
+		</section>
 		<section class="tsd-panel-group tsd-index-group">
 			<h2>Index</h2>
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
 					<section class="tsd-index-section ">
-						<h3>Interfaces</h3>
+						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-interface"><a href="interfaces/validator.html" class="tsd-kind-icon">Validator</a></li>
-							<li class="tsd-kind-interface"><a href="interfaces/validatordictionary.html" class="tsd-kind-icon">Validator<wbr>Dictionary</a></li>
-						</ul>
-					</section>
-					<section class="tsd-index-section ">
-						<h3>Type aliases</h3>
-						<ul class="tsd-index-list">
-							<li class="tsd-kind-type-alias"><a href="globals.html#htmlinputvalue" class="tsd-kind-icon">Html<wbr>Input<wbr>Value</a></li>
-							<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="globals.html#validationfunction" class="tsd-kind-icon">Validation<wbr>Function</a></li>
-							<li class="tsd-kind-type-alias"><a href="globals.html#validatormap" class="tsd-kind-icon">Validator<wbr>Map</a></li>
-						</ul>
-					</section>
-					<section class="tsd-index-section ">
-						<h3>Variables</h3>
-						<ul class="tsd-index-list">
-							<li class="tsd-kind-variable"><a href="globals.html#ok" class="tsd-kind-icon">Ok</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="validator.html#fn" class="tsd-kind-icon">fn</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="validator.html#msg" class="tsd-kind-icon">msg</a></li>
 						</ul>
 					</section>
 				</div>
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
-			<h2>Type aliases</h2>
-			<section class="tsd-panel tsd-member tsd-kind-type-alias">
-				<a name="htmlinputvalue" class="tsd-anchor"></a>
-				<h3>Html<wbr>Input<wbr>Value</h3>
-				<div class="tsd-signature tsd-kind-icon">Html<wbr>Input<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></div>
+			<h2>Properties</h2>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<a name="fn" class="tsd-anchor"></a>
+				<h3>fn</h3>
+				<div class="tsd-signature tsd-kind-icon">fn<span class="tsd-signature-symbol">:</span> <a href="../globals.html#validationfunction" class="tsd-signature-type">ValidationFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in validator/Validator.ts:1</li>
+						<li>Defined in validator/Validator.ts:11</li>
 					</ul>
 				</aside>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
-				<a name="validationfunction" class="tsd-anchor"></a>
-				<h3>Validation<wbr>Function</h3>
-				<div class="tsd-signature tsd-kind-icon">Validation<wbr>Function&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>val<span class="tsd-signature-symbol">: </span><a href="globals.html#htmlinputvalue" class="tsd-signature-type">HtmlInputValue</a>, element<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLInputElement</span>, e<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Event</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span></div>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<a name="msg" class="tsd-anchor"></a>
+				<h3>msg</h3>
+				<div class="tsd-signature tsd-kind-icon">msg<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../globals.html#validationfunction" class="tsd-signature-type">ValidationFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in validator/Validator.ts:3</li>
+						<li>Defined in validator/Validator.ts:10</li>
 					</ul>
 				</aside>
-				<h4 class="tsd-type-parameters-title">Type parameters</h4>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>T</h4>
-					</li>
-				</ul>
-				<div class="tsd-type-declaration">
-					<h4>Type declaration</h4>
-					<ul class="tsd-parameters">
-						<li class="tsd-parameter-signature">
-							<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
-								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>val<span class="tsd-signature-symbol">: </span><a href="globals.html#htmlinputvalue" class="tsd-signature-type">HtmlInputValue</a>, element<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLInputElement</span>, e<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Event</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
-							</ul>
-							<ul class="tsd-descriptions">
-								<li class="tsd-description">
-									<h4 class="tsd-parameters-title">Parameters</h4>
-									<ul class="tsd-parameters">
-										<li>
-											<h5>val: <a href="globals.html#htmlinputvalue" class="tsd-signature-type">HtmlInputValue</a></h5>
-										</li>
-										<li>
-											<h5>element: <span class="tsd-signature-type">HTMLInputElement</span></h5>
-										</li>
-										<li>
-											<h5><span class="tsd-flag ts-flagOptional">Optional</span> e: <span class="tsd-signature-type">Event</span></h5>
-										</li>
-									</ul>
-									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-type-alias">
-				<a name="validatormap" class="tsd-anchor"></a>
-				<h3>Validator<wbr>Map</h3>
-				<div class="tsd-signature tsd-kind-icon">Validator<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="interfaces/validator.html" class="tsd-signature-type">Validator</a><span class="tsd-signature-symbol">&gt;</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in Ok.ts:6</li>
-					</ul>
-				</aside>
-			</section>
-		</section>
-		<section class="tsd-panel-group tsd-member-group ">
-			<h2>Variables</h2>
-			<section class="tsd-panel tsd-member tsd-kind-variable">
-				<a name="ok" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagConst">Const</span> Ok</h3>
-				<div class="tsd-signature tsd-kind-icon">Ok<span class="tsd-signature-symbol">:</span> <a href="globals.html#ok" class="tsd-signature-type">Ok</a><span class="tsd-signature-symbol"> = class {public readonly map: ValidatorMap;public readonly invalidClass: string | false;/*** Ok constructor.** @public* @param {object} validators object containing the validators to use.* @param {string|boolean} [invalidClass&#x3D;&quot;invalid&quot;] CSS class for invalid elements, or false if none should be set.*/public constructor(validators: ValidatorDictionary,invalidClass: string | false &#x3D; &quot;invalid&quot;) {this.map &#x3D; new Map(Object.entries(validators));this.invalidClass &#x3D; invalidClass;}/*** Validates an input element and returns the validity.** @public* @param {HTMLInputElement} element HTMLInputElement to validate.* @param {Event?} e optional event that triggered validation.* @returns {boolean} current validity of the element.*/public validate(element: HTMLInputElement, e?: Event): boolean {if (!element.dataset.ok) {throw new Error(&quot;No validators are assigned to the element.&quot;);}const validatorList: string[] &#x3D; element.dataset.ok.split(&quot;,&quot;).map((str) &#x3D;&gt; str.trim());const value &#x3D; getInputElementValue(element);let result &#x3D; true;for (const validatorListEntry of validatorList) {if (result) {if (!this.map.has(validatorListEntry)) {throw new Error(&#x60;Validator &#x27;${validatorListEntry}&#x27; is not registered.&#x60;);}const validator: Validator &#x3D; this.map.get(validatorListEntry)!;if (!validator.fn(value, element, e)) {result &#x3D; false;const msg &#x3D;typeof validator.msg &#x3D;&#x3D;&#x3D; &quot;function&quot;? validator.msg(value, element, e): validator.msg;setCustomValidity(element, msg);}}}if (result) {setCustomValidity(element, &quot;&quot;);if (this.invalidClass) {element.classList.remove(this.invalidClass);}} else if (this.invalidClass) {element.classList.add(this.invalidClass);}return result;}/*** Binds an event handler to an input element.** @public* @param {HTMLInputElement} element HTMLInputElement to bind.* @param {string} [eventType&#x3D;&quot;input&quot;] event type to bind.*/public bind(element: HTMLInputElement, eventType &#x3D; &quot;input&quot;): void {element.addEventListener(eventType, (e) &#x3D;&gt; this.validate(element, e));}}</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in Ok.ts:13</li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Ok class.</p>
-					</div>
-				</div>
 			</section>
 		</section>
 		<footer class="with-border-bottom">

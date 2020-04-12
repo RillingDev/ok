@@ -1,4 +1,3 @@
-import { isFunction, mapFromObject } from "lightdash";
 import { getInputElementValue } from "./dom/getInputElementValue";
 import { Validator } from "./validator/Validator";
 import { ValidatorDictionary } from "./validator/ValidatorDictionary";
@@ -26,7 +25,7 @@ const Ok = class {
         validators: ValidatorDictionary,
         invalidClass: string | false = "invalid"
     ) {
-        this.map = <ValidatorMap>mapFromObject(validators);
+        this.map = new Map(Object.entries(validators));
         this.invalidClass = invalidClass;
     }
 
@@ -44,7 +43,7 @@ const Ok = class {
         }
         const validatorList: string[] = element.dataset.ok
             .split(",")
-            .map(str => str.trim());
+            .map((str) => str.trim());
 
         const value = getInputElementValue(element);
 
@@ -59,9 +58,10 @@ const Ok = class {
                 const validator: Validator = this.map.get(validatorListEntry)!;
                 if (!validator.fn(value, element, e)) {
                     result = false;
-                    const msg = isFunction(validator.msg)
-                        ? validator.msg(value, element, e)
-                        : validator.msg;
+                    const msg =
+                        typeof validator.msg === "function"
+                            ? validator.msg(value, element, e)
+                            : validator.msg;
                     setCustomValidity(element, msg);
                 }
             }
@@ -86,7 +86,7 @@ const Ok = class {
      * @param {string} [eventType="input"] event type to bind.
      */
     public bind(element: HTMLInputElement, eventType = "input"): void {
-        element.addEventListener(eventType, e => this.validate(element, e));
+        element.addEventListener(eventType, (e) => this.validate(element, e));
     }
 };
 
