@@ -5,7 +5,7 @@ import { setCustomValidity } from "./dom/setCustomValidity";
  *
  * @class
  */
-const Ok = class {
+class Ok {
     /**
      * Ok constructor.
      *
@@ -71,6 +71,6 @@ const Ok = class {
     bind(element, eventType = "input") {
         element.addEventListener(eventType, (e) => this.validate(element, e));
     }
-};
+}
 export { Ok };
 //# sourceMappingURL=Ok.js.map

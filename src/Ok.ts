@@ -10,9 +10,9 @@ type ValidatorMap = Map<string, Validator>;
  *
  * @class
  */
-const Ok = class {
-    public readonly map: ValidatorMap;
-    public readonly invalidClass: string | false;
+class Ok {
+    private readonly map: ValidatorMap;
+    private readonly invalidClass: string | false;
 
     /**
      * Ok constructor.
@@ -89,6 +89,6 @@ const Ok = class {
     public bind(element: HTMLInputElement, eventType = "input"): void {
         element.addEventListener(eventType, (e) => this.validate(element, e));
     }
-};
+}
 
 export { Ok };

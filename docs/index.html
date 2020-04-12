@@ -2720,6 +2720,9 @@ img {
 </header>
 <nav class="tsd-navigation secondary">
 	<ul>
+		<li class=" tsd-kind-class">
+			<a href="classes/ok.html" class="tsd-kind-icon">Ok</a>
+		</li>
 		<li class=" tsd-kind-interface">
 			<a href="interfaces/validator.html" class="tsd-kind-icon">Validator</a>
 		</li>
@@ -2728,9 +2731,6 @@ img {
 		</li>
 		<li class=" tsd-kind-type-alias">
 			<a href="globals.html#validatormap" class="tsd-kind-icon">Validator<wbr>Map</a>
-		</li>
-		<li class=" tsd-kind-variable">
-			<a href="globals.html#ok" class="tsd-kind-icon">Ok</a>
 		</li>
 	</ul>
 </nav>
@@ -2845,6 +2845,12 @@ ok.bind(<span class="hljs-built_in">document</span>.querySelector(<span class="h
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
 					<section class="tsd-index-section ">
+						<h3>Classes</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-class"><a href="classes/ok.html" class="tsd-kind-icon">Ok</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
 						<h3>Interfaces</h3>
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-interface"><a href="interfaces/validator.html" class="tsd-kind-icon">Validator</a></li>
@@ -2855,12 +2861,6 @@ ok.bind(<span class="hljs-built_in">document</span>.querySelector(<span class="h
 						<h3>Type aliases</h3>
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-type-alias"><a href="globals.html#validatormap" class="tsd-kind-icon">Validator<wbr>Map</a></li>
-						</ul>
-					</section>
-					<section class="tsd-index-section ">
-						<h3>Variables</h3>
-						<ul class="tsd-index-list">
-							<li class="tsd-kind-variable"><a href="globals.html#ok" class="tsd-kind-icon">Ok</a></li>
 						</ul>
 					</section>
 				</div>
@@ -2879,28 +2879,14 @@ ok.bind(<span class="hljs-built_in">document</span>.querySelector(<span class="h
 				</aside>
 			</section>
 		</section>
-		<section class="tsd-panel-group tsd-member-group ">
-			<h2>Variables</h2>
-			<section class="tsd-panel tsd-member tsd-kind-variable">
-				<a name="ok" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagConst">Const</span> Ok</h3>
-				<div class="tsd-signature tsd-kind-icon">Ok<span class="tsd-signature-symbol">:</span> <a href="globals.html#ok" class="tsd-signature-type">Ok</a><span class="tsd-signature-symbol"> = class {public readonly map: ValidatorMap;public readonly invalidClass: string | false;/*** Ok constructor.** @public* @param {object} validators Object containing the validators to use.* @param {string|boolean} [invalidClass&#x3D;&quot;invalid&quot;] CSS class for invalid elements, or false if none should be set.*/public constructor(validators: ValidatorDictionary,invalidClass: string | false &#x3D; &quot;invalid&quot;) {this.map &#x3D; new Map(Object.entries(validators));this.invalidClass &#x3D; invalidClass;}/*** Validates an input element and returns if it was valid.* Usually called through {@link Ok#bind}.** @public* @param {HTMLInputElement} element HTMLInputElement to validate.* @param {Event?} e optional event that triggered validation.* @returns {boolean} current validity of the element.*/public validate(element: HTMLInputElement, e?: Event): boolean {if (!element.dataset.ok) {throw new Error(&quot;No validators are assigned to the element.&quot;);}const validatorList: string[] &#x3D; element.dataset.ok.split(&quot;,&quot;).map((str) &#x3D;&gt; str.trim());const value &#x3D; getInputElementValue(element);let result &#x3D; true;for (const validatorListEntry of validatorList) {if (result) {if (!this.map.has(validatorListEntry)) {throw new Error(&#x60;Validator &#x27;${validatorListEntry}&#x27; is not registered.&#x60;);}const validator: Validator &#x3D; this.map.get(validatorListEntry)!;if (!validator.fn(value, element, e)) {result &#x3D; false;const msg &#x3D;typeof validator.msg &#x3D;&#x3D;&#x3D; &quot;function&quot;? validator.msg(value, element, e): validator.msg;setCustomValidity(element, msg);}}}if (result) {setCustomValidity(element, &quot;&quot;);if (this.invalidClass) {element.classList.remove(this.invalidClass);}} else if (this.invalidClass) {element.classList.add(this.invalidClass);}return result;}/*** Binds a {@link Ok#validate} event handler to an input element.** @public* @param {HTMLInputElement} element HTMLInputElement to bind.* @param {string} [eventType&#x3D;&quot;input&quot;] Event type to bind.*/public bind(element: HTMLInputElement, eventType &#x3D; &quot;input&quot;): void {element.addEventListener(eventType, (e) &#x3D;&gt; this.validate(element, e));}}</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in Ok.ts:13</li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Ok class.</p>
-					</div>
-				</div>
-			</section>
-		</section>
 		<footer class="with-border-bottom">
 			<div class="container">
 				<h2>Legend</h2>
 				<div class="tsd-legend-group">
+					<ul class="tsd-legend">
+						<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+						<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+					</ul>
 					<ul class="tsd-legend">
 						<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 					</ul>

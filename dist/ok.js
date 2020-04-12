@@ -43,7 +43,7 @@ var Ok = (function () {
      *
      * @class
      */
-    const Ok = class {
+    class Ok {
         /**
          * Ok constructor.
          *
@@ -109,7 +109,7 @@ var Ok = (function () {
         bind(element, eventType = "input") {
             element.addEventListener(eventType, (e) => this.validate(element, e));
         }
-    };
+    }
 
     return Ok;
 
