@@ -1,26 +1,12 @@
 {
-    "compilerOptions": {
-        "moduleResolution": "node",
-        "rootDir": "./",
-        "baseUrl": "./",
-        "target": "es2018",
-        "composite": true,
-        "newLine": "LF",
-        "removeComments": false,
-        "strict": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true
-    },
     "include": [],
-    "exclude": [
-        "node_modules"
-    ],
+    "exclude": ["node_modules"],
     "references": [
         {
-            "path": "./src/tsconfig.json"
+            "path": "./src/tsconfig.esm.json"
         },
         {
-            "path": "./spec/src/tsconfig.json"
+            "path": "./src/tsconfig.cjs.json"
         }
     ]
 }

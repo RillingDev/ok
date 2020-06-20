@@ -1,6 +1,7 @@
 {
     "mode": "file",
     "out": "docs",
+    "tsconfig": "./src/tsconfig.json",
     "excludeNotExported": true,
     "excludePrivate": true,
     "excludeExternals": true,

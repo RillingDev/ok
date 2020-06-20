@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "ES2019",
+        "newLine": "LF",
+        "removeComments": false,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "noUnusedParameters": true,
+        "noUnusedLocals": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "lib": [
+            "esnext",
+            "dom"
+        ]
+    },
+    "include": [],
+    "exclude": ["node_modules"]
+}

@@ -1,6 +1,6 @@
 import { getInputElementValue } from "./dom/getInputElementValue";
-import { Validator } from "./validator/Validator";
-import { ValidatorDictionary } from "./validator/ValidatorDictionary";
+import type { Validator } from "./validator/Validator";
+import type { ValidatorDictionary } from "./validator/ValidatorDictionary";
 import { setCustomValidity } from "./dom/setCustomValidity";
 
 type ValidatorMap = Map<string, Validator>;

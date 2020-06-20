@@ -5,6 +5,7 @@
  * @return If the current browser supports custom validity.
  */
 const browserSupportsValidation = (): boolean =>
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     HTMLInputElement.prototype.setCustomValidity != null;
 
 /**

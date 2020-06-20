@@ -2,31 +2,31 @@
     "name": "okjs",
     "version": "3.7.1",
     "description": "A super tiny TypeScript library for form validation",
-    "main": "./dist/ok.common.js",
-    "module": "./dist/esm/src/main.js",
-    "types": "./dist/esm/src/main.d.ts",
+    "main": "./dist/cjs/main.js",
+    "module": "./dist/esm/main.js",
+    "types": "./dist/esm/main.d.ts",
     "rollupOptions": {
         "moduleName": "Ok",
         "outputName": "ok",
         "external": [],
         "globals": {}
     },
+    "directories": {
+        "lib": "src/",
+        "test": "spec/",
+        "doc": "docs/"
+    },
     "scripts": {
         "start": "npm run dist",
-        "dist": "npm-run-all lint build test docs",
-        "build": "npm-run-all clean:dist build:tsc build:bundle",
+        "dist": "npm run clean && npm run lint && npm run build && npm run test && npm run docs",
+        "clean": "rimraf ./dist ./docs",
+        "build": "npm-run-all build:tsc build:bundle",
         "build:tsc": "tsc --build ./tsconfig.json",
         "build:bundle": "rollup -c rollup.config.js",
-        "watch": "tsc --build ./tsconfig.json -w",
-        "lint": "eslint ./src/ ./spec/src/ --ext .ts",
-        "fix": "eslint ./src/ ./spec/src/ --ext .ts --fix",
-        "test": "npm-run-all clean:test build:tsc test:jasmine",
-        "test:jasmine": "jasmine --require=source-map-support/register",
-        "docs": "npm-run-all clean:docs docs:typedoc",
-        "docs:typedoc": "typedoc ./src/",
-        "clean:dist": "rimraf ./dist",
-        "clean:test": "rimraf ./spec/dist",
-        "clean:docs": "rimraf ./docs"
+        "lint": "eslint ./src/ ./spec/ --ext .ts",
+        "fix": "eslint ./src/ ./spec/ --ext .ts --fix",
+        "test": "ts-node --project ./spec/tsconfig.json node_modules/jasmine/bin/jasmine --config=./jasmine.json",
+        "docs": "typedoc ./src/"
     },
     "bugs": {
         "url": "https://github.com/FelixRilling/okjs/issues"
@@ -42,24 +42,22 @@
         "validation",
         "form"
     ],
-    "dependencies": {},
     "devDependencies": {
-        "@rollup/plugin-node-resolve": "^7.1.2",
-        "@types/jasmine": "^3.5.10",
-        "@typescript-eslint/eslint-plugin": "^2.27.0",
-        "@typescript-eslint/parser": "^2.27.0",
-        "eslint": "^6.8.0",
-        "eslint-config-prettier": "^6.10.1",
-        "eslint-plugin-import": "^2.20.2",
-        "eslint-plugin-prettier": "^3.1.2",
-        "jasmine": "^3.5.0",
+        "@types/jasmine": "^3.5.14",
+        "@typescript-eslint/eslint-plugin": "^4.2.0",
+        "@typescript-eslint/parser": "^4.2.0",
+        "eslint": "^7.9.0",
+        "eslint-config-prettier": "^6.12.0",
+        "eslint-plugin-import": "^2.22.0",
+        "eslint-plugin-prettier": "^3.1.4",
+        "jasmine": "^3.6.1",
         "npm-run-all": "^4.1.5",
-        "prettier": "^2.0.4",
+        "prettier": "^2.1.2",
         "rimraf": "^3.0.2",
-        "rollup": "^2.6.0",
-        "source-map-support": "^0.5.16",
-        "ts-mockito": "^2.5.0",
-        "typedoc": "^0.17.4",
-        "typescript": "^3.8.3"
+        "rollup": "^2.28.2",
+        "ts-mockito": "^2.6.1",
+        "ts-node": "^9.0.0",
+        "typedoc": "^0.19.2",
+        "typescript": "^4.0.3"
     }
 }

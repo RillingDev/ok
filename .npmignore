@@ -32,5 +32,13 @@ tsconfig.*.tsbuildinfo
 
 
 
-# Build Output files
-dist/
+# Source Files
+src/
+spec/
+
+# Config Files
+.eslintrc.json
+.eslintignore
+.editorconfig
+typedoc.json
+jasmine.json

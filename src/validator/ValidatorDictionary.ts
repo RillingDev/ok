@@ -1,4 +1,4 @@
-import { Validator } from "./Validator";
+import type { Validator } from "./Validator";
 
 /**
  * Dictionary of validator name and validator instances.
