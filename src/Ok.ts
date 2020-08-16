@@ -3,6 +3,9 @@ import type { Validator } from "./validator/Validator";
 import type { ValidatorDictionary } from "./validator/ValidatorDictionary";
 import { setCustomValidity } from "./dom/setCustomValidity";
 
+/**
+ * @private
+ */
 type ValidatorMap = Map<string, Validator>;
 
 /**
@@ -39,10 +42,11 @@ class Ok {
      * @returns {boolean} current validity of the element.
      */
     public validate(element: HTMLInputElement, e?: Event): boolean {
-        if (!element.dataset.ok) {
+        const okAttr = element.dataset.ok;
+        if (okAttr == null || okAttr.length === 0) {
             throw new Error("No validators are assigned to the element.");
         }
-        const validatorList: string[] = element.dataset.ok
+        const validatorList: string[] = okAttr
             .split(",")
             .map((str) => str.trim());
 
@@ -69,10 +73,10 @@ class Ok {
         }
         if (result) {
             setCustomValidity(element, "");
-            if (this.invalidClass) {
+            if (this.invalidClass != false) {
                 element.classList.remove(this.invalidClass);
             }
-        } else if (this.invalidClass) {
+        } else if (this.invalidClass != false) {
             element.classList.add(this.invalidClass);
         }
 
