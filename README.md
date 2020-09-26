@@ -4,7 +4,7 @@
 
 ## Introduction
 
-Ok is an very small utility library to validate forms with more than what HTML5 offers you.
+Ok is a very small utility library to validate forms with more than what HTML5 offers you.
 Features include customized messages and validator chaining.
 
 **[Docs](https://felixrilling.github.io/ok/)**
@@ -18,7 +18,7 @@ npm install okjs --save
 ### Syntax
 
 ```typescript
-import {Ok} from "okjs";
+import Ok from "okjs";
 
 /**
  * Create Ok instance with custom validators
@@ -81,7 +81,7 @@ Multiple validators can be used for a single field in a given order by chaining 
 ```
 
 ```typescript
-import {Ok} from "okjs";
+import Ok from "okjs";
 
 const ok = new Ok({
     nameCaps: {
@@ -100,7 +100,7 @@ const ok = new Ok({
 Ok currently only has one option, the class to use for invalid elements.
 
 ```typescript
-import {Ok} from "okjs";
+import Ok from "okjs";
 
 // The default invalid class('invalid') will be used
 new Ok({});

@@ -66,7 +66,7 @@
 			<a href="#introduction" id="introduction" style="color: inherit; text-decoration: none;">
 				<h2>Introduction</h2>
 			</a>
-			<p>Ok is an very small utility library to validate forms with more than what HTML5 offers you.
+			<p>Ok is a very small utility library to validate forms with more than what HTML5 offers you.
 			Features include customized messages and validator chaining.</p>
 			<p><strong><a href="https://felixrilling.github.io/ok/">Docs</a></strong></p>
 			<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
@@ -76,7 +76,7 @@
 			<a href="#syntax" id="syntax" style="color: inherit; text-decoration: none;">
 				<h3>Syntax</h3>
 			</a>
-			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> {Ok} <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;okjs&quot;</span>;
+			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> Ok <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;okjs&quot;</span>;
 
 <span class="hljs-comment">/**
  * Create Ok instance with custom validators
@@ -128,7 +128,7 @@ ok.bind(<span class="hljs-built_in">document</span>.querySelector(<span class="h
     <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;exampleInputEmail&quot;</span>&gt;</span>Email ID (all caps and ending in .de)<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;email&quot;</span> <span class="hljs-attr">required</span> <span class="hljs-attr">data-ok</span>=<span class="hljs-string">&quot;nameCaps, emailDe&quot;</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> {Ok} <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;okjs&quot;</span>;
+			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> Ok <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;okjs&quot;</span>;
 
 <span class="hljs-keyword">const</span> ok = <span class="hljs-keyword">new</span> Ok({
     nameCaps: {
@@ -144,7 +144,7 @@ ok.bind(<span class="hljs-built_in">document</span>.querySelector(<span class="h
 				<h2>Options</h2>
 			</a>
 			<p>Ok currently only has one option, the class to use for invalid elements.</p>
-			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> {Ok} <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;okjs&quot;</span>;
+			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> Ok <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;okjs&quot;</span>;
 
 <span class="hljs-comment">// The default invalid class(&#x27;invalid&#x27;) will be used</span>
 <span class="hljs-keyword">new</span> Ok({});
