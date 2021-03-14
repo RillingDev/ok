@@ -1,9 +1,11 @@
 {
-    "mode": "file",
     "out": "docs",
     "tsconfig": "./src/tsconfig.json",
-    "excludeNotExported": true,
+    "exclude": [
+        "./src/!(main.ts)"
+    ],
+    "theme": "minimal",
     "excludePrivate": true,
-    "excludeExternals": true,
-    "theme": "minimal"
+    "excludeInternal": true,
+    "excludeExternals": true
 }

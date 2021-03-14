@@ -4,7 +4,7 @@ import type { ValidatorDictionary } from "./validator/ValidatorDictionary";
 import { setCustomValidity } from "./dom/setCustomValidity";
 
 /**
- * @private
+ * @internal
  */
 type ValidatorMap = Map<string, Validator>;
 

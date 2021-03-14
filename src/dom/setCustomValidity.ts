@@ -1,7 +1,7 @@
 /**
  * Helper function to set validity status of elements.
  *
- * @private
+ * @internal
  * @return If the current browser supports custom validity.
  */
 const browserSupportsValidation = (): boolean =>
@@ -11,7 +11,7 @@ const browserSupportsValidation = (): boolean =>
 /**
  * Helper function to set validity status of elements.
  *
- * @private
+ * @internal
  * @param element HTMLInputElement to set the validity status for.
  * @param msg Validity message to add.
  */

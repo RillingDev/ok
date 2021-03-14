@@ -1,12 +1,12 @@
 /**
- * @private
+ * @internal
  */
 type HtmlInputValue = string | boolean;
 
 /**
  * A function which takes the input value of an element and the element itself.
  *
- * @private
+ * @internal
  */
 type ValidationFunction<TResult> = (
     val: HtmlInputValue,
