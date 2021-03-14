@@ -11,3 +11,8 @@ export type ValidatableElement =
     | HTMLInputElement
     | HTMLTextAreaElement
     | HTMLSelectElement;
+
+/**
+ * @internal
+ */
+export type ValidatableElementValue = string | boolean;

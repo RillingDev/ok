@@ -1,10 +1,10 @@
 import type { Validator } from "./Validator";
 
 /**
- * Dictionary of validator name and validator instances.
+ * Dictionary of validator name and validator instance.
  *
  * @public
  */
 export interface ValidatorDictionary {
-    [key: string]: Validator;
+    readonly [key: string]: Validator;
 }
