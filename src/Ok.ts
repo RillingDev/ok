@@ -1,4 +1,4 @@
-import { getInputElementValue } from "./dom/getInputElementValue";
+import { getValidatableElementValue } from "./dom/getValidatableElementValue";
 import type { Validator } from "./validator/Validator";
 import type { ValidatorDictionary } from "./validator/ValidatorDictionary";
 import { setCustomValidity } from "./dom/setCustomValidity";
@@ -50,7 +50,7 @@ export class Ok {
             .split(",")
             .map((str) => str.trim());
 
-        const value = getInputElementValue(element);
+        const value = getValidatableElementValue(element);
 
         let result = true;
         for (const validatorListEntry of validatorList) {
