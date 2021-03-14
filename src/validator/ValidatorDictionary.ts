@@ -5,8 +5,6 @@ import type { Validator } from "./Validator";
  *
  * @public
  */
-interface ValidatorDictionary {
+export interface ValidatorDictionary {
     [key: string]: Validator;
 }
-
-export { ValidatorDictionary };

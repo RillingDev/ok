@@ -19,9 +19,7 @@ type ValidationFunction<TResult> = (
  *
  * @public
  */
-interface Validator {
+export interface Validator {
     msg: string | ValidationFunction<string>;
     fn: ValidationFunction<boolean>;
 }
-
-export { Validator };

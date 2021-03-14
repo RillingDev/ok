@@ -13,7 +13,7 @@ type ValidatorMap = Map<string, Validator>;
  *
  * @class
  */
-class Ok {
+export class Ok {
     private readonly map: ValidatorMap;
     private readonly invalidClass: string | false;
 
@@ -94,5 +94,3 @@ class Ok {
         element.addEventListener(eventType, (e) => this.validate(element, e));
     }
 }
-
-export { Ok };
