@@ -8,32 +8,41 @@ import type {
  *
  * @internal
  */
-type ValidatableElementFunction<TResult> = (
-    val: ValidatableElementValue,
-    element: ValidatableElement,
-    e?: Event
-) => TResult;
+type ValidatableElementFunction<
+    TResult,
+    UElement extends ValidatableElement,
+    VElementValue extends ValidatableElementValue
+> = (val: VElementValue, element: UElement, e?: Event) => TResult;
 
 /**
  * Function that returns a validation message.
  *
  * @public
  */
-type ValidationMessageFunction = ValidatableElementFunction<string>;
+type ValidationMessageFunction<
+    UElement extends ValidatableElement,
+    VElementValue extends ValidatableElementValue
+> = ValidatableElementFunction<string, UElement, VElementValue>;
 
 /**
  * Function that checks if the element value is valid.
  *
  * @public
  */
-type ValidatorFunction = ValidatableElementFunction<boolean>;
+type ValidatorFunction<
+    UElement extends ValidatableElement,
+    VElementValue extends ValidatableElementValue
+> = ValidatableElementFunction<boolean, UElement, VElementValue>;
 
 /**
  * Interface for a single validator.
  *
  * @public
  */
-export interface Validator {
-    fn: ValidatorFunction;
-    msg: string | ValidationMessageFunction;
+export interface Validator<
+    UElement extends ValidatableElement = ValidatableElement,
+    VElementValue extends ValidatableElementValue = ValidatableElementValue
+> {
+    fn: ValidatorFunction<UElement, VElementValue>;
+    msg: string | ValidationMessageFunction<UElement, VElementValue>;
 }
