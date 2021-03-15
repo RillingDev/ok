@@ -18,7 +18,8 @@
         "lint": "eslint ./src/ ./spec/ --ext .ts",
         "fix": "eslint ./src/ ./spec/ --ext .ts --fix",
         "test": "ts-node --project ./spec/tsconfig.json node_modules/jasmine/bin/jasmine --config=./jasmine.json",
-        "docs": "typedoc ./src/"
+        "docs": "typedoc ./src/",
+        "build:demo": "rollup -c ./rollup.demo.config.js"
     },
     "bugs": {
         "url": "https://github.com/FelixRilling/okjs/issues"
@@ -45,6 +46,7 @@
         "jasmine": "^3.6.4",
         "prettier": "^2.2.1",
         "rimraf": "^3.0.2",
+        "rollup": "^2.39.0",
         "ts-mockito": "^2.6.1",
         "ts-node": "^9.1.1",
         "typedoc": "^0.20.30",
