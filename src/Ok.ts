@@ -3,23 +3,17 @@ import type { ValidatorDictionary } from "./validator/ValidatorDictionary";
 import type { ValidatableElement } from "./dom/ValidatableElement";
 
 /**
- * @internal
- */
-type ValidatorMap = Map<string, Validator>;
-
-/**
- * Ok class.
- *
- * @class
+ * Wraps a dictionary of validators and allows binding/applying it to DOM elements.
  */
 export class Ok {
-    private readonly map: ValidatorMap;
+    private readonly map: Map<string, Validator>;
 
     /**
-     * Ok constructor.
+     * Creates a new instance.
      *
-     * @public
      * @param validators Object containing the validators to use.
+     *                   Each key corresponds to the key used when referencing the validator from the HTML attribute.
+     *                   The value contains the validator to apply. See {@link Validator} for details.
      */
     public constructor(validators: ValidatorDictionary) {
         this.map = new Map(Object.entries(validators));
@@ -28,7 +22,6 @@ export class Ok {
     /**
      * Binds a {@link Ok#validate} event handler to a validatable element.
      *
-     * @public
      * @param element ValidatableElement to bind an event to.
      * @param eventType Event type to bind. Recommended is either 'input' or 'change'. Defaults to 'input'.
      */
@@ -60,6 +53,9 @@ export class Ok {
         return true;
     }
 
+    /**
+     * @internal
+     */
     private getValidators(element: ValidatableElement): Validator[] {
         const okAttr = element.dataset.ok;
         if (okAttr == null || okAttr.length === 0) {

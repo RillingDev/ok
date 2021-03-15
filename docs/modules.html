@@ -2775,20 +2775,20 @@ img {
 <span style="color: #000000">    </span><span style="color: #800000">&lt;input</span><span style="color: #000000"> </span><span style="color: #FF0000">type</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;submit&quot;</span><span style="color: #800000">&gt;</span>
 <span style="color: #800000">&lt;/form&gt;</span>
 </code></pre>
-			<p>The name defined in <code>data-ok</code> is the key of the validator dictionary object defined in the JS.
+			<p>The name defined in <code>data-ok</code> is the key of the validator dictionary object defined in the JS Ok constructor parameter.
 			if the given fn evaluates to false, the input will be marked as invalid.</p>
 			<a href="#validation" id="validation" style="color: inherit; text-decoration: none;">
 				<h3>Validation</h3>
 			</a>
 			<p>Once the user inputs on a field bound by Ok, the validator function will be run. If it evaluates to true, the field is valid.
-			If it evaluates falsy, the field will be marked as invalid, and the JS validity will be updated (which will show a popup containing the validator message, based on the browser).</p>
+			If it evaluates falsy, the field will be marked as invalid, and the input validity will be updated (which will show a popup containing the validator message, based on the browser).</p>
 			<a href="#chaining" id="chaining" style="color: inherit; text-decoration: none;">
 				<h3>Chaining</h3>
 			</a>
-			<p>Multiple validators can be used for a single field in a given order by chaining them. to chain multiple validators, simply add a comma between their keys in the ok attribute. When using chaining, the field will only be considered valid if all validators succeed. Once a validator marks the field as invalid, all further validators are skipped.</p>
+			<p>Multiple validators can be used for a single element in a given order by chaining them. to chain multiple validators, simply add a comma between their keys in the ok attribute. When using chaining, the field will only be considered valid if all validators succeed. Once a validator marks the field as invalid, all further validators are skipped.</p>
 			<pre><code class="language-html"><span style="color: #800000">&lt;div</span><span style="color: #000000"> </span><span style="color: #FF0000">class</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;form-group&quot;</span><span style="color: #800000">&gt;</span>
 <span style="color: #000000">    </span><span style="color: #800000">&lt;label</span><span style="color: #000000"> </span><span style="color: #FF0000">for</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;exampleInputEmail&quot;</span><span style="color: #800000">&gt;</span><span style="color: #000000">Email ID (all caps and ending in .de)</span><span style="color: #800000">&lt;/label&gt;</span>
-<span style="color: #000000">    </span><span style="color: #800000">&lt;input</span><span style="color: #000000"> </span><span style="color: #FF0000">type</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;email&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">required</span><span style="color: #000000"> </span><span style="color: #FF0000">data-ok</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;nameCaps, emailDe&quot;</span><span style="color: #800000">&gt;</span>
+<span style="color: #000000">    </span><span style="color: #800000">&lt;input</span><span style="color: #000000"> </span><span style="color: #FF0000">type</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;email&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">required</span><span style="color: #000000"> </span><span style="color: #FF0000">data-ok</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;nameCaps,emailDe&quot;</span><span style="color: #800000">&gt;</span>
 <span style="color: #800000">&lt;/div&gt;</span>
 </code></pre>
 			<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Ok</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;okjs&quot;</span><span style="color: #000000">;</span>
@@ -2804,6 +2804,16 @@ img {
 <span style="color: #000000">    }</span>
 <span style="color: #000000">});</span>
 </code></pre>
+			<a href="#caveats" id="caveats" style="color: inherit; text-decoration: none;">
+				<h3>Caveats</h3>
+			</a>
+			<a href="#radiobuttons" id="radiobuttons" style="color: inherit; text-decoration: none;">
+				<h4>Radiobuttons</h4>
+			</a>
+			<p>Due to the way input elements with type <code>radio</code> work, validation is not straightforward. A single
+				radio button only fires its <code>change</code>/<code>input</code> event when itself is changed, not if it becomes e.g.
+				inactive due to another radiobutton being selected. A workaround is using an enclosing fieldset and
+			listening to the events of that.</p>
 			<a href="#compatibility" id="compatibility" style="color: inherit; text-decoration: none;">
 				<h2>Compatibility</h2>
 			</a>

@@ -10,8 +10,6 @@ type ValidatableElementFunction<
 
 /**
  * Function that returns a validation message.
- *
- * @public
  */
 type ValidationMessageFunction<
     UElement extends ValidatableElement
@@ -19,8 +17,6 @@ type ValidationMessageFunction<
 
 /**
  * Function that checks if the element value is valid.
- *
- * @public
  */
 type ValidatorFunction<
     UElement extends ValidatableElement
@@ -28,8 +24,6 @@ type ValidatorFunction<
 
 /**
  * Interface for a single validator.
- *
- * @public
  */
 export interface Validator<
     UElement extends ValidatableElement = ValidatableElement
