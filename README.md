@@ -95,23 +95,6 @@ const ok = new Ok({
 });
 ```
 
-## Options
-
-Ok currently only has one option, the class to use for invalid elements.
-
-```typescript
-import { Ok } from "okjs";
-
-// The default invalid class('invalid') will be used
-new Ok({});
-
-// 'myClass' will be used for invalid fields
-new Ok({}, "myClass");
-
-// no class will be used for invalid fields
-new Ok({}, false);
-```
-
 ## Compatibility
 
 Ok should work in all browsers that support the following:
