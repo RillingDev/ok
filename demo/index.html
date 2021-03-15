@@ -72,11 +72,11 @@
             const ok = new Ok({
                 nameFirst: {
                     msg: "Only 'Dave' allowed",
-                    fn: (val) => val === "Dave"
+                    fn: (element) => element.value === "Dave"
                 },
                 emailDe: {
-                    msg: (val) => `Please input your .de email (You entered '${val}')`,
-                    fn: (val) => val.endsWith(".de")
+                    msg: (element) => `Please input your .de email (You entered '${element.value}')`,
+                    fn: (element) => element.value.endsWith(".de")
                 }
             });
 
@@ -109,6 +109,10 @@
                           data-ok="message" required></textarea>
             </div>
             <div class="form-group">
+                <label for="demo2_file">File (Name must contain he letter 'a')</label>
+                <input type="file" id="demo2_file" data-ok="filenameLetter" required>
+            </div>
+            <div class="form-group">
                 <p>Communication Mode (Phone is broken right now!)</p>
                 <input type="radio" id="demo2_contactChoice1"
                        name="contact" value="email" checked>
@@ -132,27 +136,31 @@
             const ok = new Ok({
                 nameFirst: {
                     msg: "Name must start with 'D'",
-                    fn: (val) => val.toLowerCase().startsWith("d")
+                    fn: (element) => element.value.toLowerCase().startsWith("d")
                 },
                 uppercase: {
                     msg: "Value must be all-uppercase",
-                    fn: (val) => val.toUpperCase() === val
+                    fn: (element) => element.value.toUpperCase() === element.value
                 },
                 nameLast: {
-                    msg: "Only 'Bar-Dave' may select 'Bar'",
-                    fn: (val) => val !== "bar"
+                    msg: "Bar is not possible!",
+                    fn: (element) => element.value !== "bar"
                 },
                 message: {
-                    msg: (val) => `Please enter an even number of characters (You entered ${val.length})`,
-                    fn: (val) => val.length % 2 === 0
+                    msg: (element) => `Please enter an even number of characters (You entered ${element.value.length})`,
+                    fn: (element) => element.value.length % 2 === 0
+                },
+                filenameLetter: {
+                    msg: () => "File name must contain the letter 'a'",
+                    fn: (element) => element.files[0].name.includes("a")
                 },
                 radioPhone: {
                     msg: () => "Sorry, Phone communication is not allowed here. (Why do we even allow checking this? I dunno)",
-                    fn: (checked) => !checked
+                    fn: (element) => !element.checked
                 },
-                pleaseCheckMe:{
+                pleaseCheckMe: {
                     msg: () => "Please check this box!!!",
-                    fn: (checked) => checked
+                    fn: (element) => element.checked
                 }
             });
 
@@ -186,7 +194,7 @@
             const ok = new Ok({
                 nameFirst: {
                     msg: () => getLocalizedStringDummy("validator.dave"),
-                    fn: (val) => val === "Dave"
+                    fn: (element) => element.value === "Dave"
                 }
             });
 

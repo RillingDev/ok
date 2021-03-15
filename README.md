@@ -29,8 +29,8 @@ const ok = new Ok({
         fn: val => val === "Dave"
     },
     emailDe: {
-        msg: (val) => `Please input your .de email (You entered '${val}')`,
-        fn: (val, element, e) => val.endsWith(".de")
+        msg: (element) => `Please input your .de email (You entered '${element.value}')`,
+        fn: (element, e) => element.value.endsWith(".de")
     }
 });
 
@@ -86,11 +86,11 @@ import { Ok } from "okjs";
 const ok = new Ok({
     nameCaps: {
         msg: "Must be in all caps",
-        fn: val => val.toUpperCase() === val
+        fn: (element) => element.value.toUpperCase() === element.value
     },
     emailDe: {
         msg: "Must end with '.de'",
-        fn: val => /.+\.de$/i.test(val)
+        fn: (element) => /.+\.de$/i.test(element.value)
     }
 });
 ```

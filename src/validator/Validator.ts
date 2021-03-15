@@ -1,7 +1,4 @@
-import type {
-    ValidatableElement,
-    ValidatableElementValue,
-} from "../dom/ValidatableElement";
+import type { ValidatableElement } from "../dom/ValidatableElement";
 
 /**
  * A function which takes the input value of an element and the element itself.
@@ -10,9 +7,8 @@ import type {
  */
 type ValidatableElementFunction<
     TResult,
-    UElement extends ValidatableElement,
-    VElementValue extends ValidatableElementValue
-> = (val: VElementValue, element: UElement, e?: Event) => TResult;
+    UElement extends ValidatableElement
+> = (element: UElement, e?: Event) => TResult;
 
 /**
  * Function that returns a validation message.
@@ -20,9 +16,8 @@ type ValidatableElementFunction<
  * @public
  */
 type ValidationMessageFunction<
-    UElement extends ValidatableElement,
-    VElementValue extends ValidatableElementValue
-> = ValidatableElementFunction<string, UElement, VElementValue>;
+    UElement extends ValidatableElement
+> = ValidatableElementFunction<string, UElement>;
 
 /**
  * Function that checks if the element value is valid.
@@ -30,9 +25,8 @@ type ValidationMessageFunction<
  * @public
  */
 type ValidatorFunction<
-    UElement extends ValidatableElement,
-    VElementValue extends ValidatableElementValue
-> = ValidatableElementFunction<boolean, UElement, VElementValue>;
+    UElement extends ValidatableElement
+> = ValidatableElementFunction<boolean, UElement>;
 
 /**
  * Interface for a single validator.
@@ -40,9 +34,8 @@ type ValidatorFunction<
  * @public
  */
 export interface Validator<
-    UElement extends ValidatableElement = ValidatableElement,
-    VElementValue extends ValidatableElementValue = ValidatableElementValue
+    UElement extends ValidatableElement = ValidatableElement
 > {
-    fn: ValidatorFunction<UElement, VElementValue>;
-    msg: string | ValidationMessageFunction<UElement, VElementValue>;
+    fn: ValidatorFunction<UElement>;
+    msg: string | ValidationMessageFunction<UElement>;
 }

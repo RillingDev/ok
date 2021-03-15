@@ -1,7 +1,6 @@
 import type { Validator } from "./validator/Validator";
 import type { ValidatorDictionary } from "./validator/ValidatorDictionary";
 import type { ValidatableElement } from "./dom/ValidatableElement";
-import { getValidatableElementValue } from "./dom/ValidatableElement";
 
 /**
  * @internal
@@ -36,12 +35,11 @@ export class Ok {
      * @returns validity of the element.
      */
     private validate(element: ValidatableElement, e?: Event): boolean {
-        const value = getValidatableElementValue(element);
         for (const validator of this.getValidators(element)) {
-            if (!validator.fn(value, element, e)) {
+            if (!validator.fn(element, e)) {
                 const msg =
                     typeof validator.msg === "function"
-                        ? validator.msg(value, element, e)
+                        ? validator.msg(element, e)
                         : validator.msg;
                 element.setCustomValidity(msg);
                 return false;
