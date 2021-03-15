@@ -15,8 +15,8 @@ type ValidatorMap = Map<string, Validator>;
  * @class
  */
 export class Ok {
-    readonly #map: ValidatorMap;
-    readonly #invalidClass: string | null;
+    private readonly map: ValidatorMap;
+    private readonly invalidClass: string | null;
 
     /**
      * Ok constructor.
@@ -29,8 +29,8 @@ export class Ok {
         validators: ValidatorDictionary,
         invalidClass: string | null = "invalid"
     ) {
-        this.#map = new Map(Object.entries(validators));
-        this.#invalidClass = invalidClass;
+        this.map = new Map(Object.entries(validators));
+        this.invalidClass = invalidClass;
     }
 
     /**
@@ -58,12 +58,12 @@ export class Ok {
             if (!valid) {
                 break;
             }
-            if (!this.#map.has(validatorListEntry)) {
+            if (!this.map.has(validatorListEntry)) {
                 throw new Error(
                     `Validator '${validatorListEntry}' is not registered.`
                 );
             }
-            const validator: Validator = this.#map.get(validatorListEntry)!;
+            const validator: Validator = this.map.get(validatorListEntry)!;
             if (!validator.fn(value, element, e)) {
                 valid = false;
                 const msg =
@@ -75,11 +75,11 @@ export class Ok {
         }
         if (valid) {
             setCustomValidity(element, "");
-            if (this.#invalidClass != null) {
-                element.classList.remove(this.#invalidClass);
+            if (this.invalidClass != null) {
+                element.classList.remove(this.invalidClass);
             }
-        } else if (this.#invalidClass != null) {
-            element.classList.add(this.#invalidClass);
+        } else if (this.invalidClass != null) {
+            element.classList.add(this.invalidClass);
         }
 
         return valid;
