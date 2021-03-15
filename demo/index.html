@@ -19,7 +19,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: "sans-serif";
+            font-family: sans-serif;
         }
 
         .container {
@@ -48,20 +48,20 @@
 <body>
 <div class="container">
     <section>
-        <h1>Demo 1</h1>
+        <h1>Demo 1 - Basic Inputs</h1>
         <form class="form">
             <div class="form-group">
-                <label for="inputNameFirst">First Name (only "Dave" allowed)</label>
-                <input type="text" id="inputNameFirst" placeholder="Enter First Name" required
+                <label for="demo1_nameFirst">First Name (only "Dave" allowed)</label>
+                <input type="text" id="demo1_nameFirst" placeholder="Enter First Name" required
                        data-ok="nameFirst">
             </div>
             <div class="form-group">
-                <label for="inputNameLast">Last Name (not validated, anything goes)</label>
-                <input type="text" id="inputNameLast" placeholder="Enter Last Name" required>
+                <label for="demo1_nameLast">Last Name (not validated by Ok, anything goes)</label>
+                <input type="text" id="demo1_nameLast" placeholder="Enter Last Name" required>
             </div>
             <div class="form-group">
-                <label for="inputMail">Email address (only ".de" allowed)</label>
-                <input type="email" id="inputMail" placeholder="Enter email" required
+                <label for="demo1_mail">Email address (Optional, only ".de" allowed)</label>
+                <input type="email" id="demo1_mail" placeholder="Enter email"
                        data-ok="emailDe">
             </div>
             <input type="submit">
@@ -72,17 +72,103 @@
             const ok = new Ok({
                 nameFirst: {
                     msg: "Only 'Dave' allowed",
-                    fn: val => val === "Dave"
+                    fn: (val) => val === "Dave"
                 },
                 emailDe: {
                     msg: (val) => `Please input your .de email (You entered '${val}')`,
-                    fn: (val, element, e) => val.endsWith(".de")
+                    fn: (val) => val.endsWith(".de")
                 }
             });
 
-            ok.bind(document.querySelector("#inputNameFirst"));
-            ok.bind(document.querySelector("#inputMail"));
+            ok.bind(document.querySelector("#demo1_nameFirst"));
+            ok.bind(document.querySelector("#demo1_mail"));
 
+        </script>
+    </section>
+
+    <section>
+        <h1>Demo 2 - Advanced Inputs</h1>
+        <form class="form" id="demo2">
+            <div class="form-group">
+                <label for="demo2_nameFirst">First Name (only starting with 'D' allowed; Only
+                    uppercase allowed)</label>
+                <input type="text" id="demo2_nameFirst" placeholder="Enter First Name" required
+                       data-ok="nameFirst,uppercase">
+            </div>
+            <div class="form-group">
+                <label for="demo2_nameLast">Last Name ("Bar" may not be used)</label>
+                <select id="demo2_nameLast" data-ok="nameLast" required>
+                    <option value="foo" selected>Foo</option>
+                    <option value="bar">Bar</option>
+                    <option value="fizz">Fizz</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="demo2_msg">Message (Must have an even number of letters)</label>
+                <textarea id="demo2_msg" placeholder="Your message"
+                          data-ok="message" required></textarea>
+            </div>
+            <input type="submit">
+        </form>
+        <script type="module">
+            import { Ok } from "./dist/ok.esm.js";
+
+            const ok = new Ok({
+                nameFirst: {
+                    msg: "Name must start with 'D'",
+                    fn: (val) => val.toLowerCase().startsWith("d")
+                },
+                uppercase: {
+                    msg: "Value must be all-uppercase",
+                    fn: (val) => val.toUpperCase() === val
+                },
+                nameLast: {
+                    msg: "Only 'Bar-Dave' may select 'Bar'",
+                    fn: (val) => val !== "Bar"
+                },
+                message: {
+                    msg: (val) => `Please enter an even number of characters (You entered ${val.length})`,
+                    fn: (val) => val.length % 2 === 0
+                }
+            });
+
+            Array.from(document.querySelectorAll("#demo2 [data-ok]")).forEach(inputElement => {
+                ok.bind(inputElement);
+            });
+        </script>
+    </section>
+
+    <section>
+        <h1>Demo 3 - Message customization</h1>
+        <form class="form" id="demo3">
+            <div class="form-group">
+                <label for="demo3_nameFirst">First Name (Only 'Dave' allowed)</label>
+                <input type="text" id="demo3_nameFirst" placeholder="Enter First Name" required
+                       data-ok="nameFirst">
+            </div>
+            <input type="submit">
+        </form>
+        <script type="module">
+            import { Ok } from "./dist/ok.esm.js";
+
+            const getLocalizedStringDummy = key => {
+                const lang = navigator.language;
+                if (key === "validator.dave") {
+                    return `Only 'Dave' allowed (Imagine this text is translated to the language '${lang}')`;
+                }
+                return "Unknown message";
+            };
+
+            const ok = new Ok({
+                nameFirst: {
+                    msg: () => getLocalizedStringDummy("validator.dave"),
+                    fn: (val) => val === "Dave"
+                }
+            });
+
+            Array.from(document.querySelectorAll("#demo3 [data-ok]")).forEach(inputElement => {
+                ok.bind(inputElement);
+            });
         </script>
     </section>
 </div>
