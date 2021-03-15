@@ -15,18 +15,18 @@ type ValidatorMap = Map<string, Validator>;
  */
 export class Ok {
     readonly #map: ValidatorMap;
-    readonly #invalidClass: string | false;
+    readonly #invalidClass: string | null;
 
     /**
      * Ok constructor.
      *
      * @public
      * @param validators Object containing the validators to use.
-     * @param invalidClass CSS class for invalid elements, or false if none should be set.
+     * @param invalidClass CSS class for invalid elements, or null if none should be set.
      */
     public constructor(
         validators: ValidatorDictionary,
-        invalidClass: string | false = "invalid"
+        invalidClass: string | null = "invalid"
     ) {
         this.#map = new Map(Object.entries(validators));
         this.#invalidClass = invalidClass;
@@ -73,10 +73,10 @@ export class Ok {
         }
         if (result) {
             setCustomValidity(element, "");
-            if (this.#invalidClass != false) {
+            if (this.#invalidClass != null) {
                 element.classList.remove(this.#invalidClass);
             }
-        } else if (this.#invalidClass != false) {
+        } else if (this.#invalidClass != null) {
             element.classList.add(this.#invalidClass);
         }
 
