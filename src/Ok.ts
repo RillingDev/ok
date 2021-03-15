@@ -1,7 +1,7 @@
-import { getValidatableElementValue } from "./dom/getValidatableElementValue";
 import type { Validator } from "./validator/Validator";
 import type { ValidatorDictionary } from "./validator/ValidatorDictionary";
 import { setCustomValidity } from "./dom/setCustomValidity";
+import { getValidatableElementValue } from "./dom/ValidatableElement";
 
 /**
  * @internal
