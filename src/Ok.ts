@@ -1,6 +1,5 @@
 import type { Validator } from "./validator/Validator";
 import type { ValidatorDictionary } from "./validator/ValidatorDictionary";
-import { setCustomValidity } from "./dom/setCustomValidity";
 import type { ValidatableElement } from "./dom/ValidatableElement";
 import { getValidatableElementValue } from "./dom/ValidatableElement";
 
@@ -16,21 +15,15 @@ type ValidatorMap = Map<string, Validator>;
  */
 export class Ok {
     private readonly map: ValidatorMap;
-    private readonly invalidClass: string | null;
 
     /**
      * Ok constructor.
      *
      * @public
      * @param validators Object containing the validators to use.
-     * @param invalidClass CSS class for invalid elements, or null if none should be set.
      */
-    public constructor(
-        validators: ValidatorDictionary,
-        invalidClass: string | null = "invalid"
-    ) {
+    public constructor(validators: ValidatorDictionary) {
         this.map = new Map(Object.entries(validators));
-        this.invalidClass = invalidClass;
     }
 
     /**
@@ -70,16 +63,11 @@ export class Ok {
                     typeof validator.msg === "function"
                         ? validator.msg(value, element, e)
                         : validator.msg;
-                setCustomValidity(element, msg);
+                element.setCustomValidity(msg);
             }
         }
         if (valid) {
-            setCustomValidity(element, "");
-            if (this.invalidClass != null) {
-                element.classList.remove(this.invalidClass);
-            }
-        } else if (this.invalidClass != null) {
-            element.classList.add(this.invalidClass);
+            element.setCustomValidity("");
         }
 
         return valid;

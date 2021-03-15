@@ -112,6 +112,9 @@ new Ok({}, "myClass");
 new Ok({}, false);
 ```
 
-## Legacy Browsers
+## Compatibility
 
-For browsers not supporting the HTML5 Validation API (<https://caniuse.com/#feat=form-validation>), ok.js will still work, but the validation message will not be shown.
+Ok should work in all browsers that support the following:
+
+- <https://caniuse.com/form-validation>
+- <https://caniuse.com/mdn-api_htmlinputelement_setcustomvalidity>
