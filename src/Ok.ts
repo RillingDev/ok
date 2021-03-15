@@ -37,25 +37,18 @@ export class Ok {
      */
     private validate(element: ValidatableElement, e?: Event): boolean {
         const value = getValidatableElementValue(element);
-        let valid = true;
         for (const validator of this.getValidators(element)) {
-            if (!valid) {
-                break;
-            }
             if (!validator.fn(value, element, e)) {
-                valid = false;
                 const msg =
                     typeof validator.msg === "function"
                         ? validator.msg(value, element, e)
                         : validator.msg;
                 element.setCustomValidity(msg);
+                return false;
             }
         }
-        if (valid) {
-            element.setCustomValidity("");
-        }
-
-        return valid;
+        element.setCustomValidity("");
+        return true;
     }
 
     private getValidators(element: ValidatableElement): Validator[] {
