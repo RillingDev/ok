@@ -1,6 +1,7 @@
 import type { Validator } from "./validator/Validator";
 import type { ValidatorDictionary } from "./validator/ValidatorDictionary";
 import { setCustomValidity } from "./dom/setCustomValidity";
+import type { ValidatableElement } from "./dom/ValidatableElement";
 import { getValidatableElementValue } from "./dom/ValidatableElement";
 
 /**
@@ -36,12 +37,12 @@ export class Ok {
      * Validates an input element and returns if it was valid.
      * Usually called through {@link Ok#bind}.
      *
-     * @public
-     * @param {HTMLInputElement} element HTMLInputElement to validate.
-     * @param {Event?} e optional event that triggered validation.
-     * @returns {boolean} current validity of the element.
+     * @internal
+     * @param element ValidatableElement to validate.
+     * @param e Optional event that triggered validation.
+     * @returns validity of the element.
      */
-    public validate(element: HTMLInputElement, e?: Event): boolean {
+    private validate(element: ValidatableElement, e?: Event): boolean {
         const okAttr = element.dataset.ok;
         if (okAttr == null || okAttr.length === 0) {
             throw new Error("No validators are assigned to the element.");
@@ -52,26 +53,27 @@ export class Ok {
 
         const value = getValidatableElementValue(element);
 
-        let result = true;
+        let valid = true;
         for (const validatorListEntry of validatorList) {
-            if (result) {
-                if (!this.#map.has(validatorListEntry)) {
-                    throw new Error(
-                        `Validator '${validatorListEntry}' is not registered.`
-                    );
-                }
-                const validator: Validator = this.#map.get(validatorListEntry)!;
-                if (!validator.fn(value, element, e)) {
-                    result = false;
-                    const msg =
-                        typeof validator.msg === "function"
-                            ? validator.msg(value, element, e)
-                            : validator.msg;
-                    setCustomValidity(element, msg);
-                }
+            if (!valid) {
+                break;
+            }
+            if (!this.#map.has(validatorListEntry)) {
+                throw new Error(
+                    `Validator '${validatorListEntry}' is not registered.`
+                );
+            }
+            const validator: Validator = this.#map.get(validatorListEntry)!;
+            if (!validator.fn(value, element, e)) {
+                valid = false;
+                const msg =
+                    typeof validator.msg === "function"
+                        ? validator.msg(value, element, e)
+                        : validator.msg;
+                setCustomValidity(element, msg);
             }
         }
-        if (result) {
+        if (valid) {
             setCustomValidity(element, "");
             if (this.#invalidClass != null) {
                 element.classList.remove(this.#invalidClass);
@@ -80,17 +82,17 @@ export class Ok {
             element.classList.add(this.#invalidClass);
         }
 
-        return result;
+        return valid;
     }
 
     /**
-     * Binds a {@link Ok#validate} event handler to an input element.
+     * Binds a {@link Ok#validate} event handler to a validatable element.
      *
      * @public
-     * @param {HTMLInputElement} element HTMLInputElement to bind.
-     * @param {string} [eventType="input"] Event type to bind.
+     * @param element ValidatableElement to bind an event to.
+     * @param eventType Event type to bind. Recommended is either 'input' or 'change'. Defaults to 'input'.
      */
-    public bind(element: HTMLInputElement, eventType = "input"): void {
+    public bind(element: ValidatableElement, eventType = "input"): void {
         element.addEventListener(eventType, (e) => this.validate(element, e));
     }
 }
