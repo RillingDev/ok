@@ -36,27 +36,12 @@ export class Ok {
      * @returns validity of the element.
      */
     private validate(element: ValidatableElement, e?: Event): boolean {
-        const okAttr = element.dataset.ok;
-        if (okAttr == null || okAttr.length === 0) {
-            throw new Error("No validators are assigned to the element.");
-        }
-        const validatorList: string[] = okAttr
-            .split(",")
-            .map((str) => str.trim());
-
         const value = getValidatableElementValue(element);
-
         let valid = true;
-        for (const validatorListEntry of validatorList) {
+        for (const validator of this.getValidators(element)) {
             if (!valid) {
                 break;
             }
-            if (!this.map.has(validatorListEntry)) {
-                throw new Error(
-                    `Validator '${validatorListEntry}' is not registered.`
-                );
-            }
-            const validator: Validator = this.map.get(validatorListEntry)!;
             if (!validator.fn(value, element, e)) {
                 valid = false;
                 const msg =
@@ -71,6 +56,24 @@ export class Ok {
         }
 
         return valid;
+    }
+
+    private getValidators(element: ValidatableElement): Validator[] {
+        const okAttr = element.dataset.ok;
+        if (okAttr == null || okAttr.length === 0) {
+            throw new Error("No validators are assigned to this element.");
+        }
+        return okAttr
+            .split(",")
+            .map((str) => str.trim())
+            .map((validatorName) => {
+                if (!this.map.has(validatorName)) {
+                    throw new Error(
+                        `Validator for name '${validatorName}' is not registered.`
+                    );
+                }
+                return this.map.get(validatorName)!;
+            });
     }
 
     /**
