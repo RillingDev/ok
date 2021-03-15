@@ -14,22 +14,22 @@ type ValidatorMap = Map<string, Validator>;
  * @class
  */
 export class Ok {
-    private readonly map: ValidatorMap;
-    private readonly invalidClass: string | false;
+    readonly #map: ValidatorMap;
+    readonly #invalidClass: string | false;
 
     /**
      * Ok constructor.
      *
      * @public
-     * @param {object} validators Object containing the validators to use.
-     * @param {string|boolean} [invalidClass="invalid"] CSS class for invalid elements, or false if none should be set.
+     * @param validators Object containing the validators to use.
+     * @param invalidClass CSS class for invalid elements, or false if none should be set.
      */
     public constructor(
         validators: ValidatorDictionary,
         invalidClass: string | false = "invalid"
     ) {
-        this.map = new Map(Object.entries(validators));
-        this.invalidClass = invalidClass;
+        this.#map = new Map(Object.entries(validators));
+        this.#invalidClass = invalidClass;
     }
 
     /**
@@ -55,12 +55,12 @@ export class Ok {
         let result = true;
         for (const validatorListEntry of validatorList) {
             if (result) {
-                if (!this.map.has(validatorListEntry)) {
+                if (!this.#map.has(validatorListEntry)) {
                     throw new Error(
                         `Validator '${validatorListEntry}' is not registered.`
                     );
                 }
-                const validator: Validator = this.map.get(validatorListEntry)!;
+                const validator: Validator = this.#map.get(validatorListEntry)!;
                 if (!validator.fn(value, element, e)) {
                     result = false;
                     const msg =
@@ -73,11 +73,11 @@ export class Ok {
         }
         if (result) {
             setCustomValidity(element, "");
-            if (this.invalidClass != false) {
-                element.classList.remove(this.invalidClass);
+            if (this.#invalidClass != false) {
+                element.classList.remove(this.#invalidClass);
             }
-        } else if (this.invalidClass != false) {
-            element.classList.add(this.invalidClass);
+        } else if (this.#invalidClass != false) {
+            element.classList.add(this.#invalidClass);
         }
 
         return result;
