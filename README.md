@@ -26,7 +26,7 @@ import { Ok } from "okjs";
 const ok = new Ok({
     nameFirst: {
         msg: "Only 'Dave' allowed",
-        fn: val => val === "Dave"
+        fn: (element) => element.value === "Dave"
     },
     emailDe: {
         msg: (element) => `Please input your .de email (You entered '${element.value}')`,
@@ -61,17 +61,17 @@ The validator which will be used is defined in the DOM via data-attributes:
 </form>
 ```
 
-the name defined in `data-ok` is the key of the methods object defined in the JS.
+The name defined in `data-ok` is the key of the validator dictionary object defined in the JS.
 if the given fn evaluates to false, the input will be marked as invalid.
 
 ### Validation
 
-Once the user inputs on a field bound by Ok.js, the validator function will be run. If it evaluates to true, the field is valid.
-If it evaluates falsy, the field will be marked as invalid with the class "invalid" and the JS validity will be updated (which will show a popup containing the validator message, based on the browser).
+Once the user inputs on a field bound by Ok, the validator function will be run. If it evaluates to true, the field is valid.
+If it evaluates falsy, the field will be marked as invalid, and the JS validity will be updated (which will show a popup containing the validator message, based on the browser).
 
 ### Chaining
 
-Multiple validators can be used for a single field in a given order by chaining them. to chain multiple validators, simply add a comma between their keys in the ok attribute. When using chaining, the field will only be considered valid if all validators succeed.
+Multiple validators can be used for a single field in a given order by chaining them. to chain multiple validators, simply add a comma between their keys in the ok attribute. When using chaining, the field will only be considered valid if all validators succeed. Once a validator marks the field as invalid, all further validators are skipped.
 
 ```html
 <div class="form-group">

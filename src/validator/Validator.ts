@@ -1,8 +1,6 @@
 import type { ValidatableElement } from "../dom/ValidatableElement";
 
 /**
- * A function which takes the input value of an element and the element itself.
- *
  * @internal
  */
 type ValidatableElementFunction<

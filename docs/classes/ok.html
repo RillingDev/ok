@@ -2711,12 +2711,9 @@ img {
 				<li class=" tsd-kind-method tsd-parent-kind-class">
 					<a href="ok.html#bind" class="tsd-kind-icon">bind</a>
 				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class">
-					<a href="ok.html#validate" class="tsd-kind-icon">validate</a>
-				</li>
 			</ul>
 		</li>
-		<li class=" tsd-kind-interface">
+		<li class=" tsd-kind-interface tsd-has-type-parameter">
 			<a href="../interfaces/validator.html" class="tsd-kind-icon">Validator</a>
 		</li>
 		<li class=" tsd-kind-interface">
@@ -2755,7 +2752,6 @@ img {
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-method tsd-parent-kind-class"><a href="ok.html#bind" class="tsd-kind-icon">bind</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class"><a href="ok.html#validate" class="tsd-kind-icon">validate</a></li>
 						</ul>
 					</section>
 				</div>
@@ -2767,13 +2763,13 @@ img {
 				<a name="constructor" class="tsd-anchor"></a>
 				<h3>constructor</h3>
 				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">new <wbr>Ok<span class="tsd-signature-symbol">(</span>validators<span class="tsd-signature-symbol">: </span><a href="../interfaces/validatordictionary.html" class="tsd-signature-type" data-tsd-kind="Interface">ValidatorDictionary</a>, invalidClass<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="ok.html" class="tsd-signature-type" data-tsd-kind="Class">Ok</a></li>
+					<li class="tsd-signature tsd-kind-icon">new <wbr>Ok<span class="tsd-signature-symbol">(</span>validators<span class="tsd-signature-symbol">: </span><a href="../interfaces/validatordictionary.html" class="tsd-signature-type" data-tsd-kind="Interface">ValidatorDictionary</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="ok.html" class="tsd-signature-type" data-tsd-kind="Class">Ok</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in Ok.ts:18</li>
+								<li>Defined in Ok.ts:16</li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2789,9 +2785,6 @@ img {
 									<p>Object containing the validators to use.</p>
 								</div>
 							</li>
-							<li>
-								<h5>invalidClass: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> = &quot;invalid&quot;</span></h5>
-							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <a href="ok.html" class="tsd-signature-type" data-tsd-kind="Class">Ok</a></h4>
 					</li>
@@ -2804,72 +2797,36 @@ img {
 				<a name="bind" class="tsd-anchor"></a>
 				<h3>bind</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">bind<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLInputElement</span>, eventType<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					<li class="tsd-signature tsd-kind-icon">bind<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ValidatableElement</span>, eventType<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in Ok.ts:93</li>
+								<li>Defined in Ok.ts:35</li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>Binds a {@link Ok#validate} event handler to an input element.</p>
+								<p>Binds a {@link Ok#validate} event handler to a validatable element.</p>
 							</div>
 						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>element: <span class="tsd-signature-type">HTMLInputElement</span></h5>
+								<h5>element: <span class="tsd-signature-type">ValidatableElement</span></h5>
 								<div class="tsd-comment tsd-typography">
-									<p>HTMLInputElement to bind.</p>
+									<p>ValidatableElement to bind an event to.</p>
 								</div>
 							</li>
 							<li>
 								<h5>eventType: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;input&quot;</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>Event type to bind. Recommended is either &#39;input&#39; or &#39;change&#39;. Defaults to &#39;input&#39;.</p>
+								</div>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-				<a name="validate" class="tsd-anchor"></a>
-				<h3>validate</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">validate<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLInputElement</span>, e<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Event</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in Ok.ts:44</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Validates an input element and returns if it was valid.
-								Usually called through {@link Ok#bind}.</p>
-							</div>
-						</div>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>element: <span class="tsd-signature-type">HTMLInputElement</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>HTMLInputElement to validate.</p>
-								</div>
-							</li>
-							<li>
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> e: <span class="tsd-signature-type">Event</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>optional event that triggered validation.</p>
-								</div>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-						<p>current validity of the element.</p>
 					</li>
 				</ul>
 			</section>

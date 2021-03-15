@@ -26,6 +26,17 @@ export class Ok {
     }
 
     /**
+     * Binds a {@link Ok#validate} event handler to a validatable element.
+     *
+     * @public
+     * @param element ValidatableElement to bind an event to.
+     * @param eventType Event type to bind. Recommended is either 'input' or 'change'. Defaults to 'input'.
+     */
+    public bind(element: ValidatableElement, eventType = "input"): void {
+        element.addEventListener(eventType, (e) => this.validate(element, e));
+    }
+
+    /**
      * Validates an input element and returns if it was valid.
      * Usually called through {@link Ok#bind}.
      *
@@ -65,16 +76,5 @@ export class Ok {
                 }
                 return this.map.get(validatorName)!;
             });
-    }
-
-    /**
-     * Binds a {@link Ok#validate} event handler to a validatable element.
-     *
-     * @public
-     * @param element ValidatableElement to bind an event to.
-     * @param eventType Event type to bind. Recommended is either 'input' or 'change'. Defaults to 'input'.
-     */
-    public bind(element: ValidatableElement, eventType = "input"): void {
-        element.addEventListener(eventType, (e) => this.validate(element, e));
     }
 }

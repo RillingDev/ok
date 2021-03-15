@@ -2705,7 +2705,7 @@ img {
 		<li class=" tsd-kind-class">
 			<a href="classes/ok.html" class="tsd-kind-icon">Ok</a>
 		</li>
-		<li class=" tsd-kind-interface">
+		<li class=" tsd-kind-interface tsd-has-type-parameter">
 			<a href="interfaces/validator.html" class="tsd-kind-icon">Validator</a>
 		</li>
 		<li class=" tsd-kind-interface">
@@ -2744,11 +2744,11 @@ img {
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">ok</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Ok</span><span style="color: #000000">({</span>
 <span style="color: #000000">    </span><span style="color: #001080">nameFirst:</span><span style="color: #000000"> {</span>
 <span style="color: #000000">        </span><span style="color: #001080">msg:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Only &#039;Dave&#039; allowed&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">        </span><span style="color: #795E26">fn</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #001080">val</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">val</span><span style="color: #000000"> === </span><span style="color: #A31515">&quot;Dave&quot;</span>
+<span style="color: #000000">        </span><span style="color: #795E26">fn</span><span style="color: #001080">:</span><span style="color: #000000"> (</span><span style="color: #001080">element</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">element</span><span style="color: #000000">.</span><span style="color: #001080">value</span><span style="color: #000000"> === </span><span style="color: #A31515">&quot;Dave&quot;</span>
 <span style="color: #000000">    },</span>
 <span style="color: #000000">    </span><span style="color: #001080">emailDe:</span><span style="color: #000000"> {</span>
-<span style="color: #000000">        </span><span style="color: #795E26">msg</span><span style="color: #001080">:</span><span style="color: #000000"> (</span><span style="color: #001080">val</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #A31515">`Please input your .de email (You entered &#039;</span><span style="color: #0000FF">${</span><span style="color: #001080">val</span><span style="color: #0000FF">}</span><span style="color: #A31515">&#039;)`</span><span style="color: #000000">,</span>
-<span style="color: #000000">        </span><span style="color: #795E26">fn</span><span style="color: #001080">:</span><span style="color: #000000"> (</span><span style="color: #001080">val</span><span style="color: #000000">, </span><span style="color: #001080">element</span><span style="color: #000000">, </span><span style="color: #001080">e</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">val</span><span style="color: #000000">.</span><span style="color: #795E26">endsWith</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;.de&quot;</span><span style="color: #000000">)</span>
+<span style="color: #000000">        </span><span style="color: #795E26">msg</span><span style="color: #001080">:</span><span style="color: #000000"> (</span><span style="color: #001080">element</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #A31515">`Please input your .de email (You entered &#039;</span><span style="color: #0000FF">${</span><span style="color: #001080">element</span><span style="color: #000000FF">.</span><span style="color: #001080">value</span><span style="color: #0000FF">}</span><span style="color: #A31515">&#039;)`</span><span style="color: #000000">,</span>
+<span style="color: #000000">        </span><span style="color: #795E26">fn</span><span style="color: #001080">:</span><span style="color: #000000"> (</span><span style="color: #001080">element</span><span style="color: #000000">, </span><span style="color: #001080">e</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">element</span><span style="color: #000000">.</span><span style="color: #001080">value</span><span style="color: #000000">.</span><span style="color: #795E26">endsWith</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;.de&quot;</span><span style="color: #000000">)</span>
 <span style="color: #000000">    }</span>
 <span style="color: #000000">});</span>
 
@@ -2775,17 +2775,17 @@ img {
 <span style="color: #000000">    </span><span style="color: #800000">&lt;input</span><span style="color: #000000"> </span><span style="color: #FF0000">type</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;submit&quot;</span><span style="color: #800000">&gt;</span>
 <span style="color: #800000">&lt;/form&gt;</span>
 </code></pre>
-			<p>the name defined in <code>data-ok</code> is the key of the methods object defined in the JS.
+			<p>The name defined in <code>data-ok</code> is the key of the validator dictionary object defined in the JS.
 			if the given fn evaluates to false, the input will be marked as invalid.</p>
 			<a href="#validation" id="validation" style="color: inherit; text-decoration: none;">
 				<h3>Validation</h3>
 			</a>
-			<p>Once the user inputs on a field bound by Ok.js, the validator function will be run. If it evaluates to true, the field is valid.
-			If it evaluates falsy, the field will be marked as invalid with the class &quot;invalid&quot; and the JS validity will be updated (which will show a popup containing the validator message, based on the browser).</p>
+			<p>Once the user inputs on a field bound by Ok, the validator function will be run. If it evaluates to true, the field is valid.
+			If it evaluates falsy, the field will be marked as invalid, and the JS validity will be updated (which will show a popup containing the validator message, based on the browser).</p>
 			<a href="#chaining" id="chaining" style="color: inherit; text-decoration: none;">
 				<h3>Chaining</h3>
 			</a>
-			<p>Multiple validators can be used for a single field in a given order by chaining them. to chain multiple validators, simply add a comma between their keys in the ok attribute. When using chaining, the field will only be considered valid if all validators succeed.</p>
+			<p>Multiple validators can be used for a single field in a given order by chaining them. to chain multiple validators, simply add a comma between their keys in the ok attribute. When using chaining, the field will only be considered valid if all validators succeed. Once a validator marks the field as invalid, all further validators are skipped.</p>
 			<pre><code class="language-html"><span style="color: #800000">&lt;div</span><span style="color: #000000"> </span><span style="color: #FF0000">class</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;form-group&quot;</span><span style="color: #800000">&gt;</span>
 <span style="color: #000000">    </span><span style="color: #800000">&lt;label</span><span style="color: #000000"> </span><span style="color: #FF0000">for</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;exampleInputEmail&quot;</span><span style="color: #800000">&gt;</span><span style="color: #000000">Email ID (all caps and ending in .de)</span><span style="color: #800000">&lt;/label&gt;</span>
 <span style="color: #000000">    </span><span style="color: #800000">&lt;input</span><span style="color: #000000"> </span><span style="color: #FF0000">type</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;email&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">required</span><span style="color: #000000"> </span><span style="color: #FF0000">data-ok</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;nameCaps, emailDe&quot;</span><span style="color: #800000">&gt;</span>
@@ -2796,33 +2796,22 @@ img {
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">ok</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Ok</span><span style="color: #000000">({</span>
 <span style="color: #000000">    </span><span style="color: #001080">nameCaps:</span><span style="color: #000000"> {</span>
 <span style="color: #000000">        </span><span style="color: #001080">msg:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Must be in all caps&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">        </span><span style="color: #795E26">fn</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #001080">val</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">val</span><span style="color: #000000">.</span><span style="color: #795E26">toUpperCase</span><span style="color: #000000">() === </span><span style="color: #001080">val</span>
+<span style="color: #000000">        </span><span style="color: #795E26">fn</span><span style="color: #001080">:</span><span style="color: #000000"> (</span><span style="color: #001080">element</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">element</span><span style="color: #000000">.</span><span style="color: #001080">value</span><span style="color: #000000">.</span><span style="color: #795E26">toUpperCase</span><span style="color: #000000">() === </span><span style="color: #001080">element</span><span style="color: #000000">.</span><span style="color: #001080">value</span>
 <span style="color: #000000">    },</span>
 <span style="color: #000000">    </span><span style="color: #001080">emailDe:</span><span style="color: #000000"> {</span>
 <span style="color: #000000">        </span><span style="color: #001080">msg:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Must end with &#039;.de&#039;&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">        </span><span style="color: #795E26">fn</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #001080">val</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #811F3F"> /.</span><span style="color: #000000">+</span><span style="color: #EE0000">\.</span><span style="color: #811F3F">de</span><span style="color: #EE0000">$</span><span style="color: #811F3F">/</span><span style="color: #0000FF">i</span><span style="color: #000000">.</span><span style="color: #795E26">test</span><span style="color: #000000">(</span><span style="color: #001080">val</span><span style="color: #000000">)</span>
+<span style="color: #000000">        </span><span style="color: #795E26">fn</span><span style="color: #001080">:</span><span style="color: #000000"> (</span><span style="color: #001080">element</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #811F3F"> /.</span><span style="color: #000000">+</span><span style="color: #EE0000">\.</span><span style="color: #811F3F">de</span><span style="color: #EE0000">$</span><span style="color: #811F3F">/</span><span style="color: #0000FF">i</span><span style="color: #000000">.</span><span style="color: #795E26">test</span><span style="color: #000000">(</span><span style="color: #001080">element</span><span style="color: #000000">.</span><span style="color: #001080">value</span><span style="color: #000000">)</span>
 <span style="color: #000000">    }</span>
 <span style="color: #000000">});</span>
 </code></pre>
-			<a href="#options" id="options" style="color: inherit; text-decoration: none;">
-				<h2>Options</h2>
+			<a href="#compatibility" id="compatibility" style="color: inherit; text-decoration: none;">
+				<h2>Compatibility</h2>
 			</a>
-			<p>Ok currently only has one option, the class to use for invalid elements.</p>
-			<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Ok</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;okjs&quot;</span><span style="color: #000000">;</span>
-
-<span style="color: #008000">// The default invalid class(&#039;invalid&#039;) will be used</span>
-<span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Ok</span><span style="color: #000000">({});</span>
-
-<span style="color: #008000">// &#039;myClass&#039; will be used for invalid fields</span>
-<span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Ok</span><span style="color: #000000">({}, </span><span style="color: #A31515">&quot;myClass&quot;</span><span style="color: #000000">);</span>
-
-<span style="color: #008000">// no class will be used for invalid fields</span>
-<span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Ok</span><span style="color: #000000">({}, </span><span style="color: #0000FF">false</span><span style="color: #000000">);</span>
-</code></pre>
-			<a href="#legacy-browsers" id="legacy-browsers" style="color: inherit; text-decoration: none;">
-				<h2>Legacy Browsers</h2>
-			</a>
-			<p>For browsers not supporting the HTML5 Validation API (<a href="https://caniuse.com/#feat=form-validation">https://caniuse.com/#feat=form-validation</a>), ok.js will still work, but the validation message will not be shown.</p>
+			<p>Ok should work in all browsers that support the following:</p>
+			<ul>
+				<li><a href="https://caniuse.com/form-validation">https://caniuse.com/form-validation</a></li>
+				<li><a href="https://caniuse.com/mdn-api_htmlinputelement_setcustomvalidity">https://caniuse.com/mdn-api_htmlinputelement_setcustomvalidity</a></li>
+			</ul>
 		</div>
 		<div style="position:relative;"><a name="typedoc-main-index" class="tsd-anchor"></a></div>
 		<section class="tsd-panel-group tsd-index-group">
@@ -2838,7 +2827,7 @@ img {
 					<section class="tsd-index-section ">
 						<h3>Interfaces</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-interface"><a href="interfaces/validator.html" class="tsd-kind-icon">Validator</a></li>
+							<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/validator.html" class="tsd-kind-icon">Validator</a></li>
 							<li class="tsd-kind-interface"><a href="interfaces/validatordictionary.html" class="tsd-kind-icon">Validator<wbr>Dictionary</a></li>
 						</ul>
 					</section>
