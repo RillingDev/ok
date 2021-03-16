@@ -56,7 +56,9 @@ export class Ok {
     /**
      * @internal
      */
-    private getValidators(element: ValidatableElement): Validator[] {
+    private getValidators(
+        element: ValidatableElement
+    ): ReadonlyArray<Validator> {
         const okAttr = element.dataset.ok;
         if (okAttr == null || okAttr.length === 0) {
             throw new Error("No validators are assigned to this element.");
