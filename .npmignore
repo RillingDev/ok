@@ -36,9 +36,12 @@ tsconfig.*.tsbuildinfo
 src/
 spec/
 
-# Config Files
-.eslintrc.json
+# Config/Infrastructure Files
+.eslintrc.js
 .eslintignore
 .editorconfig
 typedoc.json
 jasmine.json
+tsconfig.base.json
+tsconfig.json
+rollup.demo.config.js
