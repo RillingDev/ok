@@ -25,8 +25,13 @@ export class Ok {
      * @param element ValidatableElement to bind an event to.
      * @param eventType Event type to bind. Recommended is either 'input' or 'change'. Defaults to 'input'.
      */
-    public bind(element: ValidatableElement, eventType = "input"): void {
-        element.addEventListener(eventType, (e) => this.validate(element, e));
+    public bind<TElement extends ValidatableElement>(
+        element: TElement,
+        eventType = "input"
+    ): void {
+        element.addEventListener(eventType, (e) =>
+            this.validate<TElement>(element, e)
+        );
     }
 
     /**
@@ -38,8 +43,11 @@ export class Ok {
      * @param e Optional event that triggered validation.
      * @returns validity of the element.
      */
-    private validate(element: ValidatableElement, e?: Event): boolean {
-        for (const validator of this.getValidators(element)) {
+    private validate<TElement extends ValidatableElement>(
+        element: TElement,
+        e?: Event
+    ): boolean {
+        for (const validator of this.getValidators<TElement>(element)) {
             if (!validator.fn(element, e)) {
                 const msg =
                     typeof validator.msg === "function"
@@ -56,9 +64,9 @@ export class Ok {
     /**
      * @internal
      */
-    private getValidators(
-        element: ValidatableElement
-    ): ReadonlyArray<Validator> {
+    private getValidators<TElement extends ValidatableElement>(
+        element: TElement
+    ): ReadonlyArray<Validator<TElement>> {
         const okAttr = element.dataset.ok;
         if (okAttr == null || okAttr.length === 0) {
             throw new Error("No validators are assigned to this element.");
