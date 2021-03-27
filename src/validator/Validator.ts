@@ -1,26 +1,20 @@
 import type { ValidatableElement } from "../dom/ValidatableElement";
 
 /**
- * @internal
- */
-type ValidatableElementFunction<
-    TResult,
-    UElement extends ValidatableElement
-> = (element: UElement, e?: Event) => TResult;
-
-/**
  * Function that returns a validation message.
  */
-type ValidationMessageFunction<
-    UElement extends ValidatableElement
-> = ValidatableElementFunction<string, UElement>;
+type ValidationMessageFunction<UElement extends ValidatableElement> = (
+    element: UElement,
+    e?: Event
+) => string;
 
 /**
  * Function that checks if the element value is valid.
  */
-type ValidatorFunction<
-    UElement extends ValidatableElement
-> = ValidatableElementFunction<boolean, UElement>;
+type ValidatorFunction<UElement extends ValidatableElement> = (
+    element: UElement,
+    e?: Event
+) => boolean;
 
 /**
  * Interface for a single validator.

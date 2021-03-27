@@ -1,6 +1,12 @@
 import type { Validator } from "./validator/Validator";
-import type { ValidatorDictionary } from "./validator/ValidatorDictionary";
 import type { ValidatableElement } from "./dom/ValidatableElement";
+
+/**
+ * Dictionary of validator name and validator instance.
+ */
+export interface ValidatorDictionary {
+    readonly [key: string]: Validator;
+}
 
 /**
  * Wraps a dictionary of validators and allows binding/applying it to DOM elements.
