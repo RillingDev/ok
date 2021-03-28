@@ -2,13 +2,6 @@ import type { Validator } from "./validator/Validator";
 import type { ValidatableElement } from "./dom/ValidatableElement";
 
 /**
- * Dictionary of validator name and validator instance.
- */
-export interface ValidatorDictionary {
-    readonly [key: string]: Validator;
-}
-
-/**
  * Wraps a dictionary of validators and allows binding/applying it to DOM elements.
  */
 export class Ok {
@@ -21,7 +14,7 @@ export class Ok {
      *                   Each key corresponds to the key used when referencing the validator from the HTML attribute.
      *                   The value contains the validator to apply. See {@link Validator} for details.
      */
-    public constructor(validators: ValidatorDictionary) {
+    public constructor(validators: Record<string, Validator>) {
         this.map = new Map(Object.entries(validators));
     }
 
