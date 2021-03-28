@@ -19,9 +19,7 @@ type ValidatorFunction<UElement extends ValidatableElement> = (
 /**
  * Interface for a single validator.
  */
-export interface Validator<
-    UElement extends ValidatableElement = ValidatableElement
-> {
-    readonly fn: ValidatorFunction<UElement>;
-    readonly msg: string | ValidationMessageFunction<UElement>;
+export interface Validator {
+    readonly fn: ValidatorFunction<ValidatableElement>;
+    readonly msg: string | ValidationMessageFunction<ValidatableElement>;
 }
