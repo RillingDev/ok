@@ -18,7 +18,7 @@
   --color-panel-divider: #eee;
   --color-comment-tag: #707070;
   --color-comment-tag-text: #fff;
-  --color-code-background: rgba(#000, 0.04);
+  --color-code-background: rgba(0, 0, 0, 0.04);
   --color-ts: #9600ff;
   --color-ts-interface: #647f1b;
   --color-ts-enum: #937210;
@@ -2705,7 +2705,7 @@ img {
 		<li class=" tsd-kind-class">
 			<a href="../classes/ok.html" class="tsd-kind-icon">Ok</a>
 		</li>
-		<li class="current tsd-kind-interface tsd-has-type-parameter">
+		<li class="current tsd-kind-interface">
 			<a href="validator.html" class="tsd-kind-icon">Validator</a>
 			<ul>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
@@ -2715,9 +2715,6 @@ img {
 					<a href="validator.html#msg" class="tsd-kind-icon">msg</a>
 				</li>
 			</ul>
-		</li>
-		<li class=" tsd-kind-interface">
-			<a href="validatordictionary.html" class="tsd-kind-icon">Validator<wbr>Dictionary</a>
 		</li>
 	</ul>
 </nav>
@@ -2729,14 +2726,6 @@ img {
 					<p>Interface for a single validator.</p>
 				</div>
 			</div>
-		</section>
-		<section class="tsd-panel tsd-type-parameters">
-			<h3>Type parameters</h3>
-			<ul class="tsd-type-parameters">
-				<li>
-					<h4>UElement<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ValidatableElement</span> = <span class="tsd-signature-type">ValidatableElement</span></h4>
-				</li>
-			</ul>
 		</section>
 		<section class="tsd-panel tsd-hierarchy">
 			<h3>Hierarchy</h3>
@@ -2765,20 +2754,20 @@ img {
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 				<a name="fn" class="tsd-anchor"></a>
 				<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> fn</h3>
-				<div class="tsd-signature tsd-kind-icon">fn<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ValidatorFunction</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">UElement</span><span class="tsd-signature-symbol">&gt;</span></div>
+				<div class="tsd-signature tsd-kind-icon">fn<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ValidatorFunction</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ValidatableElement</span><span class="tsd-signature-symbol">&gt;</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in validator/Validator.ts:31</li>
+						<li>Defined in validator/Validator.ts:23</li>
 					</ul>
 				</aside>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 				<a name="msg" class="tsd-anchor"></a>
 				<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> msg</h3>
-				<div class="tsd-signature tsd-kind-icon">msg<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ValidationMessageFunction</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">UElement</span><span class="tsd-signature-symbol">&gt;</span></div>
+				<div class="tsd-signature tsd-kind-icon">msg<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ValidationMessageFunction</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ValidatableElement</span><span class="tsd-signature-symbol">&gt;</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in validator/Validator.ts:32</li>
+						<li>Defined in validator/Validator.ts:24</li>
 					</ul>
 				</aside>
 			</section>

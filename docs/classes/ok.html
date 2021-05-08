@@ -18,7 +18,7 @@
   --color-panel-divider: #eee;
   --color-comment-tag: #707070;
   --color-comment-tag-text: #fff;
-  --color-code-background: rgba(#000, 0.04);
+  --color-code-background: rgba(0, 0, 0, 0.04);
   --color-ts: #9600ff;
   --color-ts-interface: #647f1b;
   --color-ts-enum: #937210;
@@ -2713,11 +2713,8 @@ img {
 				</li>
 			</ul>
 		</li>
-		<li class=" tsd-kind-interface tsd-has-type-parameter">
-			<a href="../interfaces/validator.html" class="tsd-kind-icon">Validator</a>
-		</li>
 		<li class=" tsd-kind-interface">
-			<a href="../interfaces/validatordictionary.html" class="tsd-kind-icon">Validator<wbr>Dictionary</a>
+			<a href="../interfaces/validator.html" class="tsd-kind-icon">Validator</a>
 		</li>
 	</ul>
 </nav>
@@ -2763,13 +2760,13 @@ img {
 				<a name="constructor" class="tsd-anchor"></a>
 				<h3>constructor</h3>
 				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">new <wbr>Ok<span class="tsd-signature-symbol">(</span>validators<span class="tsd-signature-symbol">: </span><a href="../interfaces/validatordictionary.html" class="tsd-signature-type" data-tsd-kind="Interface">ValidatorDictionary</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="ok.html" class="tsd-signature-type" data-tsd-kind="Class">Ok</a></li>
+					<li class="tsd-signature tsd-kind-icon">new <wbr>Ok<span class="tsd-signature-symbol">(</span>validators<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/validator.html" class="tsd-signature-type" data-tsd-kind="Interface">Validator</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="ok.html" class="tsd-signature-type" data-tsd-kind="Class">Ok</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in Ok.ts:9</li>
+								<li>Defined in Ok.ts:8</li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2780,7 +2777,7 @@ img {
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>validators: <a href="../interfaces/validatordictionary.html" class="tsd-signature-type" data-tsd-kind="Interface">ValidatorDictionary</a></h5>
+								<h5>validators: <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/validator.html" class="tsd-signature-type" data-tsd-kind="Interface">Validator</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<p>Object containing the validators to use.
 										Each key corresponds to the key used when referencing the validator from the HTML attribute.
@@ -2805,7 +2802,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in Ok.ts:28</li>
+								<li>Defined in Ok.ts:27</li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">

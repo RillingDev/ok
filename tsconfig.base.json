@@ -1,16 +1,16 @@
 {
     "compilerOptions": {
-        "target": "ES2020",
+        // General
         "newLine": "LF",
         "removeComments": false,
         "moduleResolution": "node",
         "esModuleInterop": true,
         "strict": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
+        // Per-project
+        "target": "ES2020",
         "lib": [
-            "esnext",
-            "dom"
+            "ESNext",
+            "DOM"
         ]
     },
     "include": [],
