@@ -19,6 +19,7 @@
 *.esproj
 *.sublime-project
 *.sublime-workspace
+*.iml
 
 # Vendor Files
 node_modules/
@@ -34,3 +35,4 @@ tsconfig.*.tsbuildinfo
 
 # Build Output files
 dist/
+docs/
