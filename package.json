@@ -18,7 +18,7 @@
         "lint": "eslint ./src/ ./spec/ --ext .ts",
         "fix": "eslint ./src/ ./spec/ --ext .ts --fix",
         "test": "ts-node --project ./spec/tsconfig.json node_modules/jasmine/bin/jasmine --config=./jasmine.json",
-        "docs": "typedoc ./src/",
+        "docs": "typedoc",
         "build:demo": "rollup -c ./rollup.demo.config.js"
     },
     "bugs": {
@@ -37,19 +37,18 @@
     ],
     "devDependencies": {
         "@types/jasmine": "^3.7.7",
-        "@typescript-eslint/eslint-plugin": "^4.28.1",
-        "@typescript-eslint/parser": "^4.28.1",
-        "eslint": "^7.29.0",
+        "@typescript-eslint/eslint-plugin": "^5.0.0",
+        "@typescript-eslint/parser": "^5.0.0",
+        "eslint": "^8.0.0",
         "eslint-config-prettier": "^8.3.0",
-        "eslint-plugin-import": "^2.23.4",
         "eslint-plugin-prettier": "^4.0.0",
         "jasmine": "^3.7.0",
         "prettier": "^2.3.2",
         "rimraf": "^3.0.2",
-        "rollup": "^2.50.6",
+        "rollup": "^2.58.0",
         "ts-mockito": "^2.6.1",
         "ts-node": "^10.0.0",
-        "typedoc": "^0.21.2",
+        "typedoc": "^0.22.2",
         "typescript": "^4.3.4"
     }
 }
