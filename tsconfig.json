@@ -1,12 +1,12 @@
 {
-    "include": [],
-    "exclude": ["node_modules"],
-    "references": [
-        {
-            "path": "./src/tsconfig.esm.json"
-        },
-        {
-            "path": "./src/tsconfig.cjs.json"
-        }
-    ]
+	"include": [],
+	"exclude": ["node_modules"],
+	"references": [
+		{
+			"path": "./src/tsconfig.esm.json"
+		},
+		{
+			"path": "./src/tsconfig.cjs.json"
+		}
+	]
 }

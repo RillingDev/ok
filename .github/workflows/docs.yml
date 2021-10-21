@@ -2,28 +2,27 @@ name: Docs
 
 on:
     push:
-        branches: [ main ]
+        branches: [main]
 
 jobs:
     docs:
-
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [ 16.x ]
+                node-version: [16.x]
 
         steps:
-            -   uses: actions/checkout@v2
-            -   name: Use Node.js ${{ matrix.node-version }}
-                uses: actions/setup-node@v2
-                with:
-                    node-version: ${{ matrix.node-version }}
-            -   run: npm ci
-            -   run: npm run docs
-            -   name: Deploy
-                uses: peaceiris/actions-gh-pages@v3
-                with:
-                    github_token: ${{ secrets.GITHUB_TOKEN }}
-                    publish_dir: ./docs
-                    publish_branch: gh-pages
+            - uses: actions/checkout@v2
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v2
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - run: npm ci
+            - run: npm run docs
+            - name: Deploy
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./docs
+                  publish_branch: gh-pages

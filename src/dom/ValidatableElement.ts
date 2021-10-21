@@ -6,7 +6,7 @@
  * {@link HTMLObjectElement} and {@link HTMLButtonElement}.
  */
 export type ValidatableElement =
-    | HTMLInputElement
-    | HTMLTextAreaElement
-    | HTMLSelectElement
-    | HTMLFieldSetElement;
+	| HTMLInputElement
+	| HTMLTextAreaElement
+	| HTMLSelectElement
+	| HTMLFieldSetElement;

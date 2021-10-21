@@ -1,54 +1,56 @@
 {
-    "name": "okjs",
-    "version": "4.0.0",
-    "description": "A super tiny TypeScript library for form validation",
-    "main": "./dist/cjs/main.js",
-    "module": "./dist/esm/main.js",
-    "types": "./dist/esm/main.d.ts",
-    "directories": {
-        "lib": "src/",
-        "test": "spec/",
-        "doc": "docs/"
-    },
-    "scripts": {
-        "start": "npm run dist",
-        "dist": "npm run clean && npm run lint && npm run build && npm run test && npm run docs",
-        "clean": "rimraf ./dist ./docs",
-        "build": "tsc --build ./tsconfig.json",
-        "lint": "eslint ./src/ ./spec/ --ext .ts",
-        "fix": "eslint ./src/ ./spec/ --ext .ts --fix",
-        "test": "ts-node --project ./spec/tsconfig.json node_modules/jasmine/bin/jasmine --config=./jasmine.json",
-        "docs": "typedoc",
-        "build:demo": "rollup -c ./rollup.demo.config.js"
-    },
-    "bugs": {
-        "url": "https://github.com/FelixRilling/okjs/issues"
-    },
-    "homepage": "https://github.com/FelixRilling/okjs#readme",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/FelixRilling/okjs.git"
-    },
-    "author": "Felix Rilling",
-    "license": "MIT",
-    "keywords": [
-        "validation",
-        "form"
-    ],
-    "devDependencies": {
-        "@types/jasmine": "^3.7.7",
-        "@typescript-eslint/eslint-plugin": "^5.0.0",
-        "@typescript-eslint/parser": "^5.0.0",
-        "eslint": "^8.0.0",
-        "eslint-config-prettier": "^8.3.0",
-        "eslint-plugin-prettier": "^4.0.0",
-        "jasmine": "^3.7.0",
-        "prettier": "^2.3.2",
-        "rimraf": "^3.0.2",
-        "rollup": "^2.58.0",
-        "ts-mockito": "^2.6.1",
-        "ts-node": "^10.0.0",
-        "typedoc": "^0.22.2",
-        "typescript": "^4.3.4"
-    }
+	"name": "okjs",
+	"version": "4.0.0",
+	"description": "A super tiny TypeScript library for form validation",
+	"main": "./dist/cjs/main.js",
+	"module": "./dist/esm/main.js",
+	"types": "./dist/esm/main.d.ts",
+	"directories": {
+		"lib": "src/",
+		"test": "spec/",
+		"doc": "docs/"
+	},
+	"scripts": {
+		"start": "npm run dist",
+		"dist": "npm run clean && npm run lint && npm run build && npm run test && npm run docs",
+		"clean": "rimraf ./dist ./docs",
+		"build": "tsc --build ./tsconfig.json",
+		"lint": "eslint ./src/ ./spec/ --ext .ts",
+		"fix": "eslint ./src/ ./spec/ --ext .ts --fix",
+		"test": "ts-node --project ./spec/tsconfig.json node_modules/jasmine/bin/jasmine --config=./jasmine.json",
+		"docs": "typedoc",
+		"build:demo": "rollup -c ./rollup.demo.config.js"
+	},
+	"bugs": {
+		"url": "https://github.com/FelixRilling/okjs/issues"
+	},
+	"homepage": "https://github.com/FelixRilling/okjs#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/FelixRilling/okjs.git"
+	},
+	"author": "Felix Rilling",
+	"license": "MIT",
+	"keywords": [
+		"validation",
+		"form"
+	],
+	"dependencies": {},
+	"devDependencies": {
+		"@types/jasmine": "^3.7.7",
+		"@typescript-eslint/eslint-plugin": "^5.0.0",
+		"@typescript-eslint/parser": "^5.0.0",
+		"eslint": "^8.0.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-import": "^2.25.2",
+		"eslint-plugin-prettier": "^4.0.0",
+		"jasmine": "^3.7.0",
+		"prettier": "^2.3.2",
+		"rimraf": "^3.0.2",
+		"rollup": "^2.58.0",
+		"ts-mockito": "^2.6.1",
+		"ts-node": "^10.0.0",
+		"typedoc": "^0.22.2",
+		"typescript": "^4.3.4"
+	}
 }

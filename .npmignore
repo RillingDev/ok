@@ -44,4 +44,5 @@ typedoc.json
 jasmine.json
 tsconfig.base.json
 tsconfig.json
+.github/
 rollup.demo.config.js
