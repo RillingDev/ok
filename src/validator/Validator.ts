@@ -3,7 +3,7 @@ import type { ValidatableElement } from "../dom/ValidatableElement";
 /**
  * Function that returns a validation message.
  */
-type ValidationMessageFunction<UElement extends ValidatableElement> = (
+export type ValidationMessageFunction<UElement extends ValidatableElement> = (
 	element: UElement,
 	e?: Event
 ) => string;
@@ -11,7 +11,7 @@ type ValidationMessageFunction<UElement extends ValidatableElement> = (
 /**
  * Function that checks if the element value is valid.
  */
-type ValidatorFunction<UElement extends ValidatableElement> = (
+export type ValidatorFunction<UElement extends ValidatableElement> = (
 	element: UElement,
 	e?: Event
 ) => boolean;
