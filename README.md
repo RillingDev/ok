@@ -63,7 +63,7 @@ The validator which will be used is defined in the DOM via data-attributes:
 ```
 
 The name defined in `data-ok` is the key of the validator dictionary object defined in the JS Ok constructor parameter.
-if the given fn evaluates to false, the input will be marked as invalid.
+If the given fn evaluates to false, the input will be marked as invalid.
 
 ### Validation
 
@@ -72,7 +72,7 @@ If it evaluates falsy, the field will be marked as invalid, and the input validi
 
 ### Chaining
 
-Multiple validators can be used for a single element in a given order by chaining them. to chain multiple validators, simply add a comma between their keys in the ok attribute. When using chaining, the field will only be considered valid if all validators succeed. Once a validator marks the field as invalid, all further validators are skipped.
+Multiple validators can be used for a single element in a given order by chaining them. To chain multiple validators, simply add a comma between their keys in the ok attribute. When using chaining, the field will only be considered valid if all validators succeed. Once a validator marks the field as invalid, all further validators are skipped.
 
 ```html
 <div class="form-group">
