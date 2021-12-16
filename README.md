@@ -1,13 +1,13 @@
-# OkJS
+# Ok.js
 
-> A super tiny TypeScript library for form validation
+> A tiny JavaScript library for form validation.
 
 ## Introduction
 
-Ok is a very small utility library to validate forms with more than what HTML5 offers you.
+Ok.js is a utility library to validate forms with more than what HTML5 offers you.
 Features include customized messages and validator chaining.
 
-**[Docs](https://felixrilling.github.io/ok/)**
+[Documentation](https://felixrilling.github.io/ok/)
 
 ## Usage
 
@@ -62,12 +62,13 @@ The validator which will be used is defined in the DOM via data-attributes:
 </form>
 ```
 
-The name defined in `data-ok` is the key of the validator dictionary object defined in the JS Ok constructor parameter.
+The name defined in `data-ok` is the key of the validator dictionary object defined in the JavaScript Ok.js constructor
+parameter.
 If the given fn evaluates to false, the input will be marked as invalid.
 
 ### Validation
 
-Once the user inputs on a field bound by Ok, the validator function will be run. If it evaluates to true, the field is valid.
+Once the user inputs on a field bound by Ok.js, the validator function will be run. If it evaluates to true, the field is valid.
 If it evaluates falsy, the field will be marked as invalid, and the input validity will be updated (which will show a popup containing the validator message, based on the browser).
 
 ### Chaining
@@ -107,7 +108,7 @@ listening to the events of that.
 
 ## Compatibility
 
-Ok should work in all browsers that support the following:
+Ok.js should work in all browsers that support the following:
 
 -   <https://caniuse.com/form-validation>
 -   <https://caniuse.com/mdn-api_htmlinputelement_setcustomvalidity>
