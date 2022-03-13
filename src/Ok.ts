@@ -14,7 +14,7 @@ export class Ok {
 	 *                   Each key corresponds to the key used when referencing the validator from the HTML attribute.
 	 *                   The value contains the validator to apply. See {@link Validator} for details.
 	 */
-	public constructor(validators: Record<string, Validator>) {
+	constructor(validators: Record<string, Validator>) {
 		this.#map = new Map(Object.entries(validators));
 	}
 
@@ -24,7 +24,7 @@ export class Ok {
 	 * @param element ValidatableElement to bind an event to.
 	 * @param eventType Event type to bind. Recommended is either 'input' or 'change'. Defaults to 'input'.
 	 */
-	public bind(element: ValidatableElement, eventType = "input"): void {
+	bind(element: ValidatableElement, eventType = "input"): void {
 		element.addEventListener(eventType, (e) => this.validate(element, e));
 	}
 
@@ -32,13 +32,12 @@ export class Ok {
 	 * Validates an input element and returns if it was valid.
 	 * Usually called through {@link Ok#bind}.
 	 *
-	 * @internal
 	 * @param element ValidatableElement to validate.
 	 * @param e Optional event that triggered validation.
 	 * @returns validity of the element.
 	 */
-	private validate(element: ValidatableElement, e?: Event): boolean {
-		for (const validator of this.getValidators(element)) {
+	validate(element: ValidatableElement, e?: Event): boolean {
+		for (const validator of this.#getValidators(element)) {
 			if (!validator.fn(element, e)) {
 				const msg =
 					typeof validator.msg === "function"
@@ -55,9 +54,7 @@ export class Ok {
 	/**
 	 * @internal
 	 */
-	private getValidators(
-		element: ValidatableElement
-	): ReadonlyArray<Validator> {
+	#getValidators(element: ValidatableElement): ReadonlyArray<Validator> {
 		const okAttr = element.dataset.ok;
 		if (okAttr == null || okAttr.length === 0) {
 			throw new Error("No validators are assigned to this element.");
