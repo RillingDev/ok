@@ -7,7 +7,7 @@
 		"strict": true,
 		// Per-project
 		"target": "ES2020",
-		"lib": ["ESNext", "DOM"]
+		"lib": ["ES2020", "DOM"]
 	},
 	"include": [],
 	"exclude": ["node_modules"]
