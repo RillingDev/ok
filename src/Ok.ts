@@ -5,7 +5,7 @@ import type { ValidatableElement } from "./dom/ValidatableElement";
  * Wraps a dictionary of validators and allows binding/applying it to DOM elements.
  */
 export class Ok {
-	private readonly map: Map<string, Validator>;
+	readonly #map: Map<string, Validator>;
 
 	/**
 	 * Creates a new instance.
@@ -15,7 +15,7 @@ export class Ok {
 	 *                   The value contains the validator to apply. See {@link Validator} for details.
 	 */
 	public constructor(validators: Record<string, Validator>) {
-		this.map = new Map(Object.entries(validators));
+		this.#map = new Map(Object.entries(validators));
 	}
 
 	/**
@@ -66,12 +66,12 @@ export class Ok {
 			.split(",")
 			.map((str) => str.trim())
 			.map((validatorName) => {
-				if (!this.map.has(validatorName)) {
+				if (!this.#map.has(validatorName)) {
 					throw new Error(
 						`Validator for name '${validatorName}' is not registered.`
 					);
 				}
-				return this.map.get(validatorName)!;
+				return this.#map.get(validatorName)!;
 			});
 	}
 }
