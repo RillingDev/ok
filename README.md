@@ -4,8 +4,7 @@
 
 ## Introduction
 
-Ok.js is a utility library to validate forms with more than what HTML5 offers you.
-Features include customized messages and validator chaining.
+Ok.js is a utility library to validate forms with more than what HTML5 offers you. Features include customized messages and validator chaining.
 
 [Documentation](https://felixrilling.github.io/ok/)
 
@@ -62,14 +61,11 @@ The validator which will be used is defined in the DOM via data-attributes:
 </form>
 ```
 
-The name defined in `data-ok` is the key of the validator dictionary object defined in the JavaScript Ok.js constructor
-parameter.
-If the given fn evaluates to false, the input will be marked as invalid.
+The name defined in `data-ok` is the key of the validator dictionary object defined in the JavaScript Ok.js constructor parameter. If the given fn evaluates to false, the input will be marked as invalid.
 
 ### Validation
 
-Once the user inputs on a field bound by Ok.js, the validator function will be run. If it evaluates to true, the field is valid.
-If it evaluates falsy, the field will be marked as invalid, and the input validity will be updated (which will show a popup containing the validator message, based on the browser).
+Once the user inputs on a field bound by Ok.js, the validator function will be run. If it evaluates to true, the field is valid. If it evaluates falsy, the field will be marked as invalid, and the input validity will be updated (which will show a popup containing the validator message, based on the browser).
 
 ### Chaining
 
@@ -101,10 +97,7 @@ const ok = new Ok({
 
 #### Radiobuttons
 
-Due to the way input elements with type `radio` work, validation is not straightforward. A single
-radio button only fires its `change`/`input` event when itself is changed, not if it becomes e.g.
-inactive due to another radiobutton being selected. A workaround is using an enclosing fieldset and
-listening to the events of that.
+Due to the way input elements with type `radio` work, validation is not straightforward. A single radio button only fires its `change`/`input` event when itself is changed, not if it becomes e.g. inactive due to another radiobutton being selected. A workaround is using an enclosing fieldset and listening to the events of that.
 
 ## Compatibility
 
