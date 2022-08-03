@@ -1,4 +1,4 @@
-import type { ValidatableElement } from "../dom/ValidatableElement";
+import type { ValidatableElement } from "../dom/ValidatableElement.js";
 
 /**
  * Function that returns a validation message.

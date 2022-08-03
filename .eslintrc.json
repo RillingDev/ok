@@ -1,18 +1,17 @@
-module.exports = {
-	root: true,
-	parser: "@typescript-eslint/parser",
-	parserOptions: {
-		tsconfigRootDir: __dirname,
-		project: ["./src/tsconfig.src.json", "./spec/tsconfig.json"],
+{
+	"root": true,
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"project": ["./src/tsconfig.src.json", "./spec/tsconfig.json"]
 	},
-	plugins: ["@typescript-eslint", "prettier", "import"],
-	extends: [
+	"plugins": ["@typescript-eslint", "prettier", "import"],
+	"extends": [
 		"eslint:recommended",
 		"plugin:@typescript-eslint/recommended",
 		"plugin:@typescript-eslint/recommended-requiring-type-checking",
-		"prettier",
+		"prettier"
 	],
-	rules: {
+	"rules": {
 		/*
 		 * ESLint
 		 */
@@ -26,13 +25,11 @@ module.exports = {
 		"no-undef-init": "error",
 		"no-unreachable-loop": "warn",
 		"require-atomic-updates": "warn",
-		radix: "warn",
-
+		"radix": "warn",
 		/*
 		 * Prettier
 		 */
 		"prettier/prettier": "warn",
-
 		/*
 		 * Typescript
 		 */
@@ -40,48 +37,62 @@ module.exports = {
 		"@typescript-eslint/explicit-function-return-type": [
 			"warn",
 			{
-				allowExpressions: true,
-			},
+				"allowExpressions": true
+			}
 		],
 		"@typescript-eslint/member-delimiter-style": "warn",
 		"@typescript-eslint/method-signature-style": "warn",
 		"@typescript-eslint/naming-convention": [
 			"warn",
 			{
-				selector: "default",
-				format: ["strictCamelCase"],
-				leadingUnderscore: "allow",
-				trailingUnderscore: "forbid",
+				"selector": "default",
+				"format": ["strictCamelCase"],
+				"leadingUnderscore": "allow",
+				"trailingUnderscore": "forbid"
 			},
 			{
-				selector: "variable",
-				format: ["strictCamelCase", "StrictPascalCase", "UPPER_CASE"],
+				"selector": "variable",
+				"format": ["strictCamelCase", "StrictPascalCase", "UPPER_CASE"]
 			},
 			{
-				selector: "property",
-				format: ["strictCamelCase", "StrictPascalCase", "UPPER_CASE"],
-			},
-			{ selector: "typeAlias", format: ["StrictPascalCase"] },
-			{
-				selector: "typeParameter",
-				format: ["PascalCase"], // Allow "T", "TValue", "Value" and such
+				"selector": "property",
+				"format": ["strictCamelCase", "StrictPascalCase", "UPPER_CASE"]
 			},
 			{
-				selector: "interface",
-				format: ["StrictPascalCase"],
-				custom: {
-					regex: "^I[A-Z]",
-					match: false,
-				},
+				"selector": "typeAlias",
+				"format": ["StrictPascalCase"]
 			},
-			{ selector: "class", format: ["StrictPascalCase"] },
-			{ selector: "enum", format: ["StrictPascalCase"] },
-			{ selector: "enumMember", format: ["UPPER_CASE"] },
+			{
+				"selector": "typeParameter",
+				"format": ["PascalCase"]
+				// Allow "T", "TValue", "Value" and such
+			},
+			{
+				"selector": "interface",
+				"format": ["StrictPascalCase"],
+				"custom": {
+					"regex": "^I[A-Z]",
+					"match": false
+				}
+			},
+			{
+				"selector": "class",
+				"format": ["StrictPascalCase"]
+			},
+			{
+				"selector": "enum",
+				"format": ["StrictPascalCase"]
+			},
+			{
+				"selector": "enumMember",
+				"format": ["UPPER_CASE"]
+			}
 		],
 		"@typescript-eslint/no-base-to-string": "error",
 		"@typescript-eslint/no-confusing-non-null-assertion": "warn",
 		"@typescript-eslint/no-dynamic-delete": "error",
-		"@typescript-eslint/no-non-null-assertion": "off", // Essential when working with maps
+		"@typescript-eslint/no-non-null-assertion": "off",
+		// Essential when working with maps
 		"@typescript-eslint/no-redeclare": "error",
 		"@typescript-eslint/no-shadow": "error",
 		"@typescript-eslint/no-throw-literal": "error",
@@ -96,7 +107,6 @@ module.exports = {
 		"@typescript-eslint/prefer-string-starts-ends-with": "warn",
 		"@typescript-eslint/require-array-sort-compare": "warn",
 		"@typescript-eslint/strict-boolean-expressions": "warn",
-
 		/*
 		 * Imports
 		 */
@@ -105,6 +115,6 @@ module.exports = {
 		"import/no-default-export": "warn",
 		"import/no-mutable-exports": "warn",
 		"import/no-useless-path-segments": "warn",
-		"import/no-webpack-loader-syntax": "warn",
-	},
-};
+		"import/no-webpack-loader-syntax": "warn"
+	}
+}

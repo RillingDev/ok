@@ -1,4 +1,4 @@
-import { Ok } from "../src/main";
+import { Ok } from "../src/Ok";
 
 describe("Ok", () => {
 	it("constructs", () => {
