@@ -12,8 +12,8 @@
 	},
 	"scripts": {
 		"start": "npm run dist",
-		"dist": "npm run clean && npm run lint && npm run build && npm run test && npm run docs",
-		"clean": "rimraf ./dist ./docs",
+		"dist": "npm run lint && npm run clean && npm run build && npm run test && npm run docs",
+		"clean": "rm -rf ./dist ./docs",
 		"build": "tsc --build ./tsconfig.json",
 		"lint": "eslint ./src/ ./spec/ --ext .ts",
 		"fix": "eslint ./src/ ./spec/ --ext .ts --fix",
@@ -46,7 +46,6 @@
 		"eslint-plugin-prettier": "^4.0.0",
 		"jasmine": "^4.0.2",
 		"prettier": "^2.6.2",
-		"rimraf": "^3.0.2",
 		"rollup": "^2.77.2",
 		"ts-mockito": "^2.6.1",
 		"ts-node": "^10.0.0",
