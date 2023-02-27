@@ -2,9 +2,9 @@ import type { Validator } from "./Validator";
 import type { ValidatableElement } from "./ValidatableElement";
 
 export function validate<T extends ValidatableElement>(
-	validators: ReadonlyArray<Validator<T>>,
 	element: T,
-	e?: Event
+	e: Event | null,
+	validators: ReadonlyArray<Validator<T>>
 ): boolean {
 	for (const validator of validators) {
 		if (!validator.fn(element, e)) {
@@ -45,8 +45,11 @@ export class Ok {
 	 * @param e Optional event that triggered validation.
 	 * @returns validity of the element.
 	 */
-	validate<T extends ValidatableElement>(element: T, e?: Event): boolean {
-		return validate(this.#getValidators(element), element, e);
+	validate<T extends ValidatableElement>(
+		element: T,
+		e: Event | null
+	): boolean {
+		return validate(element, e, this.#getValidators(element));
 	}
 
 	/**

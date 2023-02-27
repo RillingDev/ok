@@ -16,7 +16,7 @@ npm install okjs --save
 
 ### Data-Attribute API
 
-The data-attribute API works well when working directly with HTML that is enhanced by JS. //TODO
+The data-attribute API works well when working directly with HTML that is enhanced by JS.
 
 ```typescript
 import {Ok} from "okjs";
