@@ -1,6 +1,25 @@
 import type { Validator } from "./Validator";
 import type { ValidatableElement } from "./ValidatableElement";
 
+export function validate<T extends ValidatableElement>(
+	validators: ReadonlyArray<Validator<T>>,
+	element: T,
+	e?: Event
+): boolean {
+	for (const validator of validators) {
+		if (!validator.fn(element, e)) {
+			const msg =
+				typeof validator.msg === "function"
+					? validator.msg(element, e)
+					: validator.msg;
+			element.setCustomValidity(msg);
+			return false;
+		}
+	}
+	element.setCustomValidity("");
+	return true;
+}
+
 /**
  * Wraps a dictionary of validators and allows binding/applying it to DOM elements.
  */
@@ -27,18 +46,7 @@ export class Ok {
 	 * @returns validity of the element.
 	 */
 	validate<T extends ValidatableElement>(element: T, e?: Event): boolean {
-		for (const validator of this.#getValidators(element)) {
-			if (!validator.fn(element, e)) {
-				const msg =
-					typeof validator.msg === "function"
-						? validator.msg(element, e)
-						: validator.msg;
-				element.setCustomValidity(msg);
-				return false;
-			}
-		}
-		element.setCustomValidity("");
-		return true;
+		return validate(this.#getValidators(element), element, e);
 	}
 
 	/**
