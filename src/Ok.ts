@@ -1,5 +1,23 @@
-import type { Validator } from "./Validator";
-import type { ValidatableElement } from "./ValidatableElement";
+/**
+ * Object allowing for programmatic validity configuration.
+ * The shared method of doing so is the respective #setCustomValidity(string) method.
+ *
+ * Some other elements also have such a method but are not suitable for Ok, such as
+ * {@link HTMLObjectElement} and {@link HTMLButtonElement}.
+ */
+export type ValidatableElement =
+	| HTMLInputElement
+	| HTMLTextAreaElement
+	| HTMLSelectElement
+	| HTMLFieldSetElement;
+
+/**
+ * Interface for a single validator.
+ */
+export interface Validator<T extends ValidatableElement> {
+	readonly fn: (element: T) => boolean;
+	readonly msg: string | ((element: T) => string);
+}
 
 export function validate<T extends ValidatableElement>(
 	element: T,
