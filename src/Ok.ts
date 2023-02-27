@@ -19,16 +19,6 @@ export class Ok {
 	}
 
 	/**
-	 * Binds a {@link Ok#validate} event handler to a validatable element.
-	 *
-	 * @param element ValidatableElement to bind an event to.
-	 * @param eventType Event type to bind. Recommended is either 'input' or 'change'. Defaults to 'input'.
-	 */
-	bind<T extends ValidatableElement>(element: T, eventType = "input"): void {
-		element.addEventListener(eventType, (e) => this.validate(element, e));
-	}
-
-	/**
 	 * Validates an input element and returns if it was valid.
 	 * Usually called through {@link Ok#bind}.
 	 *

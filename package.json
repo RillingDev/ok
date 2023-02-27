@@ -19,7 +19,7 @@
 		"fix": "eslint ./src/ ./spec/ --ext .ts --fix",
 		"test": "ts-node --project ./spec/tsconfig.json node_modules/jasmine/bin/jasmine --config=./jasmine.json",
 		"docs": "typedoc",
-		"build:demo": "rollup -c ./rollup.demo.config.js"
+		"build:demo": "rollup -c rollup.demo.config.mjs"
 	},
 	"bugs": {
 		"url": "https://github.com/FelixRilling/okjs/issues"
