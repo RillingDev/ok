@@ -1,5 +1,5 @@
-import type { Validator } from "./validator/Validator.js";
-import type { ValidatableElement } from "./dom/ValidatableElement.js";
+import type { Validator } from "./Validator";
+import type { ValidatableElement } from "./ValidatableElement";
 
 /**
  * Wraps a dictionary of validators and allows binding/applying it to DOM elements.

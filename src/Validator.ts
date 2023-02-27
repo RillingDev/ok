@@ -1,4 +1,4 @@
-import type { ValidatableElement } from "../dom/ValidatableElement.js";
+import type { ValidatableElement } from "./ValidatableElement";
 
 /**
  * Interface for a single validator.

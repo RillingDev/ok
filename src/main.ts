@@ -1,3 +1,3 @@
 export { Ok } from "./Ok.js";
-export type { Validator } from "./validator/Validator.js";
-export type { ValidatableElement } from "./dom/ValidatableElement.js";
+export type { Validator } from "./Validator";
+export type { ValidatableElement } from "./ValidatableElement";
