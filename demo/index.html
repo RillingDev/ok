@@ -281,8 +281,8 @@
 				},
 			});
 
-			document.querySelector("#demo1_nameFirst").addEventListener("input", (e) => ok.validate(document.querySelector("#demo1_nameFirst"), e));
-			document.querySelector("#demo1_mail").addEventListener("input", (e) => ok.validate(document.querySelector("#demo1_mail"), e));
+			document.querySelector("#demo1_nameFirst").addEventListener("input", (e) => ok.validate(document.querySelector("#demo1_nameFirst")));
+			document.querySelector("#demo1_mail").addEventListener("input", (e) => ok.validate(document.querySelector("#demo1_mail")));
 		</script>
 	</section>
 
@@ -386,7 +386,7 @@
 			Array.from(
 				document.querySelectorAll("#demo2 [data-ok]")
 			).forEach((inputElement) => {
-				inputElement.addEventListener("input", (e) => ok.validate(inputElement, e));
+				inputElement.addEventListener("input", (e) => ok.validate(inputElement));
 			});
 		</script>
 	</section>
@@ -429,7 +429,7 @@
 
 			Array.from(
 				document.querySelectorAll("#demo3 [data-ok]")
-			).forEach((inputElement) => inputElement.addEventListener("input", e => ok.validate(e.target, e)));
+			).forEach((inputElement) => inputElement.addEventListener("input", e => ok.validate(e.target)));
 		</script>
 	</section>
 </div>

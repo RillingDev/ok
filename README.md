@@ -32,7 +32,7 @@ const ok = new Ok({
 	emailDe: {
 		msg: (element) =>
 			`Please input your .de email (You entered '${element.value}')`,
-		fn: (element, e) => element.value.endsWith(".de"),
+		fn: (element) => element.value.endsWith(".de"),
 	},
 });
 
@@ -40,7 +40,7 @@ const ok = new Ok({
  * Bind validation event handlers to inputs
  */
 document.querySelectorAll("[data-ok]").forEach(el => {
-	el.addEventListener("input", (e) => ok.validate(e, e.target));
+	el.addEventListener("input", (e) => ok.validate(e.target));
 })
 ```
 
@@ -100,7 +100,7 @@ const ok = new Ok({
 
 The composition API works well if you already use a frontend framework like React or Vue, and do not want to use data attributes for logic.
 
-```tsx
+```jsx
 import {ok} from "okjs";
 
 const nameFirst = {
@@ -110,14 +110,14 @@ const nameFirst = {
 const emailDe = {
     msg: (element) =>
         `Please input your .de email (You entered '${element.value}')`,
-    fn: (element, e) => element.value.endsWith(".de"),
+    fn: (element) => element.value.endsWith(".de"),
 };
 
 
 const SomeComponent: FC = () => {
 
     const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-        ok(e, e.target, [nameFirst]);
+        ok(e.target, [nameFirst]);
     };
 
     return (

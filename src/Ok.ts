@@ -3,14 +3,13 @@ import type { ValidatableElement } from "./ValidatableElement";
 
 export function validate<T extends ValidatableElement>(
 	element: T,
-	e: Event | null,
 	validators: ReadonlyArray<Validator<T>>
 ): boolean {
 	for (const validator of validators) {
-		if (!validator.fn(element, e)) {
+		if (!validator.fn(element)) {
 			const msg =
 				typeof validator.msg === "function"
-					? validator.msg(element, e)
+					? validator.msg(element)
 					: validator.msg;
 			element.setCustomValidity(msg);
 			return false;
@@ -42,14 +41,10 @@ export class Ok {
 	 * Usually called through {@link Ok#bind}.
 	 *
 	 * @param element ValidatableElement to validate.
-	 * @param e Optional event that triggered validation.
 	 * @returns validity of the element.
 	 */
-	validate<T extends ValidatableElement>(
-		element: T,
-		e: Event | null
-	): boolean {
-		return validate(element, e, this.#getValidators(element));
+	validate<T extends ValidatableElement>(element: T): boolean {
+		return validate(element, this.#getValidators(element));
 	}
 
 	/**
