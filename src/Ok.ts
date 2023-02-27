@@ -19,6 +19,13 @@ export interface Validator<T extends ValidatableElement> {
 	readonly msg: string | ((element: T) => string);
 }
 
+/**
+ * Validates an input element and returns if it was valid.
+ *
+ * @param element ValidatableElement to validate.
+ * @param validators Validators to run.
+ * @returns validity of the element.
+ */
 export function validate<T extends ValidatableElement>(
 	element: T,
 	validators: ReadonlyArray<Validator<T>>
@@ -56,7 +63,6 @@ export class Ok {
 
 	/**
 	 * Validates an input element and returns if it was valid.
-	 * Usually called through {@link Ok#bind}.
 	 *
 	 * @param element ValidatableElement to validate.
 	 * @returns validity of the element.
