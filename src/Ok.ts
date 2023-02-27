@@ -5,7 +5,7 @@ import type { ValidatableElement } from "./dom/ValidatableElement.js";
  * Wraps a dictionary of validators and allows binding/applying it to DOM elements.
  */
 export class Ok {
-	readonly #map: Map<string, Validator>;
+	readonly #map: Map<string, Validator<never>>;
 
 	/**
 	 * Creates a new instance.
@@ -14,7 +14,7 @@ export class Ok {
 	 *                   Each key corresponds to the key used when referencing the validator from the HTML attribute.
 	 *                   The value contains the validator to apply. See {@link Validator} for details.
 	 */
-	constructor(validators: Record<string, Validator>) {
+	constructor(validators: Record<string, Validator<never>>) {
 		this.#map = new Map(Object.entries(validators));
 	}
 
@@ -24,7 +24,7 @@ export class Ok {
 	 * @param element ValidatableElement to bind an event to.
 	 * @param eventType Event type to bind. Recommended is either 'input' or 'change'. Defaults to 'input'.
 	 */
-	bind(element: ValidatableElement, eventType = "input"): void {
+	bind<T extends ValidatableElement>(element: T, eventType = "input"): void {
 		element.addEventListener(eventType, (e) => this.validate(element, e));
 	}
 
@@ -36,7 +36,7 @@ export class Ok {
 	 * @param e Optional event that triggered validation.
 	 * @returns validity of the element.
 	 */
-	validate(element: ValidatableElement, e?: Event): boolean {
+	validate<T extends ValidatableElement>(element: T, e?: Event): boolean {
 		for (const validator of this.#getValidators(element)) {
 			if (!validator.fn(element, e)) {
 				const msg =
@@ -54,7 +54,9 @@ export class Ok {
 	/**
 	 * @internal
 	 */
-	#getValidators(element: ValidatableElement): ReadonlyArray<Validator> {
+	#getValidators<T extends ValidatableElement>(
+		element: T
+	): ReadonlyArray<Validator<T>> {
 		const okAttr = element.dataset.ok;
 		if (okAttr == null || okAttr.length === 0) {
 			throw new Error("No validators are assigned to this element.");
@@ -68,7 +70,7 @@ export class Ok {
 						`Validator for name '${validatorName}' is not registered.`
 					);
 				}
-				return this.#map.get(validatorName)!;
+				return this.#map.get(validatorName) as Validator<T>; // This typing *could* be a lie if the consumer binds a validator to the wrong element.
 			});
 	}
 }
