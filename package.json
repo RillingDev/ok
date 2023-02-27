@@ -18,8 +18,7 @@
 		"lint": "eslint ./src/ ./spec/ --ext .ts",
 		"fix": "eslint ./src/ ./spec/ --ext .ts --fix",
 		"test": "ts-node --project ./spec/tsconfig.json node_modules/jasmine/bin/jasmine --config=./jasmine.json",
-		"docs": "typedoc",
-		"build:demo": "rollup -c rollup.demo.config.mjs"
+		"docs": "typedoc"
 	},
 	"bugs": {
 		"url": "https://github.com/FelixRilling/okjs/issues"
@@ -46,7 +45,6 @@
 		"eslint-plugin-prettier": "^4.0.0",
 		"jasmine": "^4.0.2",
 		"prettier": "^2.6.2",
-		"rollup": "^3.17.3",
 		"ts-mockito": "^2.6.1",
 		"ts-node": "^10.0.0",
 		"typedoc": "^0.23.8",

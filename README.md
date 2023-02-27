@@ -49,16 +49,16 @@ The validator which will be used is defined in the DOM via data-attributes:
 ```html
 <form class="form">
 	<div>
-		<label>First Name (only "Dave" allowed)</label>
-		<input type="text" required data-ok="nameFirst" />
+		<label for="demo1_1">First Name (only "Dave" allowed)</label>
+		<input id="demo1_1" type="text" required data-ok="nameFirst" />
 	</div>
 	<div>
-		<label>Last Name (not validated, anything goes)</label>
-		<input type="text" required />
+		<label for="demo1_2">Last Name (not validated, anything goes)</label>
+		<input id="demo1_2" type="text" required />
 	</div>
 	<div>
-		<label>Email address (only ".de" allowed)</label>
-		<input type="email" required data-ok="emailDe" />
+		<label for="demo1_3">Email address (only ".de" allowed)</label>
+		<input id="demo1_3" type="email" required data-ok="emailDe" />
 	</div>
 	<input type="submit" />
 </form>
@@ -75,10 +75,8 @@ Once the user inputs on a field bound by Ok.js, the validator function will be r
 Multiple validators can be used for a single element in a given order by chaining them. To chain multiple validators, simply add a comma between their keys in the ok attribute. When using chaining, the field will only be considered valid if all validators succeed. Once a validator marks the field as invalid, all further validators are skipped.
 
 ```html
-<div class="form-group">
-	<label for="exampleInputEmail">Email ID (all caps and ending in .de)</label>
-	<input type="email" required data-ok="nameCaps,emailDe" />
-</div>
+<label for="demo2_1">Email ID (all caps and ending in .de)</label>
+<input id="demo2_1" type="email" required data-ok="nameCaps,emailDe"/>
 ```
 
 ```typescript
@@ -107,23 +105,18 @@ const nameFirst = {
     msg: "Only 'Dave' allowed",
     fn: (element) => element.value === "Dave",
 };
-const emailDe = {
-    msg: (element) =>
-        `Please input your .de email (You entered '${element.value}')`,
-    fn: (element) => element.value.endsWith(".de"),
-};
 
 
-const SomeComponent: FC = () => {
+const SomeComponent = () => {
 
-    const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleInput = (e) => {
         ok(e.target, [nameFirst]);
     };
 
     return (
         <form>
-            <label htmlFor="someInput">Some Input</label>
-            <input type="text" onChange={handleInput} id="someInput"/>
+            <label htmlFor="demo4_1">First Name (Only 'Dave' allowed)</label>
+            <input type="text" onChange={handleInput} id="demo4_1"/>
 
             <input type="submit"/>
         </form>
