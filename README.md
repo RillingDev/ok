@@ -99,7 +99,7 @@ const ok = new Ok({
 The composition API works well if you already use a frontend framework like React or Vue, and do not want to use data attributes for logic.
 
 ```jsx
-import {ok} from "okjs";
+import {validate} from "okjs";
 
 const nameFirst = {
     msg: "Only 'Dave' allowed",
@@ -110,7 +110,7 @@ const nameFirst = {
 const SomeComponent = () => {
 
     const handleInput = (e) => {
-        ok(e.target, [nameFirst]);
+		validate(e.target, [nameFirst]);
     };
 
     return (

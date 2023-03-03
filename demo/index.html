@@ -382,7 +382,7 @@
 					<input type="submit" />
 				</form>
 				<script type="module">
-					import { ok } from "../dist/esm/main.js";
+					import { validate } from "../dist/esm/main.js";
 
 					const nameFirst = {
 						msg: "Only 'Dave' allowed",
@@ -392,7 +392,7 @@
 					document
 						.querySelector("#demo4_1")
 						.addEventListener("input", (e) =>
-							ok(e.target, [nameFirst])
+							validate(e.target, [nameFirst])
 						);
 				</script>
 			</section>
