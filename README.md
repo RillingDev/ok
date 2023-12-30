@@ -39,8 +39,14 @@ import { Ok } from "okjs";
  * Create Ok instance with custom validators.
  */
 const ok = new Ok({
+	/**
+	 * A validator with the name 'nameFirst'.
+	 */
 	nameFirst: {
 		msg: "Only 'Dave' allowed",
+		/**
+		 * Validation passes if the element value is "Dave".
+		 */
 		fn: (element) => element.value === "Dave",
 	},
 	emailDe: {
@@ -61,7 +67,7 @@ document.querySelectorAll("[data-ok]").forEach((el) => {
 The validator which will be used is defined in the DOM via `data-ok` data-attributes:
 
 ```html
-<form class="form">
+<form>
 	<label for="demo1_1">First Name (only "Dave" allowed)</label>
 	<input id="demo1_1" type="text" required data-ok="nameFirst" />
 
@@ -89,10 +95,14 @@ Example using React:
 ```jsx
 import { validate } from "okjs";
 
+/**
+ * A validator with the name 'nameFirst'.
+ */
 const nameFirst = {
 	msg: "Only 'Dave' allowed",
 	fn: (element) => element.value === "Dave",
 };
+
 const emailDe = {
 	msg: (element) =>
 		`Please input your .de email (You entered '${element.value}')`,
@@ -101,6 +111,9 @@ const emailDe = {
 
 const SomeComponent = () => {
 	const handleNameChange = (e) => {
+		/**
+		 * Trigger validation using the 'nameFirst' validator.
+		 */
 		validate(e.target, [nameFirst]);
 	};
 	const handleEmailChange = (e) => {
@@ -134,7 +147,7 @@ const SomeComponent = () => {
 ### Chaining
 
 Multiple validators can be used for a single element in a given order by chaining them. To chain multiple validators,
-add a comma between their keys in the ok data-attribute. When using chaining, the field will only be considered valid
+add a comma between their names in the data-attribute. When using chaining, the field will only be considered valid
 if all validators succeed. Once a validator marks the field as invalid, all further validators are skipped.
 
 ```html
@@ -142,7 +155,7 @@ if all validators succeed. Once a validator marks the field as invalid, all furt
 <input id="demo2_1" type="email" required data-ok="nameCaps,emailDe" />
 ```
 
-In the composition API, the other validators can be added when calling `validate`:
+In the composition API, the additional validators can be specified when calling `validate`:
 
 ```javascript
 validate(e.target, [nameCaps, emailDe]);
@@ -167,7 +180,7 @@ const nameFirst = {
 #### Radiobuttons
 
 Due to the way input elements with type `radio` work, validation is not straightforward. A single radio button only
-fires its `change`/`input` event when itself is changed, not if it becomes e.g. inactive due to another radiobutton
+fires its `change`/`input` event when itself is changed, not if it becomes inactive due to another radiobutton
 being selected. A workaround is using an enclosing fieldset and listening to the events of that.
 
 ## Compatibility
