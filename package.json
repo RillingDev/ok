@@ -2,6 +2,7 @@
 	"name": "okjs",
 	"version": "4.1.0",
 	"description": "A super tiny TypeScript library for form validation",
+	"type": "module",
 	"main": "./dist/cjs/main.js",
 	"module": "./dist/esm/main.js",
 	"types": "./dist/esm/main.d.ts",
@@ -15,6 +16,7 @@
 		"dist": "npm run lint && npm run clean && npm run build && npm run test && npm run docs",
 		"clean": "rm -rf ./dist ./docs",
 		"build": "tsc --build ./tsconfig.json",
+		"watch": "tsc --build ./tsconfig.json -w",
 		"lint": "eslint ./src/ ./spec/ --ext .ts",
 		"fix": "eslint ./src/ ./spec/ --ext .ts --fix",
 		"test": "ts-node --project ./spec/tsconfig.json node_modules/jasmine/bin/jasmine --config=./jasmine.json",
@@ -37,17 +39,14 @@
 	"dependencies": {},
 	"devDependencies": {
 		"@types/jasmine": "^4.0.3",
-		"@typescript-eslint/eslint-plugin": "^5.18.0",
-		"@typescript-eslint/parser": "^5.18.0",
+		"@typescript-eslint/eslint-plugin": "^6.16.0",
+		"@typescript-eslint/parser": "^6.16.0",
 		"eslint": "^8.13.0",
-		"eslint-config-prettier": "^8.5.0",
-		"eslint-plugin-import": "^2.25.4",
-		"eslint-plugin-prettier": "^4.0.0",
+		"eslint-plugin-prettier": "^5.0.0",
 		"jasmine": "^4.0.2",
-		"prettier": "^2.6.2",
-		"ts-mockito": "^2.6.1",
+		"prettier": "^3.0.2",
 		"ts-node": "^10.0.0",
-		"typedoc": "^0.23.8",
-		"typescript": "~4.9.5"
+		"typedoc": "^0.25.3",
+		"typescript": "~5.3.2"
 	}
 }

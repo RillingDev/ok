@@ -4,8 +4,6 @@
 # don't lint build output
 ./dist/
 ./docs/
-./demo/dist/
 
 # don't lint build tooling configs
-.eslintrc.js
-rollup.demo.config.js
+jest.config.js
