@@ -34,7 +34,7 @@
 		"url": "git+https://github.com/FelixRilling/okjs.git"
 	},
 	"author": "Felix Rilling",
-	"license": "MIT",
+	"license": "Apache-2.0",
 	"keywords": [
 		"validation",
 		"form"
