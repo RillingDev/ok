@@ -36,10 +36,11 @@ tsconfig.*.tsbuildinfo
 lib/
 
 # Config/Infrastructure Files
-.eslintrc.js
+.eslintrc.cjs
 .editorconfig
 typedoc.json
 vite.config.ts
 tsconfig.node.json
 tsconfig.json
 .github/
+index.html
