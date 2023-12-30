@@ -1,7 +1,7 @@
 {
-	"entryPoints": ["./src/main.ts"],
+	"entryPoints": ["./lib/main.ts"],
 	"out": "docs",
-	"tsconfig": "./src/tsconfig.json",
+	"tsconfig": "./tsconfig.json",
 	"excludePrivate": true,
 	"excludeInternal": true,
 	"excludeExternals": true

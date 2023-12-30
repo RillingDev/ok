@@ -1,19 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8" />
-		<title>OkJS Demo</title>
-		<meta name="description" content="OkJS Demo" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Ok.js Demo</title>
+
 		<style>
 			/**
-			 * Base
-			 */
+	   * Base
+	   */
 			body {
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				font-family: sans-serif;
 			}
 
 			.container {
@@ -26,8 +25,8 @@
 			}
 
 			/**
- * Inputs
- */
+	   * Inputs
+	   */
 			.form {
 				padding: 1rem;
 				border: 1px solid #bbb;
@@ -38,43 +37,49 @@
 			}
 		</style>
 	</head>
-
 	<body>
 		<div class="container">
 			<section>
 				<h1>Demo 1 - Basic Inputs</h1>
 				<form class="form" id="demo1">
 					<div class="form-group">
-						<label for="demo1_1"
-							>First Name (only "Dave" allowed)</label
-						>
+						<label for="demo1_1">
+							First Name (only "Dave" allowed)
+						</label>
 						<input
-							type="text"
 							id="demo1_1"
+							type="text"
 							required
 							data-ok="nameFirst"
 						/>
 					</div>
+
 					<div class="form-group">
-						<label for="demo1_2"
-							>Last Name (not validated by Ok, anything
-							goes)</label
-						>
-						<input type="text" id="demo1_2" required />
+						<label for="demo1_2">
+							Last Name (not validated, anything goes)
+						</label>
+						<input id="demo1_2" type="text" required />
 					</div>
+
 					<div class="form-group">
-						<label for="demo1_3"
-							>Email address (Optional, only ".de" allowed)</label
-						>
-						<input type="email" id="demo1_3" data-ok="emailDe" />
+						<label for="demo1_3">
+							Email address (only ".de" allowed)
+						</label>
+						<input
+							id="demo1_3"
+							type="email"
+							required
+							data-ok="emailDe"
+						/>
 					</div>
+
 					<input type="submit" />
 				</form>
 				<script type="module">
-					import { Ok } from "../dist/esm/main.js";
+					import { Ok } from "/lib/main.ts";
 
 					/**
-					 * Create Ok instance with custom validators
+					 * Create Ok instance with custom validators.
 					 */
 					const ok = new Ok({
 						nameFirst: {
@@ -89,15 +94,15 @@
 					});
 
 					/**
-					 * Bind validation event handlers to inputs
+					 * Bind validation event handlers to inputs.
 					 */
 					document
 						.querySelectorAll("#demo1 [data-ok]")
-						.forEach((el) =>
+						.forEach((el) => {
 							el.addEventListener("input", (e) =>
-								ok.validate(e.target)
-							)
-						);
+								ok.validate(e.target),
+							);
+						});
 				</script>
 			</section>
 
@@ -118,7 +123,7 @@
 					<input type="submit" />
 				</form>
 				<script type="module">
-					import { Ok } from "../dist/esm/main.js";
+					import { Ok } from "/lib/main.ts";
 
 					const ok = new Ok({
 						nameCaps: {
@@ -133,10 +138,10 @@
 					});
 
 					Array.from(
-						document.querySelectorAll("#demo2 [data-ok]")
+						document.querySelectorAll("#demo2 [data-ok]"),
 					).forEach((inputElement) => {
 						inputElement.addEventListener("input", (e) =>
-							ok.validate(e.target)
+							ok.validate(e.target),
 						);
 					});
 				</script>
@@ -159,7 +164,7 @@
 					<input type="submit" />
 				</form>
 				<script type="module">
-					import { Ok } from "../dist/esm/main.js";
+					import { Ok } from "/lib/main.ts";
 
 					const getLocalizedStringDummy = (key) => {
 						const lang = navigator.language;
@@ -181,8 +186,8 @@
 						.querySelectorAll("#demo3 [data-ok]")
 						.forEach((inputElement) =>
 							inputElement.addEventListener("input", (e) =>
-								ok.validate(e.target)
-							)
+								ok.validate(e.target),
+							),
 						);
 				</script>
 			</section>
@@ -191,13 +196,15 @@
 				<h1>Demo 4 - Composition</h1>
 				<form class="form" id="demo4">
 					<div class="form-group">
-						<label for="demo4_1">First Name (Only 'Dave' allowed)</label>
+						<label for="demo4_1">
+							First Name (Only 'Dave' allowed)
+						</label>
 						<input type="text" id="demo4_1" />
 					</div>
 					<input type="submit" />
 				</form>
 				<script type="module">
-					import { validate } from "../dist/esm/main.js";
+					import { validate } from "/lib/main.ts";
 
 					const nameFirst = {
 						msg: "Only 'Dave' allowed",
@@ -207,7 +214,7 @@
 					document
 						.querySelector("#demo4_1")
 						.addEventListener("input", (e) =>
-							validate(e.target, [nameFirst])
+							validate(e.target, [nameFirst]),
 						);
 				</script>
 			</section>

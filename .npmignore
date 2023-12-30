@@ -33,16 +33,14 @@ tsconfig.*.tsbuildinfo
 
 
 # Source Files
-src/
-spec/
+lib/
 
 # Config/Infrastructure Files
 .eslintrc.js
 .eslintignore
 .editorconfig
 typedoc.json
-jasmine.json
-tsconfig.base.json
+vite.config.ts
+tsconfig.node.json
 tsconfig.json
 .github/
-rollup.demo.config.js

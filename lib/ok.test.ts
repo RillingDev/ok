@@ -1,4 +1,5 @@
-import { Ok } from "../src/ok";
+import { Ok } from "./ok.js";
+import { describe, expect, it } from "vitest";
 
 describe("Ok", () => {
 	it("constructs", () => {

@@ -3,23 +3,26 @@
 	"version": "4.1.0",
 	"description": "A super tiny TypeScript library for form validation",
 	"type": "module",
-	"main": "./dist/cjs/main.js",
-	"module": "./dist/esm/main.js",
-	"types": "./dist/esm/main.d.ts",
-	"directories": {
-		"lib": "src/",
-		"test": "spec/",
-		"doc": "docs/"
+	"main": "./dist/ok.umd.cjs",
+	"module": "./dist/ok.js",
+	"types": "./dist/main.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/main.d.ts",
+			"import": "./dist/ok.js",
+			"require": "./dist/ok.umd.cjs"
+		}
 	},
 	"scripts": {
 		"start": "npm run dist",
-		"dist": "npm run lint && npm run clean && npm run build && npm run test && npm run docs",
+		"dist": "npm run lint && npm run test && npm run clean && npm run build &&  npm run docs",
 		"clean": "rm -rf ./dist ./docs",
-		"build": "tsc --build ./tsconfig.json",
-		"watch": "tsc --build ./tsconfig.json -w",
-		"lint": "eslint ./src/ ./spec/ --ext .ts",
-		"fix": "eslint ./src/ ./spec/ --ext .ts --fix",
-		"test": "ts-node --project ./spec/tsconfig.json node_modules/jasmine/bin/jasmine --config=./jasmine.json",
+		"dev": "vite",
+		"build": "tsc && vite build",
+		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+		"fix": "eslint . --ext ts,tsx --fix",
+		"test": "vitest run",
+		"test:dev": "vitest dev",
 		"docs": "typedoc"
 	},
 	"bugs": {
@@ -36,17 +39,18 @@
 		"validation",
 		"form"
 	],
-	"dependencies": {},
 	"devDependencies": {
-		"@types/jasmine": "^4.0.3",
 		"@typescript-eslint/eslint-plugin": "^6.16.0",
 		"@typescript-eslint/parser": "^6.16.0",
+		"@vitest/coverage-v8": "^1.0.4",
 		"eslint": "^8.13.0",
 		"eslint-plugin-prettier": "^5.0.0",
-		"jasmine": "^4.0.2",
+		"jsdom": "^23.0.0",
 		"prettier": "^3.0.2",
-		"ts-node": "^10.0.0",
 		"typedoc": "^0.25.3",
-		"typescript": "~5.3.2"
+		"typescript": "~5.3.2",
+		"vite": "^5.0.8",
+		"vite-plugin-dts": "^3.7.0",
+		"vitest": "^1.0.4"
 	}
 }

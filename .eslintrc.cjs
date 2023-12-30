@@ -3,19 +3,13 @@ module.exports = {
 	root: true,
 	parser: "@typescript-eslint/parser",
 	parserOptions: {
-		project: [
-			"./tsconfig.json",
-			"./spec/tsconfig.json"
-		]
+		project: ["./tsconfig.json", "./tsconfig.node.json"],
 	},
-	plugins: [
-		"@typescript-eslint",
-		"prettier"
-	],
+	plugins: ["@typescript-eslint", "prettier"],
 	extends: [
 		"eslint:recommended",
 		"plugin:@typescript-eslint/strict-type-checked",
-		"plugin:@typescript-eslint/stylistic-type-checked"
+		"plugin:@typescript-eslint/stylistic-type-checked",
 	],
 	rules: {
 		/*
@@ -42,77 +36,55 @@ module.exports = {
 		"@typescript-eslint/explicit-function-return-type": [
 			"warn",
 			{
-				"allowExpressions": true
-			}
+				allowExpressions: true,
+			},
 		],
 		"@typescript-eslint/method-signature-style": "warn",
 		"@typescript-eslint/naming-convention": [
 			"warn",
 			{
-				"selector": "default",
-				"format": [
-					"strictCamelCase"
-				],
-				"leadingUnderscore": "allow",
-				"trailingUnderscore": "forbid"
+				selector: "default",
+				format: ["strictCamelCase"],
+				leadingUnderscore: "allow",
+				trailingUnderscore: "forbid",
 			},
 			{
-				"selector": "variable",
-				"format": [
-					"strictCamelCase",
-					"StrictPascalCase",
-					"UPPER_CASE"
-				]
+				selector: "variable",
+				format: ["strictCamelCase", "StrictPascalCase", "UPPER_CASE"],
 			},
 			{
-				"selector": "property",
-				"format": [
-					"strictCamelCase",
-					"StrictPascalCase",
-					"UPPER_CASE"
-				]
+				selector: "property",
+				format: ["strictCamelCase", "StrictPascalCase", "UPPER_CASE"],
 			},
 			{
-				"selector": "typeAlias",
-				"format": [
-					"StrictPascalCase"
-				]
+				selector: "typeAlias",
+				format: ["StrictPascalCase"],
 			},
 			{
-				"selector": "typeParameter",
-				"format": [
-					"PascalCase"
-				]
+				selector: "typeParameter",
+				format: ["PascalCase"],
 				// Allow "T", "TValue", "Value" and such
 			},
 			{
-				"selector": "interface",
-				"format": [
-					"StrictPascalCase"
-				],
-				"custom": {
-					"regex": "^I[A-Z]",
-					"match": false
-				}
+				selector: "interface",
+				format: ["StrictPascalCase"],
+				custom: {
+					regex: "^I[A-Z]",
+					match: false,
+				},
 			},
 			{
-				"selector": "class",
-				"format": [
-					"StrictPascalCase"
-				]
+				selector: "class",
+				format: ["StrictPascalCase"],
 			},
 			{
-				"selector": "enum",
-				"format": [
-					"StrictPascalCase"
-				]
+				selector: "enum",
+				format: ["StrictPascalCase"],
 			},
 			{
-				"selector": "enumMember",
-				"format": [
-					"UPPER_CASE"
-				]
-			}
+				selector: "enumMember",
+				format: ["UPPER_CASE"],
+			},
 		],
 		// Prevents bugs
 		"@typescript-eslint/no-redeclare": "error",
@@ -122,5 +94,5 @@ module.exports = {
 		"@typescript-eslint/prefer-readonly": "warn",
 		// Essential when working with maps
 		"@typescript-eslint/no-non-null-assertion": "off",
-	}
-}
+	},
+};
