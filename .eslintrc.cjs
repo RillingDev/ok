@@ -3,7 +3,7 @@ module.exports = {
 	root: true,
 	parser: "@typescript-eslint/parser",
 	parserOptions: {
-		project: ["./tsconfig.json", "./tsconfig.node.json"],
+		project: ["./tsconfig.json", "./tsconfig.node.json"]
 	},
 	plugins: ["@typescript-eslint", "prettier"],
 	extends: [
@@ -11,6 +11,7 @@ module.exports = {
 		"plugin:@typescript-eslint/strict-type-checked",
 		"plugin:@typescript-eslint/stylistic-type-checked",
 	],
+	ignorePatterns: ["dist/", "docs/", ".eslintrc.cjs"],
 	rules: {
 		/*
 		 * ESLint

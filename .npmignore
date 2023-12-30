@@ -37,7 +37,6 @@ lib/
 
 # Config/Infrastructure Files
 .eslintrc.js
-.eslintignore
 .editorconfig
 typedoc.json
 vite.config.ts

@@ -28,7 +28,7 @@ export interface Validator<T extends ValidatableElement> {
  */
 export function validate<T extends ValidatableElement>(
 	element: T,
-	validators: ReadonlyArray<Validator<T>>
+	validators: readonly Validator<T>[],
 ): boolean {
 	for (const validator of validators) {
 		if (!validator.fn(element)) {

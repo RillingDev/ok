@@ -32,8 +32,8 @@ export class Ok {
 	 * @internal
 	 */
 	#getValidators<T extends ValidatableElement>(
-		element: T
-	): ReadonlyArray<Validator<T>> {
+		element: T,
+	): readonly Validator<T>[] {
 		const okAttr = element.dataset.ok;
 		if (okAttr == null || okAttr.length === 0) {
 			throw new Error("No validators are assigned to this element.");
@@ -44,7 +44,7 @@ export class Ok {
 			.map((validatorName) => {
 				if (!this.#map.has(validatorName)) {
 					throw new Error(
-						`Validator for name '${validatorName}' is not registered.`
+						`Validator for name '${validatorName}' is not registered.`,
 					);
 				}
 				return this.#map.get(validatorName) as Validator<T>; // This typing *could* be a lie if the consumer binds a validator to the wrong element.
