@@ -26,14 +26,14 @@
 		"docs": "typedoc"
 	},
 	"bugs": {
-		"url": "https://github.com/FelixRilling/okjs/issues"
+		"url": "https://github.com/RillingDev/okjs/issues"
 	},
-	"homepage": "https://github.com/FelixRilling/okjs#readme",
+	"homepage": "https://github.com/RillingDev/okjs#readme",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/FelixRilling/okjs.git"
+		"url": "git+https://github.com/RillingDev/okjs.git"
 	},
-	"author": "Felix Rilling",
+	"author": "F. Rilling",
 	"license": "Apache-2.0",
 	"keywords": [
 		"validation",

@@ -7,7 +7,7 @@
 Ok.js is a utility library to validate forms with more than what HTML5 offers you. Features include customized messages
 and validator chaining.
 
-[Documentation](https://felixrilling.github.io/ok/)
+[Documentation](https://rilling.dev.github.io/ok/)
 
 ## Usage
 
