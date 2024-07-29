@@ -2,7 +2,7 @@
 	"entryPoints": ["./lib/main.ts"],
 	"out": "docs",
 	"tsconfig": "./tsconfig.json",
-	"excludePrivate": true,
 	"excludeInternal": true,
-	"excludeExternals": true
+	"excludeExternals": true,
+	"highlightLanguages": ["shell", "typescript", "html", "tsx"]
 }

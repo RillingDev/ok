@@ -32,7 +32,7 @@ The two offer the same functionality, but depending on your use-case, one may be
 
 The data-attribute API works well when working directly with HTML that is enhanced by JS.
 
-```javascript
+```typescript
 import { Ok } from "okjs";
 
 /**
@@ -92,7 +92,7 @@ attributes for logic.
 
 Example using React:
 
-```jsx
+```tsx
 import { validate } from "okjs";
 
 /**
@@ -166,7 +166,7 @@ validate(e.target, [nameCaps, emailDe]);
 While Ok.js itself does not localize validation messages,
 the validation message function can call an existing localization function:
 
-```javascript
+```typescript
 import { localize } from "./some-localization-tool";
 
 const nameFirst = {
